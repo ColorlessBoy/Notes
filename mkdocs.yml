@@ -51,7 +51,8 @@ repo_url: 'https://github.com/colorlessboy/Notes'
 nav:
   - 介绍: index.md
   - 机器学习:
-    - EM: ML/01-EM.md
-    - SVM: ML/02-SVM.md
+    - EM:         ML/01-EM.md
+    - SVM:        ML/02-SVM.md
     - Rademacher: ML/03-Rademacher.md
     - Regression: ML/04-Regression.md
+    - AdaBoost:   ML/05-AdaBoost.md
