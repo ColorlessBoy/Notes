@@ -60,7 +60,7 @@ Adaboot解决的问题是: 数据在 $(\mathbf{x}, y) \sim \mathcal{D}$, 并且 
 \end{align}
 
 令  $L_S(\pmb{\alpha}) = Z = \sum_{i=1}^{m} exp\left\{ -y_i \sum_{j=1}^{N} \alpha_j h_j(\mathbf{x}_i) \right\}$,
-某一个样本集 $S$ 上的分布 $\mathbf{p}_{k}(S) = \left\{ p_k(\mathbf{x}_1, y_1), p_k(\mathbf{x}_2, y_2), \ldots, p_k(\mathbf{x}_m, y_m)\right\}$, 满足 $\mathbf{p}_{k}(\mathbf{x}_i, y_i) = \frac{1}{Z}exp\left\{ -y_i \sum_{j=1}^{N} h(\mathbf{x}_i) \right\}$, 以及 $\epsilon_k = \mathbb{E}_{(\mathbf{x}, y) \sim \mathbf{p}_k} \left[ \pmb{1}_{h_k(\mathbf{x})\ne y} \right]$那么 
+某一个样本集 $S$ 上的分布 $\mathbf{p}_{k}(S) = \left\{ p_k(\mathbf{x}_1, y_1), p_k(\mathbf{x}_2, y_2), \ldots, p_k(\mathbf{x}_m, y_m)\right\}$, 满足 $\mathbf{p}_{k}(\mathbf{x}_i, y_i) = \frac{1}{Z}exp\left\{ -y_i \sum_{j=1}^{N} \alpha_j h_j(\mathbf{x}_i) \right\}$, 以及 $\epsilon_k = \mathbb{E}_{(\mathbf{x}, y) \sim \mathbf{p}_k} \left[ \pmb{1}_{h_k(\mathbf{x})\ne y} \right]$那么 
 
 \begin{align}
     \frac{\partial}{\partial \eta} {L}_{\mathcal{S}}(\eta)
@@ -74,7 +74,7 @@ Adaboot解决的问题是: 数据在 $(\mathbf{x}, y) \sim \mathcal{D}$, 并且 
 综上所述，Adaboost算法的流程是：
 
 - Step1: 初始化 $\pmb{\alpha} = \pmb{0}$, $k = 1$, $\mathcal{H}_{weak} = \{\}$;
-- Step2: 求解$\mathbf{p}_{k}(S)$, 从样本 $\{(\mathbf{x}, y)\} \sim \mathbf{p}_{k}$ 中学习出一个弱分类器 $h_k$, $\mathcal{H}_{weak} = \mathcal{H} \cup \{h_k\}$;
+- Step2: 求解$\mathbf{p}_{k}(S)$, 从样本 $\{(\mathbf{x}, y)\} \sim \mathbf{p}_{k}$ 中学习出一个弱分类器 $h_k$, $\mathcal{H}_{weak} = \mathcal{H} \cup \{h_k\}$; 弱分类器的学习方式很重要，这个在证明里会体现;
 - Step3: 求解$\epsilon_k$, $\eta_k$;
 - Step4: 更新 $\pmb{\alpha}$ 和 $k$, 返回到第二步。
 
@@ -83,22 +83,22 @@ Adaboot解决的问题是: 数据在 $(\mathbf{x}, y) \sim \mathcal{D}$, 并且 
 首先 $\epsilon_k \le \frac{1}{2} - \gamma$, 那么
 
 \begin{align}
-    &\frac{L_{\mathbf{p}_k(S)}(\pmb{\alpha} + \eta \pmb{\epsilon}_k)}{L_{(\mathbf{x}, y) \sim \mathbf{p}_{k-1}(S)}(\pmb{\alpha})} \\
+    &\frac{L_{S}(\pmb{\alpha} + \eta \pmb{\epsilon}_k)}{L_{S}(\pmb{\alpha})} \\
     =& (1 - \epsilon_k) \exp(-\eta) + \epsilon_k \exp(\eta) \\  
     =& 2 \sqrt{\epsilon_k(1 - \epsilon_k)}\\ 
     \le& 2\sqrt{\left( \frac{1}{2} - \gamma \right)\left( \frac{1}{2} + \gamma \right)} \\
     \le& \sqrt{1 - 4\gamma^2} \le \exp(-2\gamma^2).
 \end{align}
 
-如果取 $\pmb{\alpha}_0 = \pmb{0}$, 那么  $L_{S}(\pmb{\alpha}_0) = 1$, 所以可得
- $L_{\mathbf{p}_T(S)}(\pmb{\alpha}_T) \le \exp(-2\gamma^2T)$。
+如果取 $\pmb{\alpha}_0 = \pmb{0}$，那么  $L_{S}(\pmb{\alpha}_0) = 1$。
+所以，$L_{S}(\pmb{\alpha}_T) \le \exp(-2\gamma^2T)$。
 
 我们当然比较关心 $0-1$ 误差函数：$l^{0-1}(h, (\mathbf{x}, y)) = sign\{- y h(\mathbf{x})\}$,
 它小于等于误差函数  $l^{exp}(h, (\mathbf{x}, y)) = \exp(-y h(\mathbf{x}))$, 所以
 
 \begin{align}
     &{L}^{0-1}_{\mathcal{D}}(h) \le {L}_{\mathcal{D}}^{\exp}(h) \\
-    ?=& \mathbb{E}_{S \sim \mathcal{D}^m} \left[ {L}_{\mathbf{p}_T(S)}^{exp}(h) \right] \\
+    =& \mathbb{E}_{S \sim \mathcal{D}^m} \left[ {L}_{S}^{exp}(h) \right] \\
     \le& \exp(-2\gamma^2 T).
 \end{align}
 
