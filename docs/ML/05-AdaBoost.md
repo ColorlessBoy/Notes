@@ -96,8 +96,11 @@ Adaboot解决的问题是: 数据在 $(\mathbf{x}, y) \sim \mathcal{D}$, 并且 
 我们当然比较关心 $0-1$ 误差函数：$l^{0-1}(h, (\mathbf{x}, y)) = sign\{- y h(\mathbf{x})\}$,
 它小于等于误差函数  $l^{exp}(h, (\mathbf{x}, y)) = \exp(-y h(\mathbf{x}))$, 所以
 
-\begin{equation}
-    {L}^{0-1}_{\mathcal{D}}(h) ?= \mathbb{E}_{S \sim \mathcal{D}^m} \left[ {L}_{\mathbf{p}_T(S)}^{exp}(h) \right] \le \exp(-2\gamma^2 T).
-\end{equation}
+\begin{align}
+    &{L}^{0-1}_{\mathcal{D}}(h) \le {L}_{\mathcal{D}}^{\exp}(h) \\
+    ?=& \mathbb{E}_{S \sim \mathcal{D}^m} \left[ {L}_{\mathbf{p}_T(S)}^{exp}(h) \right] \\
+    \le& \exp(-2\gamma^2 T).
+\end{align}
+
 
 
