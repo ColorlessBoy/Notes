@@ -56,3 +56,4 @@ nav:
     - Rademacher: ML/03-Rademacher.md
     - Regression: ML/04-Regression.md
     - AdaBoost:   ML/05-AdaBoost.md
+    - PAC:        ML/06-PAC.md

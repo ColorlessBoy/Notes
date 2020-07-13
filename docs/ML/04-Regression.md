@@ -3,7 +3,7 @@
 ## 问题描述
 
 在实际生活中，我们能获得一系列的样本 $\mathcal{S} = \left\{ (x_1, y_1), (x_2, y_2), \dots, (x_m, y_m) \right\}$。其中 样本属于某个集合 $z = (x, y) \in Z = X \times Y$,
-并且我们认为这些样本是服从某个未知的联合分布 $\mathcal{D}$，即 $(x, y) \sim \mathcal{D} $。 与之相关的未知条件分布 $P_{\mathcal{D}}(y \vert x)$ 是我们希望获得的：当我们知道了 $x$ 的值，我们就能知道 $y$ 的值最可能是多少。
+并且我们认为这些样本是服从某个未知的联合分布 $\mathcal{D}$，即 $(x, y) \sim \mathcal{D}$。 与之相关的未知条件分布 $P_{\mathcal{D}}(y \vert x)$ 是我们希望获得的：当我们知道了 $x$ 的值，我们就能知道 $y$ 的值最可能是多少。
 
 如果 $y \in \mathbb{R}$, 那么求解 $P_\mathcal{D}(y\vert x)$ 的问题也叫做回归问题。
 通常我们构造一个假设集 $\mathcal{H}_{\theta} = \{P_{\theta}(y \vert x)\}$, 我们从假设集中选一个最接近 $P_\mathcal{D}(y \vert x)$ 的集合 $P_{\theta^*}(y \vert x)$。对应的优化目标是
