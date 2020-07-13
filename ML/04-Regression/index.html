@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06-PAC/" title="PAC" class="md-nav__link">
+      PAC
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -429,7 +441,7 @@
                 <h1 id="_1">线性回归问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">问题描述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在实际生活中，我们能获得一系列的样本 <span><span class="MathJax_Preview">\mathcal{S} = \left\{ (x_1, y_1), (x_2, y_2), \dots, (x_m, y_m) \right\}</span><script type="math/tex">\mathcal{S} = \left\{ (x_1, y_1), (x_2, y_2), \dots, (x_m, y_m) \right\}</script></span>。其中 样本属于某个集合 <span><span class="MathJax_Preview">z = (x, y) \in Z = X \times Y</span><script type="math/tex">z = (x, y) \in Z = X \times Y</script></span>,
-并且我们认为这些样本是服从某个未知的联合分布 <span><span class="MathJax_Preview">\mathcal{D}</span><script type="math/tex">\mathcal{D}</script></span>，即 $(x, y) \sim \mathcal{D} $。 与之相关的未知条件分布 <span><span class="MathJax_Preview">P_{\mathcal{D}}(y \vert x)</span><script type="math/tex">P_{\mathcal{D}}(y \vert x)</script></span> 是我们希望获得的：当我们知道了 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 的值，我们就能知道 <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> 的值最可能是多少。</p>
+并且我们认为这些样本是服从某个未知的联合分布 <span><span class="MathJax_Preview">\mathcal{D}</span><script type="math/tex">\mathcal{D}</script></span>，即 <span><span class="MathJax_Preview">(x, y) \sim \mathcal{D}</span><script type="math/tex">(x, y) \sim \mathcal{D}</script></span>。 与之相关的未知条件分布 <span><span class="MathJax_Preview">P_{\mathcal{D}}(y \vert x)</span><script type="math/tex">P_{\mathcal{D}}(y \vert x)</script></span> 是我们希望获得的：当我们知道了 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 的值，我们就能知道 <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> 的值最可能是多少。</p>
 <p>如果 <span><span class="MathJax_Preview">y \in \mathbb{R}</span><script type="math/tex">y \in \mathbb{R}</script></span>, 那么求解 <span><span class="MathJax_Preview">P_\mathcal{D}(y\vert x)</span><script type="math/tex">P_\mathcal{D}(y\vert x)</script></span> 的问题也叫做回归问题。
 通常我们构造一个假设集 <span><span class="MathJax_Preview">\mathcal{H}_{\theta} = \{P_{\theta}(y \vert x)\}</span><script type="math/tex">\mathcal{H}_{\theta} = \{P_{\theta}(y \vert x)\}</script></span>, 我们从假设集中选一个最接近 <span><span class="MathJax_Preview">P_\mathcal{D}(y \vert x)</span><script type="math/tex">P_\mathcal{D}(y \vert x)</script></span> 的集合 <span><span class="MathJax_Preview">P_{\theta^*}(y \vert x)</span><script type="math/tex">P_{\theta^*}(y \vert x)</script></span>。对应的优化目标是</p>
 <div>
