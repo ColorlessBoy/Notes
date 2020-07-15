@@ -353,6 +353,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07-KalmanFilter/" title="Kalman Filter" class="md-nav__link">
+      Kalman Filter
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -484,13 +496,24 @@
 <p>首先，给定一个假设集 <span><span class="MathJax_Preview">\mathcal{H}=\{\mathcal{P}_{\theta}(x)\}</span><script type="math/tex">\mathcal{H}=\{\mathcal{P}_{\theta}(x)\}</script></span>。
 现在给我们从未知分布 <span><span class="MathJax_Preview">\mathcal{D}</span><script type="math/tex">\mathcal{D}</script></span> 中独立采集一堆样本  <span><span class="MathJax_Preview">\mathcal{S} = \{x_1, x_2, \ldots, x_m\}</span><script type="math/tex">\mathcal{S} = \{x_1, x_2, \ldots, x_m\}</script></span>，
 我们希望确定哪个 <span><span class="MathJax_Preview">\mathcal{P}_{\theta}(x)</span><script type="math/tex">\mathcal{P}_{\theta}(x)</script></span> 更接近这组数据的真实分布 <span><span class="MathJax_Preview">\mathcal{D}</span><script type="math/tex">\mathcal{D}</script></span> 。</p>
-<p>那么，我们根据极大似然理论构造一个损失函数：</p>
+<p>那么，我们需要一个损失函数来衡量两个分布的接近程度。这里我们用的是KL距离，来构造真实误差函数：</p>
 <div>
 <div class="MathJax_Preview">
-    L_{\mathcal{S}}(\theta) = -\ln \prod^{m}_{i=1} \mathcal{P}_{\theta}(x_i) = -\sum^{m}_{i=1} \ln \mathcal{P}_{\theta}(x_i). \tag{1}
+    \tag{0} \label{trueloss}
+    L_{\mathcal{D}}(p_{\theta}) = \mathbb{E}_{p_\mathcal{D}(\mathbf{x})}\left[\ln\left( \frac{p_{\mathcal{D}}(\mathbf{x})}{p_{\theta}(\mathbf{x})} \right)\right].
 </div>
 <script type="math/tex; mode=display">
-    L_{\mathcal{S}}(\theta) = -\ln \prod^{m}_{i=1} \mathcal{P}_{\theta}(x_i) = -\sum^{m}_{i=1} \ln \mathcal{P}_{\theta}(x_i). \tag{1}
+    \tag{0} \label{trueloss}
+    L_{\mathcal{D}}(p_{\theta}) = \mathbb{E}_{p_\mathcal{D}(\mathbf{x})}\left[\ln\left( \frac{p_{\mathcal{D}}(\mathbf{x})}{p_{\theta}(\mathbf{x})} \right)\right].
+</script>
+</div>
+<p>那么，对应的经验误差函数为：</p>
+<div>
+<div class="MathJax_Preview">
+    L_{\mathcal{S}}(\theta) =-\frac{1}{m}\sum^{m}_{i=1} \ln \mathcal{P}_{\theta}(x_i). \tag{1}
+</div>
+<script type="math/tex; mode=display">
+    L_{\mathcal{S}}(\theta) =-\frac{1}{m}\sum^{m}_{i=1} \ln \mathcal{P}_{\theta}(x_i). \tag{1}
 </script>
 </div>
 <p>在有些情况下（高斯混合模型），<span><span class="MathJax_Preview">\mathcal{P}_\theta(x)</span><script type="math/tex">\mathcal{P}_\theta(x)</script></span> 还和另一个 <strong>隐随机变量</strong> <span><span class="MathJax_Preview">\mathcal{Z} = \{z_1, z_2, \ldots, z_k\}</span><script type="math/tex">\mathcal{Z} = \{z_1, z_2, \ldots, z_k\}</script></span> 有关：</p>
