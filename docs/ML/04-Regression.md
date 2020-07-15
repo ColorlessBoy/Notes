@@ -140,3 +140,5 @@ $p_{\mathcal{D}}({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathb
 其中 $\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \pmb{\Sigma}_1\mathbf{X}^T)^{-1}$，
 并且 $\pmb{\mu} = \pmb{\Sigma} [\mathbf{X} \pmb{\Sigma}_1^{-1}  \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]$。
 这个假设让我很不舒服，和前面的讨论并不统一。
+> 核心问题：贝叶斯线性回归的真实误差函数是什么？
+> 贝叶斯做的是预测，而不是模型拟合？
