@@ -52,7 +52,7 @@ $$
 这个集合怎么来的呢？其实和贝叶斯线性回归有关系。贝叶斯线性回归就是给参数 $\mathbf{w}$ (b被包含在 $\mathbf{w}$ 中)添加一个先验分布，通常给 $\mathbf{w}$ 先验分布为某个参数化的高斯分布 $\mathcal{N}(\pmb{\mu}_\theta, \pmb{\Sigma}_{\theta})$，即假设集为 
 
 $$
-\mathcal{H}_{\theta} = \{h(\mathbf{x}) = \mathbf{w}^T \mathbf{x}, \mathbf{w} \sim \mathcal{N}(\pmb{\mu}_{\theta}, \pmb{\Sigma}_{\theta})\}.\tag{7}
+\mathcal{H}_{\theta} = \{h(\mathbf{x}) = \mathbf{w}^T \mathbf{x}, \mathbf{w} \sim \mathcal{N}(\pmb{\mu}_{\theta}, \pmb{\Sigma}_{\theta})\}.\tag{7} \label{linearhypothesis}
 $$
 
 那么，$\mathbb{E}_{\mathbf{w}}[h(\mathbf{x})] = \mathbf{w}^T \pmb{\mu}_{\theta}$, 并且 $Var_{\mathbf{w}}(h(\mathbf{x})) = \mathbf{x}^T \pmb{\Sigma_{\theta}} \mathbf{x}$。
@@ -113,32 +113,78 @@ $$
 \end{align*}
 $$
 
-## 贝叶斯线性回归
+##贝叶斯线性回归
+
+贝叶斯线性回归的假设集正如上面$\eqref{linearhypothesis}$式所描述的。
+不过贝叶斯线性回归做的是在我们求出最优的 $\mathbf{w} \sim \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)$ 后，
+我们怎么样能做得更好。当然 $\mathbf{w} \sim \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)$ 通常直接被认为给定一个分布，
+人们叫它先验知识。我觉得加入上一节 [随机线性回归](#_4) 的先验模型学习更合理。
+
 我们在贝叶斯回归时，实际上是在做什么？
 
-令 $\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_m]$, $\mathbf{y} = [y_1, y_2, \ldots, y_m]^T$。
+现在我们已经有了分布 $p(\mathbf{w})$ 和 $p(y \vert \mathbf{x}, \mathbf{w})$，在贝叶斯框架中相当于我们已经获得了全部的
+和概率相关的信息。现在我们给定一个样本 $S = \{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \ldots, (\mathbf{x}_m, y_m)\}$, 
+我们希望求得条件概率 $p(\mathbf{w} \vert S)$ , 来指导我们选择参数 $\mathbf{w}$。
+
+令 $\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_m]$, $\mathbf{y} = [y_1, y_2, \ldots, y_m]^T$, 我们已知
+
+\begin{cases}
+    \tag{11} \label{step1}
+    p(\mathbf{w}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)\\
+    p({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})
+\end{cases}
+
+要求解 $p(\mathbf{w} \vert \mathbf{X}, \mathbf{y})$, 我们需要引入下面这个结论：
+
+> **多元高斯分布的边缘分布与条件分布**：
+>
+> 已知分布：
+>
+> \begin{cases}
+>     \tag{12} \label{step3}
+>     p(\mathbf{x}) = \mathcal{N}(\pmb{\mu}, \pmb{\Lambda}^{-1}), \\
+>     p(\mathbf{y} \vert \mathbf{x}) = \mathcal{N}(\mathbf{A}\mathbf{x} + \mathbf{b}, \pmb{L}^{-1}),
+> \end{cases}
+> 
+> 我们可得：
+>
+> \begin{cases}
+>     \tag{13} \label{step4}
+>     p(\mathbf{y}) = \mathcal{N}(\mathbf{A}\pmb{\mu} + \mathbf{b}, \mathbf{L}^{-1} + \mathbf{A}\pmb{\Lambda}^{-1}\mathbf{A}^T), \\
+>     p(\mathbf{x} \vert \mathbf{y}) = \mathcal{N}(\pmb{\Sigma}[\mathbf{A}^T \mathbf{L}(\mathbf{y} - \mathbf{b}) + \pmb{\Lambda\mu}], \pmb{\Sigma}),\\
+     \pmb{\Sigma} = (\pmb{\Lambda} + \mathbf{A}^T \mathbf{L} \mathbf{A})^{-1}.
+> \end{cases}
+>
+> (参考自：PRML(2006年出版)第93页)
+
+带入上面的结论，我们可得：
 
 $$
-p(\mathbf{w}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)
-$$
-
-$$
-p(\hat{\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})
-$$
-
-$$
-p(\mathbf{w} \vert \hat{\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma})
+\tag{14} \label{step5}
+p(\mathbf{w} \vert {\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma}),
 $$
 
 其中 $\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X}\mathbf{X}^T)^{-1}$，
 并且 $\pmb{\mu} = \pmb{\Sigma} [\mathbf{X}(\mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})^{-1} \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]$。
-这一套东西并没有出现真实分布 $\mathcal{D}$。
 
-这里假设
-$p_{\mathcal{D}}({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \pmb{\Sigma}_1),$
-那么在 $p(\mathbf{w} \vert \hat{\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma})$ 中，
-其中 $\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \pmb{\Sigma}_1\mathbf{X}^T)^{-1}$，
-并且 $\pmb{\mu} = \pmb{\Sigma} [\mathbf{X} \pmb{\Sigma}_1^{-1}  \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]$。
-这个假设让我很不舒服，和前面的讨论并不统一。
-> 核心问题：贝叶斯线性回归的真实误差函数是什么？
-> 贝叶斯做的是预测，而不是模型拟合？
+这个公式还不够简练，求逆的操作比较多，我参考了[卡尔曼滤波](07-KalmanFilter.md)的公式来化简这个求解。
+
+> 我抽象了一下卡尔曼滤波中的一个结论。
+> 已知分布$p(\mathbf{x}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)$ 和 $p(\mathbf{y} \vert \mathbf{x}) = \mathcal{N}(\mathbf{A}\mathbf{x} + \mathbf{b}, \mathbf{C})$，我们可得: $p(\mathbf{x} \vert \mathbf{y}) = \mathcal{N}(\pmb{\mu}_1, \pmb{\Sigma}_1)$，满足
+>
+> \begin{cases}
+>     \tag{15} \label{kalmanfilter}
+>     \mathbf{K} = \pmb{\Sigma}_0 \mathbf{A}^T (\mathbf{A} \pmb{\Sigma}_0 \mathbf{A}^T + \mathbf{C})^{-1};\\
+>     \pmb{\Sigma}_1 = (\mathbf{I} - \mathbf{K} \mathbf{A}) \mathbf{\Sigma}_0;\\
+>     \pmb{\mu}_1 = \pmb{\mu}_0 + \mathbf{K} [(\mathbf{y} - \mathbf{b}) - \mathbf{A} \pmb{\mu}_0]
+> \end{cases}
+>
+
+最后，我们可以获得贝叶斯线性回归的求解公式：
+
+\begin{cases}
+    \tag{16} \label{step6}
+    \pmb{K} = {\pmb{\Sigma}}_0 \mathbf{X}(2 \mathbf{X}^{T} {\pmb{\Sigma}}_0 \mathbf{X})^{-1};\\
+    \pmb{\Sigma} = (\mathbf{I} - \mathbf{K} \mathbf{X}^T) {\mathbf{\Sigma}}_0;\\
+    \pmb{\mu} = {\pmb{\mu}}_{0} + \mathbf{K}[\mathbf{y}  - \mathbf{X}^{T} {\pmb{\mu}}_0]. \\
+\end{cases}

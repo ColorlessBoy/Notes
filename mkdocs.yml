@@ -58,6 +58,7 @@ nav:
     - AdaBoost:   ML/05-AdaBoost.md
     - PAC:        ML/06-PAC.md
     - Kalman Filter: ML/07-KalmanFilter.md
+    - Classification: ML/08-Classification.md
 
   - 算法:
     - 最长递增子序列: algorithms/01-最长递增子序列.md

@@ -24,7 +24,7 @@ $$
 
 $$
     \tag{2} \label{hmm_hypothesis}
-    \mathcal{H} = \left\{ (p(\mathbf{x}_0) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0), p(\mathbf{x}_{t+1} \vert \mathbf{x}_{t}) = \mathcal{N}(\pmb{\mu}_1, \pmb{\Sigma}_1), p(\mathbf{z}\vert\mathbf{x}) = \mathcal{N}(\pmb{\mu}_2, \pmb{\Sigma}_2)) \right\}.
+    \mathcal{H} = \left\{ (p(\mathbf{x}_0) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0), p(\mathbf{x}_{t+1} \vert \mathbf{x}_{t}) = \mathcal{N}(\pmb{\mu}_1(\mathbf{x}_t), \pmb{\Sigma}_1(\mathbf{x}_t)), p(\mathbf{z}\vert\mathbf{x}) = \mathcal{N}(\pmb{\mu}_2(\mathbf{x}), \pmb{\Sigma}_2)(\mathbf{x})) \right\}.
 $$
 
 我们希望从假设集中找出一个元组最接近真实的状态转移 $(p_{\mathcal{D}}(\mathbf{x}_0), p_{\mathcal{D}}(\mathbf{x}_{t+1}\vert \mathbf{x}_{t}), p_{\mathcal{D}}(\mathbf{z} \vert \mathbf{x}))$。
@@ -114,7 +114,8 @@ $$
 
 这里我们发现 $p(\mathbf{x}_{t-1} \vert \mathbf{z}_{t-1},\ldots, \mathbf{z}_0)$ 递归了，我们不妨假设我们已经求出来了这个条件概率服从$\mathcal{N}(\pmb{\mu}_{t-1}, \pmb{\Sigma}_{t-1})$, 我们又已知 $p(\mathbf{x}_{t} \vert \mathbf{x}_{t-1}) \sim \mathcal{N}(\mathbf{A}\mathbf{x}_{t-1}+\mathbf{b}, \mathbf{Q})$，那么使用高斯分布的一个结论，我们可以快速求得$\eqref{step2}$式。
 
-> 多元高斯分布的边缘分布与条件分布：
+> **多元高斯分布的边缘分布与条件分布**
+> 
 > 已知分布：
 >
 > \begin{cases}
