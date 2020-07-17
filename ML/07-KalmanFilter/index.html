@@ -365,6 +365,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-Classification/" title="Classification" class="md-nav__link">
+      Classification
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -517,11 +529,11 @@
 <div>
 <div class="MathJax_Preview">
     \tag{2} \label{hmm_hypothesis}
-    \mathcal{H} = \left\{ (p(\mathbf{x}_0) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0), p(\mathbf{x}_{t+1} \vert \mathbf{x}_{t}) = \mathcal{N}(\pmb{\mu}_1, \pmb{\Sigma}_1), p(\mathbf{z}\vert\mathbf{x}) = \mathcal{N}(\pmb{\mu}_2, \pmb{\Sigma}_2)) \right\}.
+    \mathcal{H} = \left\{ (p(\mathbf{x}_0) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0), p(\mathbf{x}_{t+1} \vert \mathbf{x}_{t}) = \mathcal{N}(\pmb{\mu}_1(\mathbf{x}_t), \pmb{\Sigma}_1(\mathbf{x}_t)), p(\mathbf{z}\vert\mathbf{x}) = \mathcal{N}(\pmb{\mu}_2(\mathbf{x}), \pmb{\Sigma}_2)(\mathbf{x})) \right\}.
 </div>
 <script type="math/tex; mode=display">
     \tag{2} \label{hmm_hypothesis}
-    \mathcal{H} = \left\{ (p(\mathbf{x}_0) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0), p(\mathbf{x}_{t+1} \vert \mathbf{x}_{t}) = \mathcal{N}(\pmb{\mu}_1, \pmb{\Sigma}_1), p(\mathbf{z}\vert\mathbf{x}) = \mathcal{N}(\pmb{\mu}_2, \pmb{\Sigma}_2)) \right\}.
+    \mathcal{H} = \left\{ (p(\mathbf{x}_0) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0), p(\mathbf{x}_{t+1} \vert \mathbf{x}_{t}) = \mathcal{N}(\pmb{\mu}_1(\mathbf{x}_t), \pmb{\Sigma}_1(\mathbf{x}_t)), p(\mathbf{z}\vert\mathbf{x}) = \mathcal{N}(\pmb{\mu}_2(\mathbf{x}), \pmb{\Sigma}_2)(\mathbf{x})) \right\}.
 </script>
 </div>
 <p>我们希望从假设集中找出一个元组最接近真实的状态转移 <span><span class="MathJax_Preview">(p_{\mathcal{D}}(\mathbf{x}_0), p_{\mathcal{D}}(\mathbf{x}_{t+1}\vert \mathbf{x}_{t}), p_{\mathcal{D}}(\mathbf{z} \vert \mathbf{x}))</span><script type="math/tex">(p_{\mathcal{D}}(\mathbf{x}_0), p_{\mathcal{D}}(\mathbf{x}_{t+1}\vert \mathbf{x}_{t}), p_{\mathcal{D}}(\mathbf{z} \vert \mathbf{x}))</script></span>。</p>
@@ -653,8 +665,8 @@ HMM_t = \{\tau_t = (\mathbf{z}_0, \mathbf{z}_1, \ldots, \mathbf{x}_t, \mathbf{z}
 </div>
 <p>这里我们发现 <span><span class="MathJax_Preview">p(\mathbf{x}_{t-1} \vert \mathbf{z}_{t-1},\ldots, \mathbf{z}_0)</span><script type="math/tex">p(\mathbf{x}_{t-1} \vert \mathbf{z}_{t-1},\ldots, \mathbf{z}_0)</script></span> 递归了，我们不妨假设我们已经求出来了这个条件概率服从<span><span class="MathJax_Preview">\mathcal{N}(\pmb{\mu}_{t-1}, \pmb{\Sigma}_{t-1})</span><script type="math/tex">\mathcal{N}(\pmb{\mu}_{t-1}, \pmb{\Sigma}_{t-1})</script></span>, 我们又已知 <span><span class="MathJax_Preview">p(\mathbf{x}_{t} \vert \mathbf{x}_{t-1}) \sim \mathcal{N}(\mathbf{A}\mathbf{x}_{t-1}+\mathbf{b}, \mathbf{Q})</span><script type="math/tex">p(\mathbf{x}_{t} \vert \mathbf{x}_{t-1}) \sim \mathcal{N}(\mathbf{A}\mathbf{x}_{t-1}+\mathbf{b}, \mathbf{Q})</script></span>，那么使用高斯分布的一个结论，我们可以快速求得<span><span class="MathJax_Preview">\eqref{step2}</span><script type="math/tex">\eqref{step2}</script></span>式。</p>
 <blockquote>
-<p>多元高斯分布的边缘分布与条件分布：
-已知分布：</p>
+<p><strong>多元高斯分布的边缘分布与条件分布</strong></p>
+<p>已知分布：</p>
 <div>
 <div class="MathJax_Preview">\begin{cases}
     \tag{11} \label{step3}
@@ -843,13 +855,13 @@ HMM_t = \{\tau_t = (\mathbf{z}_0, \mathbf{z}_1, \ldots, \mathbf{x}_t, \mathbf{z}
           </a>
         
         
-          <a href="../../algorithms/01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../08-Classification/" title="Classification" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                最长递增子序列
+                Classification
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

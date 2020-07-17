@@ -372,6 +372,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-Classification/" title="Classification" class="md-nav__link">
+      Classification
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -574,10 +586,10 @@ L_{S}(\theta) = \frac{1}{m} \sum^{m}_{i = 1} \Vert h_{\theta}(\mathbf{x}_i) - y_
 <p>这个集合怎么来的呢？其实和贝叶斯线性回归有关系。贝叶斯线性回归就是给参数 <span><span class="MathJax_Preview">\mathbf{w}</span><script type="math/tex">\mathbf{w}</script></span> (b被包含在 <span><span class="MathJax_Preview">\mathbf{w}</span><script type="math/tex">\mathbf{w}</script></span> 中)添加一个先验分布，通常给 <span><span class="MathJax_Preview">\mathbf{w}</span><script type="math/tex">\mathbf{w}</script></span> 先验分布为某个参数化的高斯分布 <span><span class="MathJax_Preview">\mathcal{N}(\pmb{\mu}_\theta, \pmb{\Sigma}_{\theta})</span><script type="math/tex">\mathcal{N}(\pmb{\mu}_\theta, \pmb{\Sigma}_{\theta})</script></span>，即假设集为 </p>
 <div>
 <div class="MathJax_Preview">
-\mathcal{H}_{\theta} = \{h(\mathbf{x}) = \mathbf{w}^T \mathbf{x}, \mathbf{w} \sim \mathcal{N}(\pmb{\mu}_{\theta}, \pmb{\Sigma}_{\theta})\}.\tag{7}
+\mathcal{H}_{\theta} = \{h(\mathbf{x}) = \mathbf{w}^T \mathbf{x}, \mathbf{w} \sim \mathcal{N}(\pmb{\mu}_{\theta}, \pmb{\Sigma}_{\theta})\}.\tag{7} \label{linearhypothesis}
 </div>
 <script type="math/tex; mode=display">
-\mathcal{H}_{\theta} = \{h(\mathbf{x}) = \mathbf{w}^T \mathbf{x}, \mathbf{w} \sim \mathcal{N}(\pmb{\mu}_{\theta}, \pmb{\Sigma}_{\theta})\}.\tag{7}
+\mathcal{H}_{\theta} = \{h(\mathbf{x}) = \mathbf{w}^T \mathbf{x}, \mathbf{w} \sim \mathcal{N}(\pmb{\mu}_{\theta}, \pmb{\Sigma}_{\theta})\}.\tag{7} \label{linearhypothesis}
 </script>
 </div>
 <p>那么，<span><span class="MathJax_Preview">\mathbb{E}_{\mathbf{w}}[h(\mathbf{x})] = \mathbf{w}^T \pmb{\mu}_{\theta}</span><script type="math/tex">\mathbb{E}_{\mathbf{w}}[h(\mathbf{x})] = \mathbf{w}^T \pmb{\mu}_{\theta}</script></span>, 并且 <span><span class="MathJax_Preview">Var_{\mathbf{w}}(h(\mathbf{x})) = \mathbf{x}^T \pmb{\Sigma_{\theta}} \mathbf{x}</span><script type="math/tex">Var_{\mathbf{w}}(h(\mathbf{x})) = \mathbf{x}^T \pmb{\Sigma_{\theta}} \mathbf{x}</script></span>。</p>
@@ -673,45 +685,107 @@ L_S(\pmb{\mu}, \pmb{\Sigma})
 </script>
 </div>
 <h2 id="_5">贝叶斯线性回归<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>贝叶斯线性回归的假设集正如上面<span><span class="MathJax_Preview">\eqref{linearhypothesis}</span><script type="math/tex">\eqref{linearhypothesis}</script></span>式所描述的。
+不过贝叶斯线性回归做的是在我们求出最优的 <span><span class="MathJax_Preview">\mathbf{w} \sim \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)</span><script type="math/tex">\mathbf{w} \sim \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)</script></span> 后，
+我们怎么样能做得更好。当然 <span><span class="MathJax_Preview">\mathbf{w} \sim \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)</span><script type="math/tex">\mathbf{w} \sim \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)</script></span> 通常直接被认为给定一个分布，
+人们叫它先验知识。我觉得加入上一节 <a href="#_4">随机线性回归</a> 的先验模型学习更合理。</p>
 <p>我们在贝叶斯回归时，实际上是在做什么？</p>
-<p>令 <span><span class="MathJax_Preview">\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_m]</span><script type="math/tex">\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_m]</script></span>, <span><span class="MathJax_Preview">\mathbf{y} = [y_1, y_2, \ldots, y_m]^T</span><script type="math/tex">\mathbf{y} = [y_1, y_2, \ldots, y_m]^T</script></span>。</p>
+<p>现在我们已经有了分布 <span><span class="MathJax_Preview">p(\mathbf{w})</span><script type="math/tex">p(\mathbf{w})</script></span> 和 <span><span class="MathJax_Preview">p(y \vert \mathbf{x}, \mathbf{w})</span><script type="math/tex">p(y \vert \mathbf{x}, \mathbf{w})</script></span>，在贝叶斯框架中相当于我们已经获得了全部的
+和概率相关的信息。现在我们给定一个样本 <span><span class="MathJax_Preview">S = \{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \ldots, (\mathbf{x}_m, y_m)\}</span><script type="math/tex">S = \{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \ldots, (\mathbf{x}_m, y_m)\}</script></span>, 
+我们希望求得条件概率 <span><span class="MathJax_Preview">p(\mathbf{w} \vert S)</span><script type="math/tex">p(\mathbf{w} \vert S)</script></span> , 来指导我们选择参数 <span><span class="MathJax_Preview">\mathbf{w}</span><script type="math/tex">\mathbf{w}</script></span>。</p>
+<p>令 <span><span class="MathJax_Preview">\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_m]</span><script type="math/tex">\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_m]</script></span>, <span><span class="MathJax_Preview">\mathbf{y} = [y_1, y_2, \ldots, y_m]^T</span><script type="math/tex">\mathbf{y} = [y_1, y_2, \ldots, y_m]^T</script></span>, 我们已知</p>
+<div>
+<div class="MathJax_Preview">\begin{cases}
+    \tag{11} \label{step1}
+    p(\mathbf{w}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)\\
+    p({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})
+\end{cases}</div>
+<script type="math/tex; mode=display">\begin{cases}
+    \tag{11} \label{step1}
+    p(\mathbf{w}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)\\
+    p({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})
+\end{cases}</script>
+</div>
+<p>要求解 <span><span class="MathJax_Preview">p(\mathbf{w} \vert \mathbf{X}, \mathbf{y})</span><script type="math/tex">p(\mathbf{w} \vert \mathbf{X}, \mathbf{y})</script></span>, 我们需要引入下面这个结论：</p>
+<blockquote>
+<p><strong>多元高斯分布的边缘分布与条件分布</strong>：</p>
+<p>已知分布：</p>
+<div>
+<div class="MathJax_Preview">\begin{cases}
+    \tag{12} \label{step3}
+    p(\mathbf{x}) = \mathcal{N}(\pmb{\mu}, \pmb{\Lambda}^{-1}), \\
+    p(\mathbf{y} \vert \mathbf{x}) = \mathcal{N}(\mathbf{A}\mathbf{x} + \mathbf{b}, \pmb{L}^{-1}),
+\end{cases}</div>
+<script type="math/tex; mode=display">\begin{cases}
+    \tag{12} \label{step3}
+    p(\mathbf{x}) = \mathcal{N}(\pmb{\mu}, \pmb{\Lambda}^{-1}), \\
+    p(\mathbf{y} \vert \mathbf{x}) = \mathcal{N}(\mathbf{A}\mathbf{x} + \mathbf{b}, \pmb{L}^{-1}),
+\end{cases}</script>
+</div>
+<p>我们可得：</p>
+<div>
+<div class="MathJax_Preview">\begin{cases}
+    \tag{13} \label{step4}
+    p(\mathbf{y}) = \mathcal{N}(\mathbf{A}\pmb{\mu} + \mathbf{b}, \mathbf{L}^{-1} + \mathbf{A}\pmb{\Lambda}^{-1}\mathbf{A}^T), \\
+    p(\mathbf{x} \vert \mathbf{y}) = \mathcal{N}(\pmb{\Sigma}[\mathbf{A}^T \mathbf{L}(\mathbf{y} - \mathbf{b}) + \pmb{\Lambda\mu}], \pmb{\Sigma}),\\
+     \pmb{\Sigma} = (\pmb{\Lambda} + \mathbf{A}^T \mathbf{L} \mathbf{A})^{-1}.
+\end{cases}</div>
+<script type="math/tex; mode=display">\begin{cases}
+    \tag{13} \label{step4}
+    p(\mathbf{y}) = \mathcal{N}(\mathbf{A}\pmb{\mu} + \mathbf{b}, \mathbf{L}^{-1} + \mathbf{A}\pmb{\Lambda}^{-1}\mathbf{A}^T), \\
+    p(\mathbf{x} \vert \mathbf{y}) = \mathcal{N}(\pmb{\Sigma}[\mathbf{A}^T \mathbf{L}(\mathbf{y} - \mathbf{b}) + \pmb{\Lambda\mu}], \pmb{\Sigma}),\\
+     \pmb{\Sigma} = (\pmb{\Lambda} + \mathbf{A}^T \mathbf{L} \mathbf{A})^{-1}.
+\end{cases}</script>
+</div>
+<p>(参考自：PRML(2006年出版)第93页)</p>
+</blockquote>
+<p>带入上面的结论，我们可得：</p>
 <div>
 <div class="MathJax_Preview">
-p(\mathbf{w}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)
+\tag{14} \label{step5}
+p(\mathbf{w} \vert {\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma}),
 </div>
 <script type="math/tex; mode=display">
-p(\mathbf{w}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)
-</script>
-</div>
-<div>
-<div class="MathJax_Preview">
-p(\hat{\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})
-</div>
-<script type="math/tex; mode=display">
-p(\hat{\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})
-</script>
-</div>
-<div>
-<div class="MathJax_Preview">
-p(\mathbf{w} \vert \hat{\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma})
-</div>
-<script type="math/tex; mode=display">
-p(\mathbf{w} \vert \hat{\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma})
+\tag{14} \label{step5}
+p(\mathbf{w} \vert {\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma}),
 </script>
 </div>
 <p>其中 <span><span class="MathJax_Preview">\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X}\mathbf{X}^T)^{-1}</span><script type="math/tex">\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X}\mathbf{X}^T)^{-1}</script></span>，
-并且 <span><span class="MathJax_Preview">\pmb{\mu} = \pmb{\Sigma} [\mathbf{X}(\mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})^{-1} \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]</span><script type="math/tex">\pmb{\mu} = \pmb{\Sigma} [\mathbf{X}(\mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})^{-1} \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]</script></span>。
-这一套东西并没有出现真实分布 <span><span class="MathJax_Preview">\mathcal{D}</span><script type="math/tex">\mathcal{D}</script></span>。</p>
-<p>这里假设
-<span><span class="MathJax_Preview">p_{\mathcal{D}}({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \pmb{\Sigma}_1),</span><script type="math/tex">p_{\mathcal{D}}({\mathbf{y}} \vert \mathbf{X}, \mathbf{w}) = \mathcal{N}(\mathbf{X}^T \mathbf{w}, \pmb{\Sigma}_1),</script></span>
-那么在 <span><span class="MathJax_Preview">p(\mathbf{w} \vert \hat{\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma})</span><script type="math/tex">p(\mathbf{w} \vert \hat{\mathbf{y}}, \mathbf{X}) = \mathcal{N}(\pmb{\mu}, \pmb{\Sigma})</script></span> 中，
-其中 <span><span class="MathJax_Preview">\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \pmb{\Sigma}_1\mathbf{X}^T)^{-1}</span><script type="math/tex">\pmb{\Sigma} = (\pmb{\Sigma}_0 + \mathbf{X} \pmb{\Sigma}_1\mathbf{X}^T)^{-1}</script></span>，
-并且 <span><span class="MathJax_Preview">\pmb{\mu} = \pmb{\Sigma} [\mathbf{X} \pmb{\Sigma}_1^{-1}  \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]</span><script type="math/tex">\pmb{\mu} = \pmb{\Sigma} [\mathbf{X} \pmb{\Sigma}_1^{-1}  \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]</script></span>。
-这个假设让我很不舒服，和前面的讨论并不统一。</p>
+并且 <span><span class="MathJax_Preview">\pmb{\mu} = \pmb{\Sigma} [\mathbf{X}(\mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})^{-1} \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]</span><script type="math/tex">\pmb{\mu} = \pmb{\Sigma} [\mathbf{X}(\mathbf{X}^T \pmb{\Sigma}_0 \mathbf{X})^{-1} \mathbf{y} + \pmb{\Sigma}_0^{-1} \pmb{\mu}_0]</script></span>。</p>
+<p>这个公式还不够简练，求逆的操作比较多，我参考了<a href="../07-KalmanFilter/">卡尔曼滤波</a>的公式来化简这个求解。</p>
 <blockquote>
-<p>核心问题：贝叶斯线性回归的真实误差函数是什么？
-贝叶斯做的是预测，而不是模型拟合？</p>
+<p>我抽象了一下卡尔曼滤波中的一个结论。
+已知分布<span><span class="MathJax_Preview">p(\mathbf{x}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)</span><script type="math/tex">p(\mathbf{x}) = \mathcal{N}(\pmb{\mu}_0, \pmb{\Sigma}_0)</script></span> 和 <span><span class="MathJax_Preview">p(\mathbf{y} \vert \mathbf{x}) = \mathcal{N}(\mathbf{A}\mathbf{x} + \mathbf{b}, \mathbf{C})</span><script type="math/tex">p(\mathbf{y} \vert \mathbf{x}) = \mathcal{N}(\mathbf{A}\mathbf{x} + \mathbf{b}, \mathbf{C})</script></span>，我们可得: <span><span class="MathJax_Preview">p(\mathbf{x} \vert \mathbf{y}) = \mathcal{N}(\pmb{\mu}_1, \pmb{\Sigma}_1)</span><script type="math/tex">p(\mathbf{x} \vert \mathbf{y}) = \mathcal{N}(\pmb{\mu}_1, \pmb{\Sigma}_1)</script></span>，满足</p>
+<div>
+<div class="MathJax_Preview">\begin{cases}
+    \tag{15} \label{kalmanfilter}
+    \mathbf{K} = \pmb{\Sigma}_0 \mathbf{A}^T (\mathbf{A} \pmb{\Sigma}_0 \mathbf{A}^T + \mathbf{C})^{-1};\\
+    \pmb{\Sigma}_1 = (\mathbf{I} - \mathbf{K} \mathbf{A}) \mathbf{\Sigma}_0;\\
+    \pmb{\mu}_1 = \pmb{\mu}_0 + \mathbf{K} [(\mathbf{y} - \mathbf{b}) - \mathbf{A} \pmb{\mu}_0]
+\end{cases}</div>
+<script type="math/tex; mode=display">\begin{cases}
+    \tag{15} \label{kalmanfilter}
+    \mathbf{K} = \pmb{\Sigma}_0 \mathbf{A}^T (\mathbf{A} \pmb{\Sigma}_0 \mathbf{A}^T + \mathbf{C})^{-1};\\
+    \pmb{\Sigma}_1 = (\mathbf{I} - \mathbf{K} \mathbf{A}) \mathbf{\Sigma}_0;\\
+    \pmb{\mu}_1 = \pmb{\mu}_0 + \mathbf{K} [(\mathbf{y} - \mathbf{b}) - \mathbf{A} \pmb{\mu}_0]
+\end{cases}</script>
+</div>
 </blockquote>
+<p>最后，我们可以获得贝叶斯线性回归的求解公式：</p>
+<div>
+<div class="MathJax_Preview">\begin{cases}
+    \tag{16} \label{step6}
+    \pmb{K} = {\pmb{\Sigma}}_0 \mathbf{X}(2 \mathbf{X}^{T} {\pmb{\Sigma}}_0 \mathbf{X})^{-1};\\
+    \pmb{\Sigma} = (\mathbf{I} - \mathbf{K} \mathbf{X}^T) {\mathbf{\Sigma}}_0;\\
+    \pmb{\mu} = {\pmb{\mu}}_{0} + \mathbf{K}[\mathbf{y}  - \mathbf{X}^{T} {\pmb{\mu}}_0]. \\
+\end{cases}</div>
+<script type="math/tex; mode=display">\begin{cases}
+    \tag{16} \label{step6}
+    \pmb{K} = {\pmb{\Sigma}}_0 \mathbf{X}(2 \mathbf{X}^{T} {\pmb{\Sigma}}_0 \mathbf{X})^{-1};\\
+    \pmb{\Sigma} = (\mathbf{I} - \mathbf{K} \mathbf{X}^T) {\mathbf{\Sigma}}_0;\\
+    \pmb{\mu} = {\pmb{\mu}}_{0} + \mathbf{K}[\mathbf{y}  - \mathbf{X}^{T} {\pmb{\mu}}_0]. \\
+\end{cases}</script>
+</div>
                 
               
               
