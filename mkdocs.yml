@@ -43,6 +43,11 @@ markdown_extensions:
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
 
+plugins:
+  - search # necessary for search to work
+  - git-revision-date-localized:
+      type: date
+
 # Repository
 repo_name: 'ColorlessBoy/Notes'
 repo_url: 'https://github.com/colorlessboy/Notes'
@@ -61,5 +66,5 @@ nav:
     - Classification: ML/08-Classification.md
 
   - 算法:
-    - 最长递增子序列: algorithms/01-最长递增子序列.md
-    - 区间调度问题: algorithms/02-区间调度问题.md
+    - 最长递增子序列: Algorithms/01-最长递增子序列.md
+    - 区间调度问题: Algorithms/02-区间调度问题.md
