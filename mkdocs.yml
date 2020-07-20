@@ -64,7 +64,12 @@ nav:
     - PAC:        ML/06-PAC.md
     - Kalman Filter: ML/07-KalmanFilter.md
     - Classification: ML/08-Classification.md
+    - PCA:        ML/09-PCA.md
 
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md
     - 区间调度问题: Algorithms/02-区间调度问题.md
+  
+  - 博客:
+    - C++:
+      - STL摘要: Blog/C++/STL摘要.md
