@@ -69,6 +69,7 @@ nav:
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md
     - 区间调度问题: Algorithms/02-区间调度问题.md
+    - 裴祖定理: Algorithms/03-裴蜀定理.md
   
   - 博客:
     - C++:
