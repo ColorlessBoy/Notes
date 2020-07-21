@@ -79,8 +79,8 @@ $$
 
 !!!定义1
     (**PAC Learnability**).
-    如果假设集是PAC Learnable的，则表示存在函数 $m(\epsilon, \delta)$, 和某个学习算法 $A$ 满足：
-    当样本集 $\mathcal{S}$ 大小大于 $m(\epsilon, \delta)$ 时，
+    如果假设集是PAC Learnable的，则表示存在函数 $m_{\mathcal{H}}(\epsilon, \delta)$, 和某个学习算法 $A$ 满足：
+    当样本集 $\mathcal{S}$ 大小大于 $m_{\mathcal{H}}(\epsilon, \delta)$ 时，
     
     $$
         \tag{7} \label{pacLearnability}
@@ -131,7 +131,19 @@ $$
     \le& \vert \mathcal{H} \vert e^{-\epsilon m} = n e^{-\epsilon m}.
 \end{align*}
 
-换句话说，在这个例子里，采样复杂度为 $m \ge \frac{\ln(n/\delta)}{\epsilon}$.
+换句话说，在这个例子里，采样复杂度为 $m \ge \frac{\ln(n/\delta)}{\epsilon}$。
+
+!!! note
+    (**Bayes Optimal Predictor**).
+    对于上文提到的二分类问题，是存在最优的deterministc分类器，我们叫它贝叶斯最优分类器：
+
+    $$
+    f_{\mathcal{D}}(\mathbf{x}) = 
+    \begin{cases}
+        1, &\mathcal{P}_{D}[y = 1 \vert \mathbf{x}] \ge 1/2;\\
+        0, &otherwise.
+    \end{cases}
+    $$
 
 ## Uniform Convergence
 
@@ -144,3 +156,82 @@ $$
         \forall h \in \mathcal{H}, \vert L_{S}(h) - L_{\mathcal{D}}(h) \vert \le \epsilon.
     $$
 
+凭直觉，样本够多的时候，总能成为 $\epsilon$-representative 样本.
+
+当样本是 $\epsilon/2$-representative，那么
+
+$$
+    \tag{12} 
+    L_{\mathcal{D}}(ERM(S)) \le \min_{h \in \mathcal{H}} L_{\mathcal{D}}(h) + \epsilon.
+$$
+
+证明很简单：
+对于任意的 $h \in \mathcal{H}$，
+
+$$
+    \tag{13} 
+    L_{\mathcal{D}}(ERM(S)) \le L_{S}(ERM(S)) + \epsilon/2 \le L_{S}(h) + \epsilon/2 
+    \le L_{\mathcal{D}}(h) + \epsilon.
+$$
+
+接下来我们可以介绍 Uniform Convergence 了。
+
+!!! 定义3
+    (**Uniform Convergence**).
+    我们形容假设集 $\mathcal{H}$ 有 Uniform Convergence 性质，表示存在函数 $m^{UC}_{\mathcal{H}}(\delta, \epsilon)$，满足当样本数大于 $m^{UC}_{\mathcal{H}}(\delta, \epsilon)$ 时，
+
+    $$
+        \tag{14} \label{uniformConvergence}
+        \mathcal{P}_{S \sim \mathcal{D}}
+        \left\{ S\ is\ \epsilon\ representative \right\} \ge 1 - \delta.
+    $$
+
+很容易，我们知道PCA learnable的采样复杂度函数满足 $m^{PCA}_{\mathcal{H}}(\delta, \epsilon) \le m^{UC}_{\mathcal{H}}(\delta, \epsilon/2)$。
+
+!!! 定理1
+    (**Hoeffding's Inequality**)
+    对于 $m$ 个随机变量 $\mathcal{X}_1 \in [a_1, b_1], \mathcal{X}_2 \in [a_2, b_2], \ldots, \mathcal{X}_{m} \in [a_m, b_m]$,
+    它们的均值随机变量 $\bar{\mathcal{X}}$ 满足:
+
+    $$
+        \tag{15} \label{Hoeffding}
+        \mathcal{P}\left\{ \vert \bar{\mathcal{X}} - \mathbb{E} \bar{\mathcal{X}} \vert \ge \epsilon \right\}
+        \le 2 \exp\left\{ - \frac{2 m^2 \epsilon^2}{\sum^{m}_{i=1}(b_i - a_i)^2} \right\}.
+    $$
+
+我们发现在二分类问题的损失函数$\eqref{classificationEmpiricalLoss}$中，$c(y, h(\mathbf{x})) \in [0, 1]$ 可以看成随机变量，
+那么 $L_{S}(h)$ 就是 $m$ 个随机变量的均值，并且 $L_{\mathcal{D}}(h)$ 是 $L_{S}(h)$ 的期望，我们可以直接带入霍夫听不等式，可得：
+
+$$
+    \tag{16}
+    \forall h \in \mathcal{H},
+    \mathcal{P}_{\mathcal{S} \sim \mathcal{D}} \left\{ \vert L_{\mathcal{D}}(h) - L_{S}(h) \vert \ge \epsilon \right\}
+    \le 2 \exp\left\{ {-2 m \epsilon^2} \right\}.
+$$
+
+那么，可得
+
+$$
+    \tag{17}
+    \mathcal{P}_{\mathcal{S} \sim \mathcal{D}} \left\{\exists h \in \mathcal{H},\vert L_{\mathcal{D}}(h) - L_{S}(h) \vert \ge \epsilon \right\}
+    \le 2 \vert \mathcal{H} \vert \exp\left\{ {-2 m \epsilon^2} \right\}.
+$$
+
+这个结论有一定的泛化性，在很多其他问题中，只要损失函数对应于 $c(y, h(\mathbf{x}))$ 的项都在 $[0, 1]$ 范围内，都可以满足上面的结果。
+整理一下，我们可以得到如下定理：
+
+!!! 定理2
+    假设集有限的话，它一定是 **agnostic PAC learnable**，并且
+    
+    $$
+        \tag{18}
+        m^{UC}_{\mathcal{H}} (\epsilon, \delta) \le
+        \left\lceil
+            \frac{\log(2\vert\mathcal{H}\vert / \delta)}{2\epsilon^2}
+        \right\rceil,
+        \quad
+        m^{PAC}_{\mathcal{H}} (\epsilon, \delta) \le
+        \left\lceil
+            \frac{2\log(2\vert\mathcal{H}\vert / \delta)}{\epsilon^2}
+        \right\rceil.
+    $$
