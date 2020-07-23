@@ -73,7 +73,3 @@ nav:
     - 剪绳子问题: Algorithms/04-剪绳子问题.md
     - 欧拉函数: Algorithms/05-欧拉函数.md
     - 蓄水池抽样: Algorithms/06-蓄水池抽样.md
-  
-  - 博客:
-    - C++:
-      - STL摘要: Blog/C++/STL摘要.md
