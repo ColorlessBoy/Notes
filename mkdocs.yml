@@ -69,8 +69,9 @@ nav:
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md
     - 区间调度问题: Algorithms/02-区间调度问题.md
-    - 裴祖定理: Algorithms/03-裴蜀定理.md
+    - 裴蜀定理: Algorithms/03-裴蜀定理.md
     - 剪绳子问题: Algorithms/04-剪绳子问题.md
     - 欧拉函数: Algorithms/05-欧拉函数.md
     - 蓄水池抽样: Algorithms/06-蓄水池抽样.md
     - 重编码技巧: Algorithms/07-重编码技巧.md
+    - 放松条件法: Algorithms/08-放松条件法.md
