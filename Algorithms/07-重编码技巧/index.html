@@ -393,8 +393,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴祖定理" class="md-nav__link">
-      裴祖定理
+    <a href="../03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴蜀定理" class="md-nav__link">
+      裴蜀定理
     </a>
   </li>
 
@@ -503,6 +503,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-nav__link">
+      放松条件法
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -578,6 +590,9 @@
 <p>有一类算法题，使用重编码技巧可以大大简化问题。
 容我通过例子来解释一下这是什么技术。</p>
 <h2 id="_2">消除游戏<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>详情参考 <a href="https://leetcode-cn.com/problems/elimination-game/">LeetCode 390</a></p>
+</blockquote>
 <p><strong>题目描述</strong>: 给定一个从 1 到 n 排序的整数列表，我们先从左到右，从第一个开始，每隔一个数字删除；接着我们从右到左，从最后一个数字开始，每隔一个数字删除。问最后剩下的是哪个数字。
 <div class="highlight"><pre><span></span><code>n = 8
 Step 0: 1 2 3 4 5 6 7 8
@@ -585,7 +600,11 @@ Step 1:   2   4   6   8
 Step 2:   2       6
 Step 3:           6
 </code></pre></div></p>
-<p><strong>分析</strong>: 我们只需要对前两步进行分析。 Step 1 完毕后，我们可以通过求解一个子问题 <span><span class="MathJax_Preview">\left\lfloor n / 2 \right\rfloor</span><script type="math/tex">\left\lfloor n / 2 \right\rfloor</script></span> 来解决，解决的子问题是划数组 <code>[1, 2, 3, 4]</code>, 那么我们需要把它映射回原数组 <code>[8, 6, 4, 2]</code>。也就是说，我们需要构造一个函数满足 <span><span class="MathJax_Preview">f(1) = 8</span><script type="math/tex">f(1) = 8</script></span>、<span><span class="MathJax_Preview">f(2) = 6</span><script type="math/tex">f(2) = 6</script></span>、<span><span class="MathJax_Preview">f(3) = 4</span><script type="math/tex">f(3) = 4</script></span> 和 <span><span class="MathJax_Preview">f(4) = 2</span><script type="math/tex">f(4) = 2</script></span>。这个函数很简单:</p>
+<p><strong>分析</strong>: 我们只需要对前两步进行分析。 
+<div class="highlight"><pre><span></span><code>原问题:   2   4   6   8
+子问题:   4   3   2   1
+</code></pre></div></p>
+<p>Step 1 完毕后，我们可以通过求解一个子问题 <span><span class="MathJax_Preview">\left\lfloor n / 2 \right\rfloor</span><script type="math/tex">\left\lfloor n / 2 \right\rfloor</script></span> 来解决，解决的子问题是划数组 <code>[1, 2, 3, 4]</code>, 那么我们需要把它映射回原数组 <code>[8, 6, 4, 2]</code>。也就是说，我们需要构造一个函数满足 <span><span class="MathJax_Preview">f(1) = 8</span><script type="math/tex">f(1) = 8</script></span>、<span><span class="MathJax_Preview">f(2) = 6</span><script type="math/tex">f(2) = 6</script></span>、<span><span class="MathJax_Preview">f(3) = 4</span><script type="math/tex">f(3) = 4</script></span> 和 <span><span class="MathJax_Preview">f(4) = 2</span><script type="math/tex">f(4) = 2</script></span>。这个函数很简单:</p>
 <div>
 <div class="MathJax_Preview">
     f(x) = 2 * (\lfloor n / 2 \rfloor + 1 - x).
@@ -601,9 +620,6 @@ Step 3:           6
 <span class="p">}</span>
 </code></pre></div>
 
-<blockquote>
-<p>详情参考 <a href="https://leetcode-cn.com/problems/elimination-game/">LeetCode 390</a></p>
-</blockquote>
 <h2 id="2">消除游戏2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p><strong>问题描述</strong>: 1 到 n 的 n 个数顺时针排成一圈，从 1 开始，顺时针依次删除第 k 个数，求最后剩下的数。</p>
 <div class="highlight"><pre><span></span><code>n = 8, k = 3.
@@ -618,8 +634,8 @@ Step 7:             7
 </code></pre></div>
 
 <p><strong>分析</strong>: 我们还是只需要看前两步。Step 1 完毕后，等价于我们求解一个规模为 n - 1 的子问题，那么这个子问题和原问题有什么联系呢？如下所示：</p>
-<div class="highlight"><pre><span></span><code>子问题: 1 2 3 4 5 6 7
-原问题: 4 5 6 7 8 1 2 
+<div class="highlight"><pre><span></span><code>原问题: 4 5 6 7 8 1 2 
+子问题: 1 2 3 4 5 6 7
 </code></pre></div>
 
 <p>也就是说，我们需要把子问题的解通过某个重编码函数映射回原问题的解。
@@ -640,6 +656,9 @@ Step 7:             7
 
 <p>类似的划数字的问题变种很多，这里可以举一反三。</p>
 <h2 id="_3">摆动排序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>详情参考<a href="https://leetcode-cn.com/problems/wiggle-sort-ii/">LeetCode 324</a></p>
+</blockquote>
 <p>这个问题是我见过的没什么实用价值，但是开发思维很有效的一道题目。</p>
 <p><strong>问题描述</strong>：对于一个数组 <span><span class="MathJax_Preview">[a_0, a_1, \ldots, a_{n-1}]</span><script type="math/tex">[a_0, a_1, \ldots, a_{n-1}]</script></span>，我们需要调整顺序，使得数组满足 <span><span class="MathJax_Preview">a_{n-1} &lt; a_{n} &gt; a_{n+1}</span><script type="math/tex">a_{n-1} < a_{n} > a_{n+1}</script></span> 或者 <span><span class="MathJax_Preview">a_{n-1} &gt; a_{n} &lt; a_{n+1}</span><script type="math/tex">a_{n-1} > a_{n} < a_{n+1}</script></span>，即把数组排序得参差不齐。注意，数组没有排序过，同时有可能又重复的元素。</p>
 <p><strong>分析</strong>: 
@@ -654,14 +673,14 @@ Step 7:             7
 </script>
 </div>
 <p>接下来的重编码就巧妙了，假设数组长度为10, 那么我们可以把上面排序好的数组进行如下的重编码:
-<div class="highlight"><pre><span></span><code>源下标：0 1 2 3 4 5 6 7 8 9
-移动后：5 0 6 1 7 2 8 3 9 4
+<div class="highlight"><pre><span></span><code>原问题：a&#39;&#39;[0] a&#39;&#39;[1] a&#39;&#39;[2] a&#39;&#39;[3] a&#39;&#39;[4] a&#39;&#39;[5] a&#39;&#39;[6] a&#39;&#39;[7] a&#39;&#39;[8] a&#39;&#39;[9]
+子问题： a&#39;[5]  a&#39;[0]  a&#39;[6]  a&#39;[1]  a&#39;[7]  a&#39;[2]  a&#39;[8]  a&#39;[3]  a&#39;[9]  a&#39;[4]
 </code></pre></div></p>
-<p>一看就可以得到，我们最后需要返回数组 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span> 是满足要求的，因为 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span> 相邻的地址至少相差 <span><span class="MathJax_Preview">n/2</span><script type="math/tex">n/2</script></span>。
-在程序中，我们可以另外创建一个数组 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span>，为了避开额外的地址开销，我们也可以用虚实地址的方式。</p>
+<p>一看就可以得到，我们最后需要返回数组 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span> 是满足要求的：因为 <span><span class="MathJax_Preview">a''[i]</span><script type="math/tex">a''[i]</script></span> 与 <span><span class="MathJax_Preview">a''[i+1]</span><script type="math/tex">a''[i+1]</script></span> 对应的 <span><span class="MathJax_Preview">a'[m]</span><script type="math/tex">a'[m]</script></span> 与 <span><span class="MathJax_Preview">a'[n]</span><script type="math/tex">a'[n]</script></span> 至少相差 <span><span class="MathJax_Preview">n/2</span><script type="math/tex">n/2</script></span>, 即 <span><span class="MathJax_Preview">\vert m - n \vert \ge n/2</span><script type="math/tex">\vert m - n \vert \ge n/2</script></span>;
+另外，中位数最多也只有 <span><span class="MathJax_Preview">n/2</span><script type="math/tex">n/2</script></span> 个，否则无法满足题意，所以 <span><span class="MathJax_Preview">a''[i]</span><script type="math/tex">a''[i]</script></span> 与 <span><span class="MathJax_Preview">a''[i+1]</span><script type="math/tex">a''[i+1]</script></span> 不可能同时是中位数。
+在程序中，我们可以另外创建一个数组 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span>，但是为了避开额外的地址开销，我们也可以用虚实地址的方式。</p>
 <p>这里有点绕，我们可以认为上面的编码表示：我们希望排序得到一个新的数组 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span> 满足 <span><span class="MathJax_Preview">a''[0] = a'[5]</span><script type="math/tex">a''[0] = a'[5]</script></span>，依次类推。
-现在要解决的是，我们需要的映射函数究竟是什么？从哪里映射到哪里？
-我们希望，<span><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span> 的下标是虚拟地址，我们访问 <span><span class="MathJax_Preview">a''[0]</span><script type="math/tex">a''[0]</script></span> 实际访问的是 <span><span class="MathJax_Preview">a'[5]</span><script type="math/tex">a'[5]</script></span>，那么我们需要一个函数满足 <span><span class="MathJax_Preview">f(5) = 0</span><script type="math/tex">f(5) = 0</script></span>。这样做的好处是，当我们在构造 <span><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span> 时，真实地址的 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span> 已经构造好了。</p>
+我们希望，<span><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span> 的下标是虚拟地址：我们对 <span><span class="MathJax_Preview">a'[5]</span><script type="math/tex">a'[5]</script></span> 进行操作，实际上访问的是 <span><span class="MathJax_Preview">a''[0]</span><script type="math/tex">a''[0]</script></span>。因此，我们需要一个函数满足 <span><span class="MathJax_Preview">f(5) = 0</span><script type="math/tex">f(5) = 0</script></span>。这样做的好处是，当我们在构造 <span><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span> 时，真实地址的 <span><span class="MathJax_Preview">a''</span><script type="math/tex">a''</script></span> 已经构造好了。</p>
 <p>这个函数为:</p>
 <div>
 <div class="MathJax_Preview">
@@ -688,10 +707,8 @@ Step 7:             7
     f(x) = (2x + 1) \bmod (n \vert 1).
 </script>
 </div>
-<blockquote>
-<p>详情参考<a href="https://leetcode-cn.com/problems/wiggle-sort-ii/">LeetCode 324</a></p>
-</blockquote>
-<p>具体代码如下：</p>
+<p><strong>注意</strong>：这里LeetCode的题目要求 <span><span class="MathJax_Preview">a''[0] &lt; a''[1] &gt; a''[2] \ldots</span><script type="math/tex">a''[0] < a''[1] > a''[2] \ldots</script></span>， 即 <span><span class="MathJax_Preview">a'[5] &lt; a'[0] &gt; a'[6] \ldots</span><script type="math/tex">a'[5] < a'[0] > a'[6] \ldots</script></span>，所以我们对 <span><span class="MathJax_Preview">a'</span><script type="math/tex">a'</script></span> 做 <span><span class="MathJax_Preview">Three-Partition</span><script type="math/tex">Three-Partition</script></span> 操作时，比中位数大的数放在左边，比中位数小的数放在右边。
+具体代码如下：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">wiggleSort</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
     <span class="c1">// int mid = findMid(nums);</span>
@@ -759,7 +776,7 @@ Step 7:             7
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月24日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月25日</span>
     
   </small>
 </div>
@@ -796,6 +813,20 @@ Step 7:             7
             </div>
           </a>
         
+        
+          <a href="../08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                放松条件法
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>

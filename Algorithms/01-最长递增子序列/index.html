@@ -442,8 +442,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴祖定理" class="md-nav__link">
-      裴祖定理
+    <a href="../03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴蜀定理" class="md-nav__link">
+      裴蜀定理
     </a>
   </li>
 
@@ -492,6 +492,18 @@
   <li class="md-nav__item">
     <a href="../07-%E9%87%8D%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/" title="重编码技巧" class="md-nav__link">
       重编码技巧
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-nav__link">
+      放松条件法
     </a>
   </li>
 
@@ -562,11 +574,11 @@
                 
                 <h1 id="_1">最长递增子序列<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">原始问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>详情参考<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">LeetCode 300</a>。</p>
+</blockquote>
 <p><strong>问题描述</strong>：一个数组 <span><span class="MathJax_Preview">\{x_0, x_1, \ldots, x_n\}</span><script type="math/tex">\{x_0, x_1, \ldots, x_n\}</script></span> , 求它的最长递增子序列 <span><span class="MathJax_Preview">\{x_{i_0}, x_{i_1}, \ldots, x_{i_k}\}</span><script type="math/tex">\{x_{i_0}, x_{i_1}, \ldots, x_{i_k}\}</script></span>，满足 <span><span class="MathJax_Preview">i_0 &lt; i_1 &lt; \ldots i_k</span><script type="math/tex">i_0 < i_1 < \ldots i_k</script></span> 并且 <span><span class="MathJax_Preview">x_{i_0} &lt; x_{i_1} &lt; \ldots &lt; x_{i_k}</span><script type="math/tex">x_{i_0} < x_{i_1} < \ldots < x_{i_k}</script></span>。</p>
 <p><strong>目标</strong>：动态规划，计算复杂度 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span>，空间复杂度 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span>。</p>
-<blockquote>
-<p>具体详情可以参考<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">LeetCode 300</a>。</p>
-</blockquote>
 <p>首先，简单的动态规划时间复杂度为 <span><span class="MathJax_Preview">O(n^2)</span><script type="math/tex">O(n^2)</script></span>。</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
@@ -621,13 +633,13 @@
 <p>Python中有一个二分法的实现模块 <code>bisect</code>: <code>bisect.bisect_left(a, num, lo=0, hi=len(a))</code> 和 <code>bisect.bisect_right(a, num, lo=0, hi=len(a))</code>。<a href="https://docs.python.org/3/library/bisect.html">官方文档链接</a></p>
 </blockquote>
 <h2 id="1">变种问题1：俄罗斯套娃信封<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>详情参考<a href="https://leetcode-cn.com/problems/russian-doll-envelopes/">LeetCode 354</a>。</p>
+</blockquote>
 <p><strong>问题描述</strong> ：我们拥有一系列信封 <span><span class="MathJax_Preview">\{(w_0, h_0), (w_1, h_1), \ldots, (w_n, h_n)\}</span><script type="math/tex">\{(w_0, h_0), (w_1, h_1), \ldots, (w_n, h_n)\}</script></span>,
 我们需要找一个最长递增子序列 <span><span class="MathJax_Preview">\{(w_{i_0}, h_{i_0}), (w_{i_1}, h_{i_1}), \ldots, (w_{i_k}, h_{i_k})\}</span><script type="math/tex">\{(w_{i_0}, h_{i_0}), (w_{i_1}, h_{i_1}), \ldots, (w_{i_k}, h_{i_k})\}</script></span>，满足 <span><span class="MathJax_Preview">w_{i_0} &lt; w_{i_1} &lt; \ldots &lt; w_{i_k}</span><script type="math/tex">w_{i_0} < w_{i_1} < \ldots < w_{i_k}</script></span> 并且 <span><span class="MathJax_Preview">h_{i_0} &lt; h_{i_1} &lt; \ldots &lt; h_{i_k}</span><script type="math/tex">h_{i_0} < h_{i_1} < \ldots < h_{i_k}</script></span>，即子序列里的信封可以一个一个套起来。</p>
 <p><strong>分析</strong>：这个问题和原问题的差别在于，如果将 <span><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> 看成原问题的 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span>, 那么原问题的下标约束换成了 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 的约束。为了转化这个问题，我们只需要根据 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 对数组进行 <strong>升序排序</strong>。当然我们还是需要一个微妙的调整：这个 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 不同于下标，它是会重复的。当 <span><span class="MathJax_Preview">w_i = w_j</span><script type="math/tex">w_i = w_j</script></span> 时，<span><span class="MathJax_Preview">(w_i, h_i)</span><script type="math/tex">(w_i, h_i)</script></span> 和 <span><span class="MathJax_Preview">(w_j, h_j)</span><script type="math/tex">(w_j, h_j)</script></span> 是不能套在一起的，即不能出现在同一个子序列中，为了满足这个要求，我们需要对 <span><span class="MathJax_Preview">(w_i, h_i)</span><script type="math/tex">(w_i, h_i)</script></span> 和 <span><span class="MathJax_Preview">(w_j, h_j)</span><script type="math/tex">(w_j, h_j)</script></span> 根据 <span><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> 进行 <strong>降序排序</strong>。</p>
 <p>排序完成后，这就是一个标准的最长上升子序列问题了。</p>
-<blockquote>
-<p>具体详情可以参考<a href="https://leetcode-cn.com/problems/russian-doll-envelopes/">LeetCode 354</a>。</p>
-</blockquote>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">maxEnvelopes</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">envelopes</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">envelopes</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -652,7 +664,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月18日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月25日</span>
     
   </small>
 </div>
