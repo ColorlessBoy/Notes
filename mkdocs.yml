@@ -62,9 +62,10 @@ nav:
     - Regression: ML/04-Regression.md
     - AdaBoost:   ML/05-AdaBoost.md
     - PAC:        ML/06-PAC.md
-    - Kalman Filter: ML/07-KalmanFilter.md
+    - Kalman Filter:  ML/07-KalmanFilter.md
     - Classification: ML/08-Classification.md
     - PCA:        ML/09-PCA.md
+    - NoFreeLunch:    ML/10-NoFreeLunch.md
 
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md
