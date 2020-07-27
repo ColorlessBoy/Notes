@@ -331,6 +331,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ML/10-NoFreeLunch/" title="NoFreeLunch" class="md-nav__link">
+      NoFreeLunch
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -646,6 +658,7 @@
 <li>我们验证侯选数 <span><span class="MathJax_Preview">num</span><script type="math/tex">num</script></span> 的方法是：以候选数作为拆分出的 <span><span class="MathJax_Preview">\min_i b[i]</span><script type="math/tex">\min_i b[i]</script></span>，遍历每个石子堆，看看每个石子堆最多能分出多少堆，判断是否能够满足我们的需求。</li>
 </ul>
 <p>例如：在上面这个的示例中，一个可选的侯选值是2。那么 <code>a[0] = 3</code> 不能被分，因为分成的堆为 <code>[1, 2]</code> 存在比候选数还小的数，这不满足候选数的要求; <code>a[1] = 5</code> 可以被分成两堆 <code>[2, 3]</code>; 最后 <code>a[2] = 6</code> 可以被分成三堆 <code>[2, 2, 2]</code>。那么以 2 拆分石子堆，最多可以分出 6 堆，超过我们的需求 5 堆，所以 <span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span> 是可以的。</p>
+<p>这里每个求拆分堆数的公式有 <span><span class="MathJax_Preview">\max(\lfloor a[i] / num \rfloor, 1)</span><script type="math/tex">\max(\lfloor a[i] / num \rfloor, 1)</script></span>。</p>
                 
                   
                     
@@ -654,7 +667,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月25日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月27日</span>
     
   </small>
 </div>
