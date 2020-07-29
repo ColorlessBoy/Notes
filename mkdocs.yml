@@ -56,16 +56,17 @@ repo_url: 'https://github.com/colorlessboy/Notes'
 nav:
   - 介绍: index.md
   - 机器学习:
-    - EM:         ML/01-EM.md
-    - SVM:        ML/02-SVM.md
-    - Rademacher: ML/03-Rademacher.md
-    - Regression: ML/04-Regression.md
-    - AdaBoost:   ML/05-AdaBoost.md
-    - PAC:        ML/06-PAC.md
+    - EM:             ML/01-EM.md
+    - SVM:            ML/02-SVM.md
+    - Rademacher:     ML/03-Rademacher.md
+    - Regression:     ML/04-Regression.md
+    - AdaBoost:       ML/05-AdaBoost.md
+    - PAC:            ML/06-PAC.md
     - Kalman Filter:  ML/07-KalmanFilter.md
     - Classification: ML/08-Classification.md
-    - PCA:        ML/09-PCA.md
-    - NoFreeLunch:    ML/10-NoFreeLunch.md
+    - PCA:            ML/09-PCA.md
+    - No Free Lunch:  ML/10-NoFreeLunch.md
+    - VC Dimension:   ML/11-VCDimension.md
 
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md
@@ -76,3 +77,4 @@ nav:
     - 蓄水池抽样: Algorithms/06-蓄水池抽样.md
     - 重编码技巧: Algorithms/07-重编码技巧.md
     - 放松条件法: Algorithms/08-放松条件法.md
+    - 单调栈: Algorithms/09-单调栈.md
