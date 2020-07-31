@@ -78,3 +78,4 @@ nav:
     - 重编码技巧: Algorithms/07-重编码技巧.md
     - 放松条件法: Algorithms/08-放松条件法.md
     - 单调栈: Algorithms/09-单调栈.md
+    - 最长全排列: Algorithms/10-最长全排列.md
