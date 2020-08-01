@@ -19,7 +19,7 @@
     
     
       
-        <title>欧拉函数 - Notes</title>
+        <title>Markov Chains - Notes</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              欧拉函数
+              Markov Chains
             
           </span>
         </div>
@@ -364,10 +364,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       强化学习
@@ -389,11 +391,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../RL/01-MarkovChains/" title="Markov Chains" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Markov Chains
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Markov Chains" class="md-nav__link md-nav__link--active">
       Markov Chains
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stationary-distribution" class="md-nav__link">
+    稳定分布(Stationary Distribution)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -406,12 +457,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       算法
@@ -435,7 +484,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-nav__link">
+    <a href="../../Algorithms/01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-nav__link">
       最长递增子序列
     </a>
   </li>
@@ -447,7 +496,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../02-%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="区间调度问题" class="md-nav__link">
+    <a href="../../Algorithms/02-%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="区间调度问题" class="md-nav__link">
       区间调度问题
     </a>
   </li>
@@ -459,7 +508,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴蜀定理" class="md-nav__link">
+    <a href="../../Algorithms/03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴蜀定理" class="md-nav__link">
       裴蜀定理
     </a>
   </li>
@@ -471,7 +520,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../04-%E5%89%AA%E7%BB%B3%E5%AD%90%E9%97%AE%E9%A2%98/" title="剪绳子问题" class="md-nav__link">
+    <a href="../../Algorithms/04-%E5%89%AA%E7%BB%B3%E5%AD%90%E9%97%AE%E9%A2%98/" title="剪绳子问题" class="md-nav__link">
       剪绳子问题
     </a>
   </li>
@@ -481,67 +530,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        欧拉函数
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="欧拉函数" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../Algorithms/05-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/" title="欧拉函数" class="md-nav__link">
       欧拉函数
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    欧拉函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    扩展欧拉定理
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    超级次方
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -551,7 +544,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../06-%E8%93%84%E6%B0%B4%E6%B1%A0%E6%8A%BD%E6%A0%B7/" title="蓄水池抽样" class="md-nav__link">
+    <a href="../../Algorithms/06-%E8%93%84%E6%B0%B4%E6%B1%A0%E6%8A%BD%E6%A0%B7/" title="蓄水池抽样" class="md-nav__link">
       蓄水池抽样
     </a>
   </li>
@@ -563,7 +556,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../07-%E9%87%8D%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/" title="重编码技巧" class="md-nav__link">
+    <a href="../../Algorithms/07-%E9%87%8D%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/" title="重编码技巧" class="md-nav__link">
       重编码技巧
     </a>
   </li>
@@ -575,7 +568,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-nav__link">
+    <a href="../../Algorithms/08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-nav__link">
       放松条件法
     </a>
   </li>
@@ -587,7 +580,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../09-%E5%8D%95%E8%B0%83%E6%A0%88/" title="单调栈" class="md-nav__link">
+    <a href="../../Algorithms/09-%E5%8D%95%E8%B0%83%E6%A0%88/" title="单调栈" class="md-nav__link">
       单调栈
     </a>
   </li>
@@ -599,7 +592,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../10-%E6%9C%80%E9%95%BF%E5%85%A8%E6%8E%92%E5%88%97/" title="最长全排列" class="md-nav__link">
+    <a href="../../Algorithms/10-%E6%9C%80%E9%95%BF%E5%85%A8%E6%8E%92%E5%88%97/" title="最长全排列" class="md-nav__link">
       最长全排列
     </a>
   </li>
@@ -637,21 +630,14 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    欧拉函数
+    定义
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    扩展欧拉定理
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    超级次方
+  <a href="#stationary-distribution" class="md-nav__link">
+    稳定分布(Stationary Distribution)
   </a>
   
 </li>
@@ -668,7 +654,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/Algorithms/05-欧拉函数.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/RL/01-MarkovChains.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -676,84 +662,168 @@
                   
                 
                 
-                <h1 id="_1">欧拉函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">欧拉函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="admonition 定义1">
-<p class="admonition-title">定义1</p>
-<p>(<strong>Euler's totient function</strong>).
-欧拉函数 <span><span class="MathJax_Preview">\phi(n)</span><script type="math/tex">\phi(n)</script></span> 表示小于等于 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 的整数中，与 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 互质的正整数的个数。
-注意 <span><span class="MathJax_Preview">\phi(1) = 1</span><script type="math/tex">\phi(1) = 1</script></span>，并且如果 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 是质数的话，<span><span class="MathJax_Preview">\phi(n) = n - 1</span><script type="math/tex">\phi(n) = n - 1</script></span>。</p>
-</div>
-<div class="admonition 性质1">
-<p class="admonition-title">性质1</p>
-<p>(<strong>欧拉函数的积性</strong>). 
-如果 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 和 <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> 互质，那么 <span><span class="MathJax_Preview">\phi(p \times q) = \phi(p) \times \phi(q)</span><script type="math/tex">\phi(p \times q) = \phi(p) \times \phi(q)</script></span>。</p>
-</div>
-<div class="admonition 性质2">
-<p class="admonition-title">性质2</p>
-<p>如果 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 是质数，那么 $\phi(p^k) = p^{k-1} \times (p-1).</p>
-<p>这个性质很好证明，我们可以把 <span><span class="MathJax_Preview">p^k</span><script type="math/tex">p^k</script></span> 在数轴上均分成 <span><span class="MathJax_Preview">p^{k-1}</span><script type="math/tex">p^{k-1}</script></span> 段，那么每一段都有 <span><span class="MathJax_Preview">p-1</span><script type="math/tex">p-1</script></span> 个数与<span><span class="MathJax_Preview">p^k</span><script type="math/tex">p^k</script></span> 互质。</p>
-</div>
-<p>综上，我们可以获得一个求欧拉函数值的快捷方法。
-由唯一分解定理，我们可以拆分目标值 <span><span class="MathJax_Preview">n = \prod^{}_{i} p^{k_i}_i</span><script type="math/tex">n = \prod^{}_{i} p^{k_i}_i</script></span>，那么</p>
+                <h1 id="_1">马尔科夫链<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>马尔可夫链是一个非常流行的随机过程中的数学模型。
+它非常简洁、符合直觉性以及足够强大，让人一度觉得它可以描述整个世界的事件。
+这里大家应该能想到当年经典力学发展到顶峰的时候，人们一度以为：
+只要对现有世界建模够准，就能够精准地预测未来。
+正如经典力学地局限性，马尔科夫链也不是一个万能的随机过程模型。
+但是，我们人类的大脑是怎么建模这个世界的呢？
+如果我们的大脑就是把这个世界简化成马尔可夫链呢？
+那么是不是意味着智能足够在马尔可夫模型建模得世界上产生？
+这个假设鼓励了我们对强化学习的研究,我相信强化学习是人工智能的重要一环。</p>
+<h2 id="_2">定义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们目前只涉及离散的随机过程，时间被分割成自然数序列 <span><span class="MathJax_Preview">[0, 1, 2, \ldots]</span><script type="math/tex">[0, 1, 2, \ldots]</script></span>，
+每个时间点有一个随机变量 <span><span class="MathJax_Preview">S_t</span><script type="math/tex">S_t</script></span>, 那么因为时间维度的特殊性，
+这就形成了一个过程 <span><span class="MathJax_Preview">(S_0, S_1, S_2, \ldots)</span><script type="math/tex">(S_0, S_1, S_2, \ldots)</script></span>。
+这个随机过程的样本空间是一个概率空间，即每个样本服从某个概率分布 <span><span class="MathJax_Preview">(s_0, s_1, s_2, \ldots) \sim p</span><script type="math/tex">(s_0, s_1, s_2, \ldots) \sim p</script></span>。
+我们当然可以把每个样本张成一个维度非常高的向量，退化成某种监督学习或者无监督学习的问题。
+但是，当我们先验性地给数据赋予 <strong>过程</strong> 这种先验结构信息，我们也就增加了更多的操作空间。
+<strong>过程</strong> 就是某种概率图，概率逐层传递，即我们认为 <span><span class="MathJax_Preview">S_t</span><script type="math/tex">S_t</script></span> 的随机变量由 <span><span class="MathJax_Preview">(S_0, S_1, \ldots, S_{t-1})</span><script type="math/tex">(S_0, S_1, \ldots, S_{t-1})</script></span> 决定：</p>
 <div>
 <div class="MathJax_Preview">
-    \tag{1} \label{euler}
-    \phi(n) = n \prod^{}_{i} \frac{p_{i} - 1}{p_{i}}.
+    \tag{1}
+    p(S_t) = p(S_t \vert S_{t-1} = s_{t-1}， S_{t-2} = s_{t-2}, \ldots, S_{0} = s_{0}).
 </div>
 <script type="math/tex; mode=display">
-    \tag{1} \label{euler}
-    \phi(n) = n \prod^{}_{i} \frac{p_{i} - 1}{p_{i}}.
+    \tag{1}
+    p(S_t) = p(S_t \vert S_{t-1} = s_{t-1}， S_{t-2} = s_{t-2}, \ldots, S_{0} = s_{0}).
 </script>
 </div>
-<p>那么，我们可以在边求解 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 的质因数，边求解 <span><span class="MathJax_Preview">\phi(n)</span><script type="math/tex">\phi(n)</script></span>:</p>
-<div class="highlight"><pre><span></span><code>    <span class="kt">int</span> <span class="nf">eulerPhi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">top</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mf">0.5</span><span class="p">);</span> <span class="c1">// 防止计算精度误差</span>
-        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">top</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">/</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-                <span class="k">while</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">n</span> <span class="o">/=</span> <span class="n">i</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">//质数</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-    <span class="p">}</span>
-</code></pre></div>
-
-<h2 id="_3">扩展欧拉定理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>而马尔可夫链就是更进一步简化版的随机过程。</p>
+<div class="admonition 定义">
+<p class="admonition-title">定义</p>
+<p>(<strong>马尔科夫链</strong>). 离散随机过程叫做马尔可夫链，表示：</p>
 <div>
 <div class="MathJax_Preview">
-a^b\equiv
-\begin{cases}
-a^{b\bmod\varphi(p)},\,&amp;\gcd(a,\,p)=1\\
-a^b,&amp;\gcd(a,\,p)\ne1,\,b&lt;\varphi(p)\\
-a^{b\bmod\varphi(p)+\varphi(p)},&amp;\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
-\end{cases}
-\pmod p
+    \tag{2}
+    p(S_t \vert S_{t-1} = s_{t-1}， S_{t-2} = s_{t-2}, \ldots, S_{0} = s_{0}) 
+    = p(S_t \vert S_{t-1} = s_{t-1}).
 </div>
 <script type="math/tex; mode=display">
-a^b\equiv
-\begin{cases}
-a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
-a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
-a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
-\end{cases}
-\pmod p
+    \tag{2}
+    p(S_t \vert S_{t-1} = s_{t-1}， S_{t-2} = s_{t-2}, \ldots, S_{0} = s_{0}) 
+    = p(S_t \vert S_{t-1} = s_{t-1}).
 </script>
 </div>
-<div class="admonition cite">
-<p class="admonition-title">Cite</p>
-<p>[1]<a href="https://oi-wiki.org/math/euler/">欧拉函数</a></p>
-<p>[2]<a href="https://oi-wiki.org/math/fermat/">欧拉定理</a></p>
+<p>也就是说，当前时刻的随机变量只与前一时刻的随机变量有关。</p>
 </div>
-<h2 id="_4">超级次方<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p><strong>题目描述</strong>: 计算 <span><span class="MathJax_Preview">a^b</span><script type="math/tex">a^b</script></span> 对 1337 取模，其中 <span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> 是正整数，<span><span class="MathJax_Preview">b</span><script type="math/tex">b</script></span> 是超大整数，以数组的形式给出。</p>
-<p><strong>分析</strong>: </p>
+<p>我们假设 <span><span class="MathJax_Preview">S_t</span><script type="math/tex">S_t</script></span> 随机变量都是在集合 <span><span class="MathJax_Preview">\mathcal{S}</span><script type="math/tex">\mathcal{S}</script></span> 上，那么马尔可夫链就是一个测度空间，</p>
+<div>
+<div class="MathJax_Preview">
+    \tag{3} 
+    \mathcal{MC} = \{\Omega = \{\tau = (s_0, s_1, \ldots, s_t, \ldots) \vert s_t \in \mathcal{S}\}, \sigma(\Omega), \mu\},
+</div>
+<script type="math/tex; mode=display">
+    \tag{3} 
+    \mathcal{MC} = \{\Omega = \{\tau = (s_0, s_1, \ldots, s_t, \ldots) \vert s_t \in \mathcal{S}\}, \sigma(\Omega), \mu\},
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">\mu(\tau) = p_0(s_0) \prod^{\infty}_{t = 0}p(s_{t+1} \vert s_t)</span><script type="math/tex">\mu(\tau) = p_0(s_0) \prod^{\infty}_{t = 0}p(s_{t+1} \vert s_t)</script></span>。 </p>
+<p>所以，表示一个马尔科夫链可以简化为</p>
+<div>
+<div class="MathJax_Preview">
+    \tag{4}
+    \mathcal{MC} = (\mathcal{S}, p_0, p).
+</div>
+<script type="math/tex; mode=display">
+    \tag{4}
+    \mathcal{MC} = (\mathcal{S}, p_0, p).
+</script>
+</div>
+<p>如果 <span><span class="MathJax_Preview">\mathcal{S}</span><script type="math/tex">\mathcal{S}</script></span> 是可数的，那么我们构造一个状态转移矩阵<span><span class="MathJax_Preview">\mathbf{P}</span><script type="math/tex">\mathbf{P}</script></span>:</p>
+<div>
+<div class="MathJax_Preview">\begin{equation*}
+    \tag{5}
+    \mathbf{P} =
+    \begin{bmatrix}
+        p(s1 \vert s1) &amp; p(s2 \vert s1) &amp; \cdots &amp; p(sn \vert s1) &amp; \cdots \\
+        p(s1 \vert s2) &amp; p(s2 \vert s2) &amp; \cdots &amp; p(sn \vert s2) &amp; \cdots \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \ddots \\
+        p(sn \vert sn) &amp; p(s2 \vert sn) &amp; \cdots &amp; p(sn \vert sn) &amp; \cdots \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \ddots
+    \end{bmatrix},
+\end{equation*}</div>
+<script type="math/tex; mode=display">\begin{equation*}
+    \tag{5}
+    \mathbf{P} =
+    \begin{bmatrix}
+        p(s1 \vert s1) & p(s2 \vert s1) & \cdots & p(sn \vert s1) & \cdots \\
+        p(s1 \vert s2) & p(s2 \vert s2) & \cdots & p(sn \vert s2) & \cdots \\
+        \vdots & \vdots & \ddots & \vdots & \ddots \\
+        p(sn \vert sn) & p(s2 \vert sn) & \cdots & p(sn \vert sn) & \cdots \\
+        \vdots & \vdots & \ddots & \vdots & \ddots
+    \end{bmatrix},
+\end{equation*}</script>
+</div>
+<p>注意 <span><span class="MathJax_Preview">\mathbf{P} \pmb{1} = \pmb{1}</span><script type="math/tex">\mathbf{P} \pmb{1} = \pmb{1}</script></span>。</p>
+<h2 id="stationary-distribution">稳定分布(Stationary Distribution)<a class="headerlink" href="#stationary-distribution" title="Permanent link">&para;</a></h2>
+<p>在这一节，我们分享一个马尔科夫链中的重要结论。</p>
+<div class="admonition 定理">
+<p class="admonition-title">定理</p>
+<p>(<strong>Perron-Frobenius theorem</strong>)
+If a matrix <span><span class="MathJax_Preview">\mathbf{A}</span><script type="math/tex">\mathbf{A}</script></span> is irreducible<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, then</p>
 <ul>
-<li>第一步：化简指数 <span><span class="MathJax_Preview">\phi(1337) = 1140</span><script type="math/tex">\phi(1337) = 1140</script></span>，对大数 <span><span class="MathJax_Preview">b</span><script type="math/tex">b</script></span> 使用 <span><span class="MathJax_Preview">{b \bmod 1140 + 1140}</span><script type="math/tex">{b \bmod 1140 + 1140}</script></span>；</li>
-<li>第二步：求 <span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> 的指数，为了防止超出数字的表达范围，使用公式 <span><span class="MathJax_Preview">(A \times B) \bmod C = [(A \bmod C) \times (B \bmod C)] \bmod C</span><script type="math/tex">(A \times B) \bmod C = [(A \bmod C) \times (B \bmod C)] \bmod C</script></span>。在第一步也用到了这个公式。</li>
+<li><span><span class="MathJax_Preview">\mathbf{A}</span><script type="math/tex">\mathbf{A}</script></span> has a positive real eigenvalue <span><span class="MathJax_Preview">\lambda_{\max}</span><script type="math/tex">\lambda_{\max}</script></span>
+    such that all other eigenvalues of <span><span class="MathJax_Preview">\mathbf{A}</span><script type="math/tex">\mathbf{A}</script></span> satisfy
+    <span><span class="MathJax_Preview">\vert \lambda \vert &lt; \lambda_{\max}</span><script type="math/tex">\vert \lambda \vert < \lambda_{\max}</script></span>.</li>
+<li>Furthermore, <span><span class="MathJax_Preview">\lambda_{\max}</span><script type="math/tex">\lambda_{\max}</script></span> has algebraic<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>
+    and geometric<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> multiplicity one, and has an eigenvector <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> with <span><span class="MathJax_Preview">\mathbf{x} \succ 0</span><script type="math/tex">\mathbf{x} \succ 0</script></span>.</li>
+<li>Any nonnegative eigenvector is a multiper of <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span>.</li>
 </ul>
+</div>
+<p>因为状态转移矩阵 <span><span class="MathJax_Preview">\mathbf{P} \mathbf{1} = \mathbf{1}</span><script type="math/tex">\mathbf{P} \mathbf{1} = \mathbf{1}</script></span>。
+如果马尔科夫链是 <span><span class="MathJax_Preview">irreducible</span><script type="math/tex">irreducible</script></span> 以及 <span><span class="MathJax_Preview">aperiodical</span><script type="math/tex">aperiodical</script></span>的（满足上面定理的要求），那么
+ 1 是 <span><span class="MathJax_Preview">\mathbf{P}</span><script type="math/tex">\mathbf{P}</script></span> 的特征值。</p>
+<p>接下来我们要证明它的最大特征值是1。
+首先它的特征值 <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> 满足</p>
+<div>
+<div class="MathJax_Preview">
+    \mathbf{P} \mathbf{z} = \lambda \mathbf{z},
+</div>
+<script type="math/tex; mode=display">
+    \mathbf{P} \mathbf{z} = \lambda \mathbf{z},
+</script>
+</div>
+<p>那么</p>
+<div>
+<div class="MathJax_Preview">
+    \sum^{}_{j} p_{kj} z_j = \lambda z_k,
+</div>
+<script type="math/tex; mode=display">
+    \sum^{}_{j} p_{kj} z_j = \lambda z_k,
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">z_k</span><script type="math/tex">z_k</script></span> 是 <span><span class="MathJax_Preview">\mathbf{z}</span><script type="math/tex">\mathbf{z}</script></span> 中的最大分量。</p>
+<p>所以</p>
+<div>
+<div class="MathJax_Preview">
+    \vert \lambda z_k \vert = \vert \sum^{}_{j} p_{kj} z_j \vert \le \sum^{}_{j} p_{kj} \vert z_j \vert \le \sum^{}_{j} p_{kj} \vert z_k \vert \le \vert z_k \vert,
+</div>
+<script type="math/tex; mode=display">
+    \vert \lambda z_k \vert = \vert \sum^{}_{j} p_{kj} z_j \vert \le \sum^{}_{j} p_{kj} \vert z_j \vert \le \sum^{}_{j} p_{kj} \vert z_k \vert \le \vert z_k \vert,
+</script>
+</div>
+<p>所以 <span><span class="MathJax_Preview">\vert \lambda \vert \le 1</span><script type="math/tex">\vert \lambda \vert \le 1</script></span>。</p>
+<p>因为 <span><span class="MathJax_Preview">\mathbf{P}^T</span><script type="math/tex">\mathbf{P}^T</script></span> 的特征值和 <span><span class="MathJax_Preview">\mathbf{P}</span><script type="math/tex">\mathbf{P}</script></span> 相同, 所以 <span><span class="MathJax_Preview">\mathbf{P}^T</span><script type="math/tex">\mathbf{P}^T</script></span> 的最大特征值是1, 它也存在唯一的特征值 <span><span class="MathJax_Preview">\mathbf{\pi}</span><script type="math/tex">\mathbf{\pi}</script></span> 满足 <span><span class="MathJax_Preview">\mathbf{P}^T \mathbf{\pi} = \mathbf{\pi}</span><script type="math/tex">\mathbf{P}^T \mathbf{\pi} = \mathbf{\pi}</script></span>。</p>
+<p>我们称 <span><span class="MathJax_Preview">\mathbf{\pi}</span><script type="math/tex">\mathbf{\pi}</script></span> 是马尔可夫链的**稳定分布**。我们为什么叫它是稳定分布呢？
+因为对于任意的初始分布 <span><span class="MathJax_Preview">\mathbf{p}_0</span><script type="math/tex">\mathbf{p}_0</script></span>, 我们定义<span><span class="MathJax_Preview">\mathbf{p}_{\infty} = \lim_{k \rightarrow \infty} (\mathbf{P}^T)^k \mathbf{p}_0</span><script type="math/tex">\mathbf{p}_{\infty} = \lim_{k \rightarrow \infty} (\mathbf{P}^T)^k \mathbf{p}_0</script></span>, 那么
+<span><span class="MathJax_Preview">\mathbf{p}_{\infty} = \mathbf{P}^T \mathbf{p}_{\infty}</span><script type="math/tex">\mathbf{p}_{\infty} = \mathbf{P}^T \mathbf{p}_{\infty}</script></span>。
+因为特征值的唯一性，我们可以得到 <span><span class="MathJax_Preview">\mathbf{p}_{\infty} = \mathbf{\pi}</span><script type="math/tex">\mathbf{p}_{\infty} = \mathbf{\pi}</script></span>。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><span><span class="MathJax_Preview">\mathbf{A}</span><script type="math/tex">\mathbf{A}</script></span> is called irreducible if for any i, j there is <span><span class="MathJax_Preview">k_{ij}</span><script type="math/tex">k_{ij}</script></span> such that <span><span class="MathJax_Preview">(\mathbf{A}^k)_{ij} &gt; 0</span><script type="math/tex">(\mathbf{A}^k)_{ij} > 0</script></span>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Algebraic multiplicity is the number of times an eigenvalue appears in a characteristic polynomial of a matrix.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Geometric multiplicity is the nullity of <span><span class="MathJax_Preview">\mathbf{I} - \lambda \mathbf{A}</span><script type="math/tex">\mathbf{I} - \lambda \mathbf{A}</script></span>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
                   
                     
@@ -762,7 +832,7 @@ a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月23日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年8月1日</span>
     
   </small>
 </div>
@@ -785,7 +855,7 @@ a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../04-%E5%89%AA%E7%BB%B3%E5%AD%90%E9%97%AE%E9%A2%98/" title="剪绳子问题" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../ML/11-VCDimension/" title="VC Dimension" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -794,19 +864,19 @@ a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                剪绳子问题
+                VC Dimension
               </div>
             </div>
           </a>
         
         
-          <a href="../06-%E8%93%84%E6%B0%B4%E6%B1%A0%E6%8A%BD%E6%A0%B7/" title="蓄水池抽样" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../Algorithms/01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                蓄水池抽样
+                最长递增子序列
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
