@@ -101,13 +101,13 @@ $$
     \mathbf{P} \mathbf{z} = \lambda \mathbf{z},
 $$
 
-其中 $z_k$ 是 $\mathbf{z}$ 中的最大分量。
-
 那么
 
 $$
     \sum^{}_{j} p_{kj} z_j = \lambda z_k,
 $$
+
+其中 $z_k$ 是 $\mathbf{z}$ 中的最大分量。
 
 所以
 
