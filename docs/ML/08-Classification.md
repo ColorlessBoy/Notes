@@ -144,7 +144,7 @@ $$
 
 $$
     \tag{16} \label{softmax4}
-    \max_{\mathbf{P}} \min_{\lambda \ne 0} \sum^{k}_{i=1} z_i P_i - \alpha \sum^{k}_{i=1} P_i \ln P_i + \lambda \left(\sum^{k}_{i=1} P_i - 1\right).
+    \min_{\lambda \ne 0} \max_{\mathbf{P}} \sum^{k}_{i=1} z_i P_i - \alpha \sum^{k}_{i=1} P_i \ln P_i + \lambda \left(\sum^{k}_{i=1} P_i - 1\right).
 $$
 
 首先对内部子问题进行优化可得：
