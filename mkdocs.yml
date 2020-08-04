@@ -70,6 +70,8 @@ nav:
   
   - 强化学习:
     - Markov Chains: RL/01-MarkovChains.md
+    - Markov Decision Processes: RL/02-MDPs.md
+    - Policy Evaluation: RL/03-PolicyEvaluation.md
 
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md

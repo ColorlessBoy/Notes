@@ -42,10 +42,10 @@ $$
 
 $$
     \tag{3} 
-    \mathcal{MC} = \{\Omega = \{\tau = (s_0, s_1, \ldots, s_t, \ldots) \vert s_t \in \mathcal{S}\}, \sigma(\Omega), \mu\},
+    \mathcal{MC} = \{\Omega = \{\tau = (s_0, s_1, \ldots, s_t, \ldots) \vert s_t \in \mathcal{S}\}, \Delta(\Omega)\},
 $$
 
-其中 $\mu(\tau) = p_0(s_0) \prod^{\infty}_{t = 0}p(s_{t+1} \vert s_t)$。 
+其中 $\Delta(\Omega)$ 表示在集合 $\Omega$ 上的分布，并且$p(\tau) = p_0(s_0) \prod^{\infty}_{t = 0}p(s_{t+1} \vert s_t)$。 
 
 所以，表示一个马尔科夫链可以简化为
 
@@ -117,9 +117,9 @@ $$
 
 所以 $\vert \lambda \vert \le 1$。
 
-因为 $\mathbf{P}^T$ 的特征值和 $\mathbf{P}$ 相同, 所以 $\mathbf{P}^T$ 的最大特征值是1, 它也存在唯一的特征值 $\mathbf{\pi}$ 满足 $\mathbf{P}^T \mathbf{\pi} = \mathbf{\pi}$。
+因为 $\mathbf{P}^T$ 的特征值和 $\mathbf{P}$ 相同, 所以 $\mathbf{P}^T$ 的最大特征值是1, 它也存在唯一的特征值 $\pmb{\pi}$ 满足 $\mathbf{P}^T \pmb{\pi} = \pmb{\pi}$。
 
 我们称 $\mathbf{\pi}$ 是马尔可夫链的**稳定分布**。我们为什么叫它是稳定分布呢？
 因为对于任意的初始分布 $\mathbf{p}_0$, 我们定义$\mathbf{p}_{\infty} = \lim_{k \rightarrow \infty} (\mathbf{P}^T)^k \mathbf{p}_0$, 那么
 $\mathbf{p}_{\infty} = \mathbf{P}^T \mathbf{p}_{\infty}$。
-因为特征值的唯一性，我们可以得到 $\mathbf{p}_{\infty} = \mathbf{\pi}$。
+因为特征值的唯一性，我们可以得到 $\mathbf{p}_{\infty} = \pmb{\pi}$。
