@@ -67,6 +67,7 @@ nav:
     - PCA:            ML/09-PCA.md
     - No Free Lunch:  ML/10-NoFreeLunch.md
     - VC Dimension:   ML/11-VCDimension.md
+    - Generation Of Boosting: ML/12-GenerationsOfBoosting.md
   
   - 强化学习:
     - Markov Chains: RL/01-MarkovChains.md
