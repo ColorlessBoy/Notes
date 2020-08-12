@@ -84,3 +84,4 @@ nav:
     - 放松条件法: Algorithms/08-放松条件法.md
     - 单调栈: Algorithms/09-单调栈.md
     - 最长全排列: Algorithms/10-最长全排列.md
+    - 强连通分量: Algorithms/11-强连通分量.md
