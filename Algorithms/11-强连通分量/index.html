@@ -19,7 +19,7 @@
     
     
       
-        <title>最长递增子序列 - Notes</title>
+        <title>强连通分量 - Notes</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              最长递增子序列
+              强连通分量
             
           </span>
         </div>
@@ -481,60 +481,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        最长递增子序列
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="最长递增子序列" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-nav__link">
       最长递增子序列
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    原始问题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    变种问题1：俄罗斯套娃信封
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -650,11 +601,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../11-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" title="强连通分量" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        强连通分量
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="强连通分量" class="md-nav__link md-nav__link--active">
       强连通分量
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kosaraju" class="md-nav__link">
+    Kosaraju 算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjan" class="md-nav__link">
+    Tarjan 算法
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -689,15 +689,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    原始问题
+  <a href="#kosaraju" class="md-nav__link">
+    Kosaraju 算法
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    变种问题1：俄罗斯套娃信封
+  <a href="#tarjan" class="md-nav__link">
+    Tarjan 算法
   </a>
   
 </li>
@@ -714,7 +714,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/Algorithms/01-最长递增子序列.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/Algorithms/11-强连通分量.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -722,90 +722,114 @@
                   
                 
                 
-                <h1 id="_1">最长递增子序列<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">原始问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+                <h1 id="_1">强连通分量<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>在一张有向图中，如果两个节点能够互相到达，我们称它们为 <strong>强连通</strong>。
+我们规定，一个结点和它自己是强连通的。
+如果一个有向图满足它的任何两个节点都是强连通的，
+那么这个有向图就是一个 <strong>强连通图</strong>。</p>
+<p>给定任何一个有向图，我们可以把它分割成一个个强连通子图。
+在所有的分割方案中，我们希望保留所有的强连通关系：
+如果两个结点在原图中强连通，我们希望分割后，这两个结点也是强连通的。
+这种分割产生的强连通子图就称为原有向图的 <strong>强连通分量</strong> (Strongly Connected Compoenet)。</p>
+<p>值得注意的是，分割后的强连通子图不会相交。
+如果存在节点同时在两张强连通子图中，
+我们很容易证明这两张强连通子图的并集也是强连通的，
+换句话说就是，它们起始是一张强连通子图。</p>
+<h2 id="kosaraju">Kosaraju 算法<a class="headerlink" href="#kosaraju" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>详情参考<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">LeetCode 300</a>。</p>
+<p>因为这一节的内容完全是从另一篇博客中参考来的，还没有内化成我的东西，所以我把引用放在了这一小节的开头，避免误会发生。
+<a href="http://edward-mj.com/archives/455">Kosaragu算法的证明</a>。</p>
 </blockquote>
-<p><strong>问题描述</strong>：一个数组 <span><span class="MathJax_Preview">\{x_0, x_1, \ldots, x_n\}</span><script type="math/tex">\{x_0, x_1, \ldots, x_n\}</script></span> , 求它的最长递增子序列 <span><span class="MathJax_Preview">\{x_{i_0}, x_{i_1}, \ldots, x_{i_k}\}</span><script type="math/tex">\{x_{i_0}, x_{i_1}, \ldots, x_{i_k}\}</script></span>，满足 <span><span class="MathJax_Preview">i_0 &lt; i_1 &lt; \ldots i_k</span><script type="math/tex">i_0 < i_1 < \ldots i_k</script></span> 并且 <span><span class="MathJax_Preview">x_{i_0} &lt; x_{i_1} &lt; \ldots &lt; x_{i_k}</span><script type="math/tex">x_{i_0} < x_{i_1} < \ldots < x_{i_k}</script></span>。</p>
-<p><strong>目标</strong>：动态规划，计算复杂度 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span>，空间复杂度 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span>。</p>
-<p>首先，简单的动态规划时间复杂度为 <span><span class="MathJax_Preview">O(n^2)</span><script type="math/tex">O(n^2)</script></span>。</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>最长上升子序列的 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span> 算法就比较强了，用到了贪心法和二分查找来降低复杂度。
-具体流程可以看<a href="https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/LongestIncreasingSubsequence.pdf">普林斯顿大学的算法课程的一个ppt</a>。</p>
-<p><strong>算法核心思想</strong>：维护几个下降栈（刚开始是0个下降栈）。从左到右遍历数组，每个数尽量压入左边的栈（这一步可以用二分法找能压入的栈），如果没有栈可压入，那就新建一个栈。</p>
-<p><strong>弱对偶</strong>：最长上升子序列的长度小于等于栈的个数，因为任何上升子序列最多只能包含每个下降栈里的一个元素。</p>
-<p><strong>强对偶</strong>：每个数要么在第一个栈，要么它前面的栈已经存在比它小的数。那么归纳总结法可得，每个数都有到第一个栈的''通路''（形成递增子序列）。那么，这个栈组的数据结构存在一个长度等于栈个数的递增子序列。再根据弱对偶可知，栈的个数也是递增子序列的上界。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">lengthOfLIS</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span> <span class="c1">//只需要保存栈顶的数。</span>
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">binary_search_left_bound</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-            <span class="c1">// 查找最左边可插入的下降栈</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-                <span class="n">s</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="c1">//增加栈</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="n">s</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">//压入栈</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">binary_search_left_bound</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 最左侧边界</span>
-        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">((</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">r</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-
-<blockquote>
-<p>Python中有一个二分法的实现模块 <code>bisect</code>: <code>bisect.bisect_left(a, num, lo=0, hi=len(a))</code> 和 <code>bisect.bisect_right(a, num, lo=0, hi=len(a))</code>。<a href="https://docs.python.org/3/library/bisect.html">官方文档链接</a></p>
-</blockquote>
-<h2 id="1">变种问题1：俄罗斯套娃信封<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>详情参考<a href="https://leetcode-cn.com/problems/russian-doll-envelopes/">LeetCode 354</a>。</p>
-</blockquote>
-<p><strong>问题描述</strong> ：我们拥有一系列信封 <span><span class="MathJax_Preview">\{(w_0, h_0), (w_1, h_1), \ldots, (w_n, h_n)\}</span><script type="math/tex">\{(w_0, h_0), (w_1, h_1), \ldots, (w_n, h_n)\}</script></span>,
-我们需要找一个最长递增子序列 <span><span class="MathJax_Preview">\{(w_{i_0}, h_{i_0}), (w_{i_1}, h_{i_1}), \ldots, (w_{i_k}, h_{i_k})\}</span><script type="math/tex">\{(w_{i_0}, h_{i_0}), (w_{i_1}, h_{i_1}), \ldots, (w_{i_k}, h_{i_k})\}</script></span>，满足 <span><span class="MathJax_Preview">w_{i_0} &lt; w_{i_1} &lt; \ldots &lt; w_{i_k}</span><script type="math/tex">w_{i_0} < w_{i_1} < \ldots < w_{i_k}</script></span> 并且 <span><span class="MathJax_Preview">h_{i_0} &lt; h_{i_1} &lt; \ldots &lt; h_{i_k}</span><script type="math/tex">h_{i_0} < h_{i_1} < \ldots < h_{i_k}</script></span>，即子序列里的信封可以一个一个套起来。</p>
-<p><strong>分析</strong>：这个问题和原问题的差别在于，如果将 <span><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> 看成原问题的 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span>, 那么原问题的下标约束换成了 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 的约束。为了转化这个问题，我们只需要根据 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 对数组进行 <strong>升序排序</strong>。当然我们还是需要一个微妙的调整：这个 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 不同于下标，它是会重复的。当 <span><span class="MathJax_Preview">w_i = w_j</span><script type="math/tex">w_i = w_j</script></span> 时，<span><span class="MathJax_Preview">(w_i, h_i)</span><script type="math/tex">(w_i, h_i)</script></span> 和 <span><span class="MathJax_Preview">(w_j, h_j)</span><script type="math/tex">(w_j, h_j)</script></span> 是不能套在一起的，即不能出现在同一个子序列中，为了满足这个要求，我们需要对 <span><span class="MathJax_Preview">(w_i, h_i)</span><script type="math/tex">(w_i, h_i)</script></span> 和 <span><span class="MathJax_Preview">(w_j, h_j)</span><script type="math/tex">(w_j, h_j)</script></span> 根据 <span><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> 进行 <strong>降序排序</strong>。</p>
-<p>排序完成后，这就是一个标准的最长上升子序列问题了。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">maxEnvelopes</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&amp;</span> <span class="n">envelopes</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">envelopes</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">envelopes</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-    <span class="n">sort</span><span class="p">(</span><span class="n">envelopes</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">envelopes</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> 
-        <span class="p">[](</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-        <span class="p">});</span>
-
-    <span class="k">return</span> <span class="n">lengthOfLIS</span><span class="p">(</span><span class="n">envelopes</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>首先介绍一下算法的流程：</p>
+<ol>
+<li>输入一张有向图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>，它可以是邻接矩阵，也可以是邻接表。</li>
+<li>我们首先会构造一张反向有向图 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>，将原有向图的箭头方向反向。
+    <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 如果是邻接矩阵的形式，那么我们不需要特别构造 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>，
+    但是如果 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 是邻接表形式，我们需要特别构造 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>。</li>
+<li>接着使用多次使用 dfs 策略来搜索原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>，以节点 <strong>访问结束的顺序</strong> 将节点压入一个栈，直到所有的节点被访问。</li>
+<li>将栈的元素依次弹出，如果弹出的节点 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 未被访问第二次（第一次发生在第3步，也就是第四步中没有访问过它），
+    就使用 dfs 策略以节点 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 为起点，搜索反转图 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>。
+    每次 dfs 策略访问到的节点组成一个原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 的强连通分量。</li>
+</ol>
+<p>这个算法第一次看不是那么直觉，需要一点证明。</p>
+<div class="admonition 命题">
+<p class="admonition-title">命题</p>
+<p><strong>Kosaraju 算法的第4步中构造的子图一定是强连通子图</strong>。</p>
+</div>
+<div class="admonition 证明">
+<p class="admonition-title">证明</p>
+<p>首先，设我们在第4步中，我们通过对 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span> dfs 先后访问了节点 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 和 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span>，
+并且 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 是 dfs 的起点。
+那么在 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span> 中，存在一条从 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 到 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 的路径，
+也就是说原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 中存在一条从 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 到 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 的路径。</p>
+<p>又因为 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 是 dfs 的起点，
+所以在第三步构造的栈中，<span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 是高于 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 的，
+也就是说 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 早一步被压入栈中。</p>
+<p>我们回过头来研究算法的第3步，什么时候 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 会被早一步压入栈中？
+首先我们可以肯定，以 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 为起点深度搜索原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 的时候，<span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 还不在栈中。
+<span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 不在栈中的可能性有两个：</p>
+<ul>
+<li><span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 压根还没有被考虑到；</li>
+<li><span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 为起点 <span><span class="MathJax_Preview">dfs</span><script type="math/tex">dfs</script></span> 搜索到了 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span>。</li>
+</ul>
+<p>其中因为原图中存在一条从 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 到 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 的路径，如果 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 压根没有被考虑到，那么以 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 为根的dfs时必然会搜索到 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span>，那么 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 会被早压入栈中，又产生了矛盾。所以一定是 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 为起点 <span><span class="MathJax_Preview">dfs</span><script type="math/tex">dfs</script></span> 搜索到了 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span>，也就是原图存在一条从 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 到 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span> 的路径。</p>
+<p>综上，第4步生成的子图满足起点 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 与其他节点强连通，进一步可得它是强连通子图。</p>
+</div>
+<div class="admonition 命题">
+<p class="admonition-title">命题</p>
+<p><strong>Kosaraju 算法的第4步中构造的强连通子图是原图的强连通分量</strong>。</p>
+</div>
+<div class="admonition 证明">
+<p class="admonition-title">证明</p>
+<p>对于任意两个强连通节点 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 和 <span><span class="MathJax_Preview">\mathbf{y}</span><script type="math/tex">\mathbf{y}</script></span>，在第4步中，两个节点中一定会有一个节点先被dfs访问。
+又由于两个节点是强连通的，所以从先被访问的的节点dfs一定会访问到另一个节点，在第4步中，意味着它们一定被放到了同一个强连通子图中。</p>
+</div>
+<p>我们综合上面两个结论，我们可以证明 Tosaraju 算法的正确性。</p>
+<p>Tosaraju 算法使用了两轮dfs，它的时间复杂度为 <span><span class="MathJax_Preview">O(m + n)</span><script type="math/tex">O(m + n)</script></span> 其中 <span><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span> 为边的数目，<span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 为节点的数目。
+而另一个求最大连通分量的算法 Tarjan 只需要执行一轮dfs。
+不过 Tosaraju 算法有一个非常好的性质而 Tarjan 算法没有。</p>
+<div class="admonition 命题">
+<p class="admonition-title">命题</p>
+<p>Tosaraju算法求出来的强连通分量已经是 <strong>拓扑排序</strong> 的。</p>
+</div>
+<div class="admonition 证明">
+<p class="admonition-title">证明</p>
+<p>设Tosaraju先后生成了两个强连通分量 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 和 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>，
+并且设 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 中最接近栈顶的元素是 <span><span class="MathJax_Preview">a_0</span><script type="math/tex">a_0</script></span>，以及 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 中最接近栈顶的元素是 <span><span class="MathJax_Preview">b_0</span><script type="math/tex">b_0</script></span>。
+根据 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 和 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 生成的先后顺序可得 <span><span class="MathJax_Preview">a_0</span><script type="math/tex">a_0</script></span> 比 <span><span class="MathJax_Preview">b_0</span><script type="math/tex">b_0</script></span> 更接近栈顶。</p>
+<p>这里只会有两种情况导致 <span><span class="MathJax_Preview">a_0</span><script type="math/tex">a_0</script></span> 比 <span><span class="MathJax_Preview">b_0</span><script type="math/tex">b_0</script></span> 更接近栈顶：</p>
+<ul>
+<li>在 Tosaraju 算法的第三步中，我们先访问到了 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 但是在对 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 进行 dfs 时没有访问到 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>, 这种情况暗示没有路径从 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 到 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>;</li>
+<li>在 Tosaraju 算法的第三步中，我们先访问到了 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 但是在对 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 进行 dfs 时访问到了 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>，这种情况按时存在路径从 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 到 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>；
+    这里因为 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 和 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 是两个独立的强连通分量，那么不可能又存在路径从 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 到 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>。</li>
+</ul>
+<p>综上，如果 Tosaraju先后生成了两个强连通分量 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 和 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>，那么一定不存在路径从 <span><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> 到 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>。</p>
+</div>
+<h2 id="tarjan">Tarjan 算法<a class="headerlink" href="#tarjan" title="Permanent link">&para;</a></h2>
+<p>Targan 算法只需要一次 dfs 就可以找到有向图的强连通分量。</p>
+<p>我们仔细分析一下在一轮 dfs 中的过程。</p>
+<ol>
+<li>
+<p>对于任何一个强连通分量 U , 整轮 dfs 一定会访问到这个强连通分量 U ，我们设强连通分量U里最先被访问到的节点为 u0 。那么，根据强连通分量的性质，我们可以肯定，强连通分量 U 的剩余节点一定是在以节点 u0 为根的 dfs 生成树中(如果以 u0 为根的 dfs 生成树上不包含所有的强连通分量 U 的节点，那么就表示 U 上存在 u0 点无法到达的节点，那么 U 就不是强连通分量)。</p>
+</li>
+<li>
+<p>不同的 dfs 生成树上的节点一定在不同的强连通分量中。而对于同一棵 dfs 生成树 T 上的节点 u, 我们需要确定这个节点 u 是否是它所在强连通分量 U 中，被首次访问到的节点 u0。那我们就分析一下这个节点 u 为根的 dfs 生成子树中的特点：</p>
+<ul>
+<li>如果生成子树中存在节点 n 能够到达 u 的祖上节点 m，那么 n、u 和 m 互相强连通，它们一定在同一个强连通分量中，也就是说 u 不是 u0。</li>
+<li>如果生成子树中不存在节点(包括 u 它自己) 能够到达 u 的祖上节点，那么 u 一定是 u0。这里表示 u 和 u 所能到达的所有节点都不能访问到能到达 u 的节点，那么 u 的祖上节点和 u 一定不在同一个强连通分量中。(这里隐含一个递归性，大家需要思考一下)</li>
+</ul>
+</li>
+</ol>
+<p>那么 Tarjan 算法的流程为：</p>
+<ul>
+<li>输入一张有向图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>；</li>
+<li>使用 dfs 策略来搜索图，可以用栈来记录dfs森林的访问, 也需要对节点从小到大编号。</li>
+<li>我们递归求解每个节点能到达的最早的祖上节点(同一棵生成树)，这里指编号最小的祖上节点。
+  这里每访问到一个节点，就将它压入栈中。</li>
+<li>如果节点 u 最早能到达的祖上节点就是它本身，那么它就是这个强连通分量的代表节点 u0。
+  这时，我们可以把栈中的元素一一弹出，直到弹到 u，所有弹出的元素构成一个强连通分量。</li>
+</ul>
+<p>我们可以确定，同一棵 dfs 生成树中弹出的强连通分量是满足逆拓扑排序的，但是我们并没有手段来维护 dfs 生成森林弹出的强连通分量的拓扑排序。</p>
                 
                   
                     
@@ -814,7 +838,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月25日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年8月12日</span>
     
   </small>
 </div>
@@ -837,7 +861,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../RL/04-PolicyImprovement/" title="Policy Improvement" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../10-%E6%9C%80%E9%95%BF%E5%85%A8%E6%8E%92%E5%88%97/" title="最长全排列" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -846,25 +870,11 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Policy Improvement
+                最长全排列
               </div>
             </div>
           </a>
         
-        
-          <a href="../02-%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="区间调度问题" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  下一页
-                </span>
-                区间调度问题
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>
