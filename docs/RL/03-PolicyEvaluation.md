@@ -3,14 +3,14 @@
 要解决马尔科夫决策问题，我们首先要解决：给定一个策略函数 $\pi$, 那么对应的奖励值 $\rho(\pi)$ 是多少。
 我们把这个问题叫做 **策略估计** (Policy Evaluation)。
 
-我们首先根据定义可得：
+我们首先根据 $Q_\pi$ 的定义可以简化 $\rho(\pi)$ 为：
 
 $$
     \tag{1}
-    \rho(\pi) = \mathbb{E}_{(s, a) \sim p_0(s) \pi(a \vert s)}[Q_\pi(s, a)],
+    \rho(\pi) = \mathbb{E}_{(s, a) \sim p_0(s) \pi(a \vert s)}[Q_\pi(s, a)].
 $$
 
-我们可以转而先求出函数 $Q_\pi(s, a)$。
+因此，我们要对策略的好坏进行估计，我们可以转而先求出函数 $Q_\pi(s, a)$。
 
 我们定义 $\bar{r} = \mathbb{E}_{r \sim R} [r]$。接着，我介绍函数 $Q$ 的一个特性：
 
@@ -29,7 +29,7 @@ $$
         =& \bar{r}(s, a) + \gamma \int_{s_1, a_1} p(s_1 \vert s, a) \pi(a_1 \vert s_1) Q(s_1, a_1) \mathrm{d} s_1 \mathrm{d} a_1.
     \end{align*}
 
-我们已经非常接近马尔可夫决策过程的一个重要的概念 **贝尔曼等式** (Bellman Equation), **贝尔曼操作**(Bellman Operator)。
+我们已经非常接近马尔可夫决策过程的重要的概念 **贝尔曼操作**(Bellman Operator) 和 **贝尔曼等式** (Bellman Equation)。
 
 !!!定义
     (贝尔曼操作)。对于任意的函数（或者向量）$Q \in \mathbb{R}^{\vert \mathcal{S} \times \mathcal{A} \vert}$，
@@ -37,7 +37,7 @@ $$
 
     $$
         \tag{3} 
-        T_{\pi} Q (s,a) = \bar{r}(s, a) + \gamma \int_{s_1, a_1} p(s_1 \vert s, a) \pi(a_1 \vert s_1) Q(s_1, a_1) \mathrm{d} s_1 \mathrm{d} a_1.
+        T_{\pi} Q (s,a) = \bar{r}(s, a) + \gamma \int_{s', a'} p(s' \vert s, a) \pi(a' \vert s') Q(s', a') \mathrm{d} s' \mathrm{d} a'.
     $$
     
     这里的 $T$ 是某种变换， $T_{\pi}Q$ 对应 $Q$ 经过 $T$ 变换后的新的函数。 
