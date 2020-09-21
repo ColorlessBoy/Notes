@@ -359,9 +359,42 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        VC Dimension
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="VC Dimension" class="md-nav__link md-nav__link--active">
       VC Dimension
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#growth-function-and-sauers-lemma" class="md-nav__link">
+    Growth Function and Sauer's Lemma
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -694,6 +727,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#growth-function-and-sauers-lemma" class="md-nav__link">
+    Growth Function and Sauer's Lemma
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -734,6 +784,30 @@ $$
     \max \vert \mathcal{S} \vert, \quad \vert \mathcal{H}_{\mathcal{S}} \vert = 2 ^{\vert \mathcal{S} \vert}.
 $$</p>
 </div>
+<p>要求解一个假设集 <span><span class="MathJax_Preview">\mathcal{H}</span><script type="math/tex">\mathcal{H}</script></span> 的VC维，我们需要找到一个样本集 <span><span class="MathJax_Preview">\mathcal{S}</span><script type="math/tex">\mathcal{S}</script></span> 满足：它
+的 <span><span class="MathJax_Preview">\mathcal{H}_{\mathcal{S}}</span><script type="math/tex">\mathcal{H}_{\mathcal{S}}</script></span> 能完全表达样本集的所有可能的分类函数；另一方面，我们还
+要证明，所有大于 <span><span class="MathJax_Preview">\mathcal{S}</span><script type="math/tex">\mathcal{S}</script></span> 的样本集 <span><span class="MathJax_Preview">\mathcal{S}'</span><script type="math/tex">\mathcal{S}'</script></span> 对应的 <span><span class="MathJax_Preview">\mathcal{H}_{\mathcal{S}'}</span><script type="math/tex">\mathcal{H}_{\mathcal{S}'}</script></span>
+不能完全包含 <span><span class="MathJax_Preview">\mathcal{S}'</span><script type="math/tex">\mathcal{S}'</script></span> 的分类函数。</p>
+<h2 id="growth-function-and-sauers-lemma">Growth Function and Sauer's Lemma<a class="headerlink" href="#growth-function-and-sauers-lemma" title="Permanent link">&para;</a></h2>
+<div class="admonition 定义">
+<p class="admonition-title">定义</p>
+<p>(<strong>Growth Function</strong>) 对于任意一个假设集 <span><span class="MathJax_Preview">\mathcal{H}</span><script type="math/tex">\mathcal{H}</script></span>，我们的定义它的成长函数为
+$$
+    \tau_{\mathcal{H}}(m) = \max_{\mathcal{S} \subset \mathcal{X}, \vert 
+    \mathcal{S} \vert = m} \vert \mathcal{H}_{S} \vert.
+$$</p>
+</div>
+<p>首先，如果 <span><span class="MathJax_Preview">VCdim(\mathcal{H}) = d</span><script type="math/tex">VCdim(\mathcal{H}) = d</script></span>，那么当 <span><span class="MathJax_Preview">m \le d</span><script type="math/tex">m \le d</script></span> 时，<span><span class="MathJax_Preview">\tau_{\mathcal{H}}(m) =
+2^m</span><script type="math/tex">\tau_{\mathcal{H}}(m) =
+2^m</script></span>。并且，根据 Sauer-Shelah-Perles 引理，我们可知，<span><span class="MathJax_Preview">\tau_{\mathcal{H}}(m)</span><script type="math/tex">\tau_{\mathcal{H}}(m)</script></span> 的增长
+速度是多项式的，而不是指数的。</p>
+<div class="admonition 引理">
+<p class="admonition-title">引理</p>
+<p>(<strong>Sauer-Shelah-Perles</strong> 引理) 如果 <span><span class="MathJax_Preview">VCdim(\mathcal{H}) \le d</span><script type="math/tex">VCdim(\mathcal{H}) \le d</script></span>, 那么
+<span><span class="MathJax_Preview">\tau(m) \le \sum^d_{i=1} C^i_m</span><script type="math/tex">\tau(m) \le \sum^d_{i=1} C^i_m</script></span>。特别地，当 <span><span class="MathJax_Preview">m &gt; d+1</span><script type="math/tex">m > d+1</script></span> 时，<span><span class="MathJax_Preview">\tau_{\mathcal{H}}(m) 
+\le (em / d)^d</span><script type="math/tex">\tau_{\mathcal{H}}(m) 
+\le (em / d)^d</script></span>。</p>
+</div>
                 
                   
                     
@@ -742,7 +816,7 @@ $$</p>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月29日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年9月21日</span>
     
   </small>
 </div>
