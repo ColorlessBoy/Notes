@@ -18,3 +18,26 @@ $$
     $$
         \max \vert \mathcal{S} \vert, \quad \vert \mathcal{H}_{\mathcal{S}} \vert = 2 ^{\vert \mathcal{S} \vert}.
     $$
+
+要求解一个假设集 $\mathcal{H}$ 的VC维，我们需要找到一个样本集 $\mathcal{S}$ 满足：它
+的 $\mathcal{H}_{\mathcal{S}}$ 能完全表达样本集的所有可能的分类函数；另一方面，我们还
+要证明，所有大于 $\mathcal{S}$ 的样本集 $\mathcal{S}'$ 对应的 $\mathcal{H}_{\mathcal{S}'}$
+不能完全包含 $\mathcal{S}'$ 的分类函数。
+
+## Growth Function and Sauer's Lemma
+
+!!! 定义
+    (**Growth Function**) 对于任意一个假设集 $\mathcal{H}$，我们的定义它的成长函数为
+    $$
+        \tau_{\mathcal{H}}(m) = \max_{\mathcal{S} \subset \mathcal{X}, \vert 
+        \mathcal{S} \vert = m} \vert \mathcal{H}_{S} \vert.
+    $$
+
+首先，如果 $VCdim(\mathcal{H}) = d$，那么当 $m \le d$ 时，$\tau_{\mathcal{H}}(m) =
+2^m$。并且，根据 Sauer-Shelah-Perles 引理，我们可知，$\tau_{\mathcal{H}}(m)$ 的增长
+速度是多项式的，而不是指数的。
+
+!!! 引理
+    (**Sauer-Shelah-Perles** 引理) 如果 $VCdim(\mathcal{H}) \le d$, 那么
+    $\tau(m) \le \sum^d_{i=1} C^i_m$。特别地，当 $m > d+1$ 时，$\tau_{\mathcal{H}}(m) 
+    \le (em / d)^d$。
