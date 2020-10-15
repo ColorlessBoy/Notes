@@ -90,5 +90,8 @@ nav:
     - 强连通分量: Algorithms/11-强连通分量.md
     - 堆排序: Algorithms/12-堆排序.md
   
+  - 操作系统/6.S081:
+    - Lab0-环境准备: 6.S081/Lab0-环境准备.md
+
   - Blog:
     - 计算机网络: Blog/计算机网络.md
