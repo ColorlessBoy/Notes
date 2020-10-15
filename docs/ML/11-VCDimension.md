@@ -41,3 +41,21 @@ $$
     (**Sauer-Shelah-Perles** 引理) 如果 $VCdim(\mathcal{H}) \le d$, 那么
     $\tau(m) \le \sum^d_{i=1} C^i_m$。特别地，当 $m > d+1$ 时，$\tau_{\mathcal{H}}(m) 
     \le (em / d)^d$。
+
+## VC维与Rademacher复杂度的联系
+
+我们已知，对于有限假设集 $\mathcal{H}$, 使用 $0-1$ 误差时，我们有界
+
+$$
+    R(\mathcal{H} \circ \mathcal{S}) \le 
+    \sqrt{\frac{2 \ln \vert \mathcal{H} \vert}{m}}.
+$$
+
+其实 VC-维 给了我们一个无限假设集的有限界，所以我们很快可以得出：如果假设集 $\mathcal{H}$
+的 VC维 是 $d$，并且 $m \ge d \ge 1$，那么：
+$$
+    R(\mathcal{H} \circ \mathcal{S}) \le 
+    \sqrt{\frac{2 \ln \vert \Pi_{\mathcal{H}}(\mathcal{S}) \vert}{m}}
+    \le 
+    \sqrt{\frac{2 d \ln(em/d) }{m}}.
+$$

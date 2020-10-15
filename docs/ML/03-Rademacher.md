@@ -158,7 +158,7 @@ $$
 > 定理4：(数据相关界)。如果 $l(h(x), y) \in [a, b]$，那么
 > 
 > $$
-> P_{S\sim\mathcal{D}^m} \{\forall h \in \mathcal{H}, L_{\mathcal{D}}(h) - L_{S}(h) \le 2 \mathbb{E}_{S' \sim \mathcal{D}^m} R(l \circ \mathcal{H} \circ S') + (b - a) \sqrt{2 \ln(1/\delta) / m}\}.
+> P_{S\sim\mathcal{D}^m} \{\forall h \in \mathcal{H}, L_{\mathcal{D}}(h) - L_{S}(h) \le 2 \mathbb{E}_{S' \sim \mathcal{D}^m} R(l \circ \mathcal{H} \circ S') + (b - a) \sqrt{2 \ln(1/\delta) / m}\} \ge 1 - \delta.
 > $$
 > 
 > $$

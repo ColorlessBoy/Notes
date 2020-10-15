@@ -177,7 +177,7 @@ $$
         \right\} \ge 1 - \delta.
     $$
 
-!!!证明
+???证明
     设 
 
     $$
@@ -279,4 +279,314 @@ $$
     \right\rceil,
 $$
 
-我们就得到了定理1。当然，具体推到还是有点复杂，原书也省略了，我也不仔细追究了。
+我们就得到了定理1，应该还是需要一些不等式放缩的步骤，这里书上省略了，我也不追究了。
+总的来说，这个界对 $n$ 的大小有限制，$m$ 越大， $n$ 可以越大。这个界还是很奇怪的，
+我觉得目前的表达方式并没有体现出它的本质：对任意的 $f$ 都有这个界，这个界也太松弛了吧。
+
+## Infinite Base Hypothesis Spaces
+
+我们使用假设集的 VC-维 来做类似的采样复杂度的界，下面的定理非常类似定理1。
+
+!!!定理2
+    样本空间 $\mathcal{X} \times \{-1, 1\}$ 服从未知分布 $\mathcal{D}$。样本集
+    $\mathcal{S}$ 包含 $m$ 个样本空间采集的样本。如果 $\mathcal{H}$ 的 VC-维 是 $d$。
+    对于 $m \ge d \ge 1$ 以及 $\delta > 0$，那么对于任意的 $f \in Co(\mathcal{H})$, 
+
+    $$
+        \mathbf{Pr}_{\mathcal{S} \sim \mathcal{D}} \left\{
+            \forall \theta > \sqrt{8d \ln(em / d) / m}:
+        \mathbf{Pr}_{(x, y) \sim \mathcal{D}} [ y f(x) \le 0]
+        \le \mathbf{Pr}_{(x, y) \sim \mathcal{S}}[y f(x) \le \theta] + 
+        O \left( \sqrt{
+            \frac{d \ln(m / d) \ln(m \theta^2 / d)}{m\theta^2}
+            + \frac{\ln(1 / \delta)}{m}
+        }\right)
+        \right\} > 1 - \delta.
+    $$
+
+相比于定理1，定理2的证明需要解决的关键问题是如何修改引理3。
+
+!!!引理4
+    定义
+
+    $$
+        \epsilon_n = \sqrt{\frac{32}{m} [\ln(n(n+1)^2) + dn \ln(em / d) + \ln(8/\delta)]}.
+    $$
+
+    我们有：
+
+    $$
+        \mathbf{Pr}_{\mathcal{S}\sim \mathcal{D}} \left\{
+            \forall n \ge 1, \hat f \in \mathcal{A}_n, \theta \ge 0:
+            \mathbf{Pr}_{(x, y) \sim \mathcal{D}}
+            \left[y \hat f(x) \le \frac{\theta}{2}\right] 
+            \le
+            \mathbf{Pr}_{(x, y) \sim \mathcal{S}}
+            \left[y \hat f(x) \le \frac{\theta}{2}\right] + \epsilon_n
+        \right\} \ge 1 - \delta.
+    $$
+
+???证明
+    对于样本空间 $\mathcal{Z} = \mathcal{X} \times \{-1, +1\}$，我们构造它的一个子集
+
+    $$
+        B_{\hat f, \theta} = \left\{
+            (x, y) \in \mathcal{Z}: y \hat f(x) \le \theta/2    
+        \right\}
+    $$
+
+    来表示样本点满足对应 $\hat f(x)$ 的 margin 最多为 $\theta/2$ 的点的集合。
+    我们再定义 $B_{\hat f, \theta}$ 的集合：
+
+    $$
+        \mathcal{B}_n = \left\{
+            B_{\hat f, \theta}: \hat f \in \mathcal{A}_n, \theta \ge 0    
+        \right\}.
+    $$
+
+    接下来我们希望求解一下 $\mathcal{B}_n$ 的增长函数 $\Pi_{\mathcal{B}_n}(m)$
+    （再我的笔记里，也叫它 $\tau_{\mathcal{B}_n}(m)$）。
+    因为假设 $\mathcal{H}$ 的 VC维 是 $d$，所以根据 Sauer's 引理，当 $m \ge d \ge 1$时，
+    我们可得：
+
+    $$
+        \vert \left\{
+            \langle 
+                h(x_1), \ldots, h(x_m)
+            \rangle: h \in \mathcal{H}
+        \right\} \vert \le (em / d)^d.
+    $$
+
+    我们可以很快地得到一个非常松弛的界
+
+    $$
+        \vert \left\{
+            \langle 
+                y_1 \hat f(x_1), \ldots, y_m \hat f(x_m)
+            \rangle: \hat f \in \mathcal{A}_n
+        \right\} \vert \le (em / d)^{dn}.
+    $$
+
+    这里因为 $n$ 是确定的，所以 $\hat f(x)$ 也是离散的点，所以我们可以使用类似引理3的
+    技术，构造集合 $\Theta_n$, 得到：
+    
+    $$
+        \Pi_{\mathcal{B}_n}(m) \le (n+1) (em/d)^{dn}.
+    $$
+
+    VC维有一个定理（原书定理2.6）：如果 $\mathcal{A}$ 是集合 $Z$ 子集的集合，那么有：
+
+    $$
+        \mathbf{Pr}_{\mathcal{S} \sim \mathcal{D}}
+        \left\{
+            \exists A \in \mathcal{A}: 
+            \mathbf{Pr}_{z \sim \mathcal{D}}[z \in A] 
+            \ge \mathbf{Pr}_{z \sim \mathcal{S}}[z \in A]
+            + \epsilon
+        \right\} \le 8 \Pi_{\mathcal{A}}(m) e^{-m \epsilon^2 / 32}.
+    $$
+
+    带入可得：
+
+    $$
+        \mathbf{Pr}_{\mathcal{S} \sim \mathcal{D}}
+        \left\{
+            \forall B_{\hat f, \theta} \in \mathcal{B}_n,
+            \mathbf{Pr}_{z \sim \mathcal{D}}[z \in B_{\hat f, \theta}]
+            \le
+            \mathbf{Pr}_{z \sim \mathcal{S}}[z \in B_{\hat f, \theta}]
+            + \epsilon_n
+        \right\} \ge 1 - \delta/(n(n+1)).
+    $$
+
+    那么，我们再聚集一下 $\mathbf{B}_n$，对于任意的 $n \ge 1$，我们都有至少 $1 - \delta$ 
+    的概率得到引理4。
+    
+我们综合上述结论，类似于有限假设集，我们可以得到定理2，不过要设置：
+
+$$
+    n = \left\lceil
+        \frac{4}{\theta^2} \ln \left(
+            \frac{m \theta^2}{8d \ln(em / d)}
+        \right)
+    \right\rceil.
+$$
+
+综上所述，$\tilde O(1 / \sqrt{m})$ 是一个非常松弛的界，如果我们有 consistent 假设，
+也就是所有经验误差值可以降到0，那么我们能够获得一个更好的界 $\tilde O(1 / m)$。
+
+## 基于 Rademacher 复杂度的分析
+
+一些 Rademacher 的前置知识可以翻阅前面的笔记。接下来用到了一系列 Rademacher 复杂度的
+数学性质。
+
+我们先引入一个函数集合
+
+$$
+    \mathcal{M} = \left\{
+        (x, y) \mapsto y f(x) \vert f \in co(\mathcal{H})
+    \right\}.
+$$
+
+受限我们可得： $R_S(\mathcal{M}) = R_S(co(\mathcal{H})) = R_S(\mathcal{H})$。
+
+我们引入一个分段线性函数（$0-1$损失函数的变形）：
+
+$$
+\phi(u) = 
+\begin{cases}
+    1 & u \le 0,\\
+    1 - u/\theta & 0\le u \le \theta,\\
+    0 & u \ge \theta.
+\end{cases}
+$$
+
+因为 $\phi(u)$ 是 $1/\theta$-Lipschitz 连续函数，如果假设集 $\mathcal{H}$ 的 VC-维
+是 $d$, 我们就能得到：
+
+$$
+    R_S(\phi \circ \mathcal{M}) \le \frac{1}{\theta} R_S(\mathcal{M})
+    \le \frac{1}{\theta} \sqrt{\frac{2d}{m} \ln(em/d)}.
+$$
+
+我们带入到 Rademacher 复杂度的界可以得到：
+
+$$
+    \mathbf{Pr}_{\mathcal{S} \sim \mathcal{D}} \left\{
+        \forall f \in co(\mathcal{H}):
+        \mathbb{E}_{(x, y) \sim \mathcal{D}}[\phi(y f(x))]
+        - \mathbb{E}_{(x, y) \sim \mathcal{S}}[\phi(y f(x))] \le
+        R_S(\phi \circ \mathcal{M}) + 3 \sqrt{\frac{2}{m}\ln(2 / \delta)}
+    \right\} \ge 1 - \delta.
+$$
+
+因为 $\pmb{1}\{u \le 0\} \le \phi(u) \le \pmb{1}\{u \le \theta\}$，所以我们有
+
+$$
+    \mathbf{Pr}_{(x, y) \sim \mathcal{D}}[y f(x) \le 0]
+    = \mathbb{E}_{(x, y) \sim \mathcal{D}}[\pmb{1}\{y f(x) \le 0\}]
+    \le \mathbb{E}_{(x, y) \sim \mathcal{D}} [\phi(y f(x))].
+$$
+
+以及
+
+$$
+    \mathbb{E}_{(x, y) \sim \mathcal{S}} [\phi(y f(x))]
+    \le \mathbb{E}_{(x, y) \sim \mathcal{S}}[\pmb{1}\{y f(x) \le 0\}]
+    = \mathbf{Pr}_{(x, y) \sim \mathcal{S}}[y f(x) \le 0].
+$$
+
+因此我们可得：
+
+$$
+    \mathbf{Pr}_{\mathcal{S} \sim \mathcal{D}} \left\{
+        \forall f \in co(\mathcal{H}):
+        \mathbf{Pr}_{(x, y) \sim \mathcal{D}}[y f(x) \le 0]
+        - \mathbf{Pr}_{(x, y) \sim \mathcal{S}}[y f(x) \le \theta] \le
+        \frac{2}{\theta} \sqrt{\frac{2d}{m} \ln(em/d)} 
+        + 3 \sqrt{\frac{2}{m}\ln(2 / \delta)}
+    \right\} \ge 1 - \delta.
+$$
+
+## Boosting 对 Margin 分布的影响
+
+前面的分析广泛适用于使用假设集 $co(\mathcal{H})$ 的算法。这一节，我们分析一下 Boosting
+有没有什么特别之处，总的来说就是通过给小margin样本更大的权重，来显著增大整个训练集的margin。
+
+!!! 定理3
+    在 AdaBoost 中定义 $\gamma_t = \frac{1}{2} - \epsilon_t$, 我们可以保证：
+    训练集中margin最多为 $\theta$ 的样本个数占总样本个数的比例为：
+
+    $$
+        \prod^T_{t=1} \sqrt{(1 + 2 \gamma_t)^{1 + \theta} (1 - 2 \gamma_t)^{1 - \theta}}.
+    $$ 
+
+???证明
+    我们沿用定义 $f(x) = \frac{\sum^T_{t=1} \alpha_t h_t(x)}{\sum^T_{t=1} \alpha_t}$，
+    那么 $y f(x) \le \theta$ 当且仅当 
+    $y \sum^T_{t=1} \alpha_t h_t(x) \le \theta \sum^T_{t=1} \alpha_t$，
+    进一步当且仅当
+
+    $$
+        \exp\left(
+        -y \sum^T_{t=1} \alpha_t h_t(x)
+        +\theta \sum^T_{t=1} \alpha_t    
+        \right) \ge 1.
+    $$
+
+    因此
+
+    $$
+        \pmb{1} [y f(x) \le \theta] \le
+        \exp\left(
+        -y \sum^T_{t=1} \alpha_t h_t(x)
+        +\theta \sum^T_{t=1} \alpha_t    
+        \right).
+    $$
+
+    所以，我们可得
+
+    $$
+    \begin{aligned}
+        &\mathbf{Pr}_{(x, y) \sim S} [y f(x) \le \theta]
+        = \frac{1}{m} \sum^m_{i=1} \pmb{1}[y_i f(x_i) \le \theta]\\
+        \le& \frac{1}{m}
+            \exp\left(
+            -y \sum^T_{t=1} \alpha_t h_t(x)
+            +\theta \sum^T_{t=1} \alpha_t    
+            \right)\\
+        =& \frac{1}{m} \exp\left(\theta \sum^T_{t=1} \alpha_t \right)
+            \sum^m_{i=1} \exp\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)\\
+        =& \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t.
+    \end{aligned}
+    $$
+
+    我们回忆一下
+    
+    $$
+    \begin{aligned}
+        D_{T+1}(i) 
+        &= D_1(i) \times \frac{e^{-y_i \alpha_1 h_1(x_i)}}{Z_1} \times \cdots \times
+        \frac{e^{-y_i\alpha_T h_T(x_i)}}{Z_T}\\
+        &= D_1(i) \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
+    \end{aligned}
+    $$
+
+    所以 
+    
+    $$
+        {\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
+        = \sum^m_{i=1} D_1(i) \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
+    $$
+
+    又因为 
+
+    $$
+        \alpha_t = \frac{1}{2} \ln\left(\frac{1 - \epsilon}{\epsilon}\right)
+        = \frac{1}{2}\ln\left(\frac{1 + 2\gamma_t}{1 - 2 \gamma_t}\right),
+    $$
+
+    以及
+
+    $$
+        Z_t = \sqrt{1 - 4\gamma^2_t},
+    $$
+
+    我们可以直接得到定理3。
+
+如果 $\epsilon_t \le \frac{1}{2} - \gamma$, 那么界就变成了
+$\left(\sqrt{(1 + 2 \gamma)^{1 + \theta} (1 - 2 \gamma)^{1 - \theta}}\right)^T$。
+如果 $\sqrt{(1 + 2 \gamma)^{1 + \theta} (1 - 2 \gamma)^{1 - \theta}} < 1$，
+那么随着 AdaBoost 的轮次增加，$yf(x) \le \theta$ 的可能指数下降到0。
+我们整理一下得到：
+
+$$
+    \theta < \Upsilon(\gamma) = \frac{-\ln(1 - 4\gamma^2)}
+    {\ln\left(\frac{1 + 2 \gamma}{ 1 - 2 \gamma}\right)}.
+$$
+
+因为 $0 \le \gamma \le \frac{1}{2}$，所以我们得到 $\gamma \le \Upsilon(\gamma) \le 2 \gamma$。
+而且，当 $\gamma$ 接近0时，$\Upsilon(\gamma) \approx \gamma$。所以经过一定轮数，
+$\Upsilon(\gamma)$ 给了一定的界保障了 margin。 $\gamma_t$ 越大，margin越大。这里通常
+将 $\gamma_t$ 称为 edge。这里有点博弈的意味：更强的基础分类器能保证 edge 更大，但是也会
+导致基础分类器的复杂度增加，有会对算法的效果有负面影响。
