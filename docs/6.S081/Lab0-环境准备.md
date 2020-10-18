@@ -32,24 +32,62 @@ Windows，或者BSD Unix呢？因为 xv6 足够大，足以解释操作系统中
 
 首先我们要确定 debian 版本是 `bullseye` 或者 `sid`，使用如下命令检查：
 
-```
+```bash
 cat /etc/debian_version
 ```
 
+> **注意**： `Ubuntu 18.04` 对应的debian版本是 `buster/sid` 太老了， 而 `Ubuntu 20.04` 对应
+的debian版本是 `bullseye/sid` 符合要求。
+
 接着我们执行：
 
-```
+```bash
 sudo apt-get install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu 
 ```
 
 根据讲义说的，新版的 `qemu-system-misc` 会和实验的内核有冲突，所以需要回退版本。我这里
-就不测试是不是又bug了，直接照着讲义来安装旧的版本：
+测试了一下好像没有问题。讲义建议安装旧的版本：
 
-```
+```bash
 sudo apt-get remove qemu-system-misc
 sudo apt-get install qemu-system-misc=1:4.2-3ubuntu6
 ```
 
-非常不幸，我安装旧版本的时候发现浙大源里没有这个包，我先试试现在还有没有这个bug，然后看
-看其他源里有没有这个旧版本的包。
+> **注意**： 我在 `Ubuntu 18.04` 尝试这个命令好像没找到这个包，而 `Ubuntu 20.04` 好像不需
+要回退版本，可以直接启动 `xv6`。
 
+我们用如下命令来测试安装情况：
+
+```bash
+$ riscv64-linux-gnu-gcc --version
+riscv64-linux-gnu-gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ qemu-system-riscv64 --version
+QEMU emulator version 4.2.1 (Debian 1:4.2-3ubuntu6.7)
+Copyright (c) 2003-2019 Fabrice Bellard and the QEMU Project developers
+```
+
+我的理解是，这些命令有就行了，不一定需要对应上版本号。
+
+同样我们可以编译运行 `xv6` 来测试环境是否搭建成功：
+
+```bash
+$ git clone git://github.com/mit-pdos/xv6-riscv.git
+$ cd xv6-riscv
+$ make qemu
+qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel 
+-m 128M -smp 3 -nographic -drive file=fs.img,if=none,format=raw,id=x0 
+-device virtio-blk-device, drive=x0,bus=virtio-mmio-bus.0
+
+xv6 kernel is booting
+
+hart 2 starting
+hart 1 starting
+init: starting sh
+$
+```
+
+按 `ctrl+a x` 来退出 `qemu`。注意是：按下 `ctrl+a` 后松开，再按下 `x`。
