@@ -60,6 +60,8 @@ $
 
 可以使用 `make grade` 来测试答案。
 
+或者使用 `./grade-lab-util [problem]` 来分别测试每道题目。
+
 ## sleep
 
 实现 `user/sleep.c` 的功能。

@@ -93,6 +93,7 @@ nav:
   - 操作系统/6.S081:
     - Lab0-环境准备: 6.S081/Lab0-环境准备.md
     - Lab1-Xv6 and Unix utilities: 6.S081/Lab1-Xv6-and-Unix-utilities.md
+    - Lab2-System Calls: 6.S081/Lab2-System-Calls.md
 
   - Blog:
     - 计算机网络: Blog/计算机网络.md
