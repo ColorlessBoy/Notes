@@ -1,4 +1,4 @@
-# Xv6 and Unix utilities
+# Lab1: Xv6 and Unix utilities
 
 这个实验是要熟悉一下 `xv6` 和它的系统调用。
 

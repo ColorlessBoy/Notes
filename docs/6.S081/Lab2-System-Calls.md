@@ -1,10 +1,18 @@
-# System Calls
+# Lab2: System Calls
 
 ## 阅读资料
 
 实验指导建议阅读 `xv6-book` 的第二章和第四章的部分内容。我觉得关于 `xv6` 的启动和运行非常重要，
 这里可以记录一下。现在的`xv6` 是在 `RISC-V` 体系框架下实现的操作系统，底层的汇编代码完全可以
 不求甚解，这样会迷失在代码里。我们就像书里介绍的一样，大概了解即可。
+
+获取实验代码：
+
+```bash
+$ git fetch
+$ git checkout syscall
+$ make clean
+```
 
 ### 启动过程
 
