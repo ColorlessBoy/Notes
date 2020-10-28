@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#system-calls" class="md-skip">
+        <a href="#lab2-system-calls" class="md-skip">
           跳转至
         </a>
       
@@ -782,6 +782,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Lab3-Page-Tables/" title="Lab3-Page Tables" class="md-nav__link">
+      Lab3-Page Tables
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -922,11 +934,17 @@
                   
                 
                 
-                <h1 id="system-calls">System Calls<a class="headerlink" href="#system-calls" title="Permanent link">&para;</a></h1>
+                <h1 id="lab2-system-calls">Lab2: System Calls<a class="headerlink" href="#lab2-system-calls" title="Permanent link">&para;</a></h1>
 <h2 id="_1">阅读资料<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>实验指导建议阅读 <code>xv6-book</code> 的第二章和第四章的部分内容。我觉得关于 <code>xv6</code> 的启动和运行非常重要，
 这里可以记录一下。现在的<code>xv6</code> 是在 <code>RISC-V</code> 体系框架下实现的操作系统，底层的汇编代码完全可以
 不求甚解，这样会迷失在代码里。我们就像书里介绍的一样，大概了解即可。</p>
+<p>获取实验代码：</p>
+<div class="highlight"><pre><span></span><code>$ git fetch
+$ git checkout syscall
+$ make clean
+</code></pre></div>
+
 <h3 id="_2">启动过程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>首先是一个对启动过程的总体描述，这里翻译自 <code>xv6-book/chapter2</code>。</p>
 <p>使用 <code>RISC-V</code> 的CPU分为三个模式：<code>machine mode</code>、<code>supervisor mode</code> 和 <code>user mode</code>。
@@ -1165,7 +1183,7 @@ I/O 设备。</p>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年10月22日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年10月26日</span>
     
   </small>
 </div>
@@ -1203,13 +1221,13 @@ I/O 设备。</p>
           </a>
         
         
-          <a href="../../Blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Lab3-Page-Tables/" title="Lab3-Page Tables" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                计算机网络
+                Lab3-Page Tables
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
