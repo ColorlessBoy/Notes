@@ -95,6 +95,7 @@ nav:
     - Lab1-Xv6 and Unix utilities: 6.S081/Lab1-Xv6-and-Unix-utilities.md
     - Lab2-System Calls: 6.S081/Lab2-System-Calls.md
     - Lab3-Page Tables: 6.S081/Lab3-Page-Tables.md
+    - Lab4-Traps: 6.S081/Lab4-Traps.md
 
   - Blog:
     - 计算机网络: Blog/计算机网络.md
