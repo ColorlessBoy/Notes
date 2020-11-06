@@ -23,7 +23,7 @@ $ docker run -dp 80:80 docker/getting-started
 然后在浏览器打开`http://localhost`。
 
 - `-d`:容器运行在`detached`模式，后台运行；
-- `-p`:主机的80端口映射到容器的80端口；
+- `-p Host:Container`:主机的80端口映射到容器的80端口；
 
 ## 命令摘录
 
@@ -174,5 +174,23 @@ Docker的容器使用网络来通讯。
 
 Docker使用一个文件来描述项目需要用到的技术栈，这样很容易再其他机器上配置相同的内容。
 
-首先要安装打包器:`docker-compose`。
+首先要安装打包器:`docker-compose`：
 
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+```bash
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+```bash
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+接下来配置文件怎么写就比较繁琐了，我不摘录了，可以查看[官方文档](https://docs.docker.com/compose/compose-file/)。
+
+1. 在项目根目录下面创建一个`docker-compose.yml`文件。
+2. 使用命令`docker-compose up -d`运行。
+3. 使用`docker-compose logs -f`查看运行情况。
+4. 使用`docker-compose down`关闭容器组。

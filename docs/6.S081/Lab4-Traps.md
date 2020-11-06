@@ -119,3 +119,7 @@ $ make clean
 
 - `printf("x=%d y=%d", 3)` 会输出什么？
 
+!!!Note
+    这里要理解RISC-V函数调用的时候，规定的堆栈变化标准。在课程视频的第五节有专门的讲解，这一节
+    还讲了很多gdb的调试方法，非常值得看一下。
+    另外这里有一篇[博客](https://twilco.github.io/riscv-from-scratch/2019/07/28/riscv-from-scratch-4.html)真不错。

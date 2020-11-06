@@ -100,3 +100,10 @@ nav:
   - Blog:
     - 计算机网络: Blog/计算机网络.md
     - 虚拟容器Docker入门: Blog/虚拟容器Docker入门.md
+  
+  - 子弹笔记:
+    - docker: 子弹笔记/子弹笔记-docker.md
+    - gdb: 子弹笔记/子弹笔记-gdb.md
+    - git: 子弹笔记/子弹笔记-git.md
+    - makefile: 子弹笔记/子弹笔记-makefile.md
+    - shell: 子弹笔记/子弹笔记-shell.md

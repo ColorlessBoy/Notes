@@ -91,3 +91,71 @@ $
 ```
 
 按 `ctrl+a x` 来退出 `qemu`。注意是：按下 `ctrl+a` 后松开，再按下 `x`。
+
+## 环境配置的更新
+
+这里我在尝试构建一个Docker镜像。可以使用`docker pull penglingwei/xv6-labs-2020`来
+直接拉去镜像，也可以按如下方式创建自己的镜像。
+
+首先是两个配置文件：
+
+1. 创建`Dockerfile`，开头是用来解决`tzdata`在Docker镜像创建时会卡死的，后面是参考官方分档
+   安装所需要的依赖。
+   
+    ???Dockerfile
+        
+        ```bash
+        FROM ubuntu:latest 
+
+        RUN export DEBIAN_FRONTEND=noninteractive \
+            && apt-get update \
+            && apt-get install -y tzdata \
+            && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+            && dpkg-reconfigure --frontend noninteractive tzdata \
+            && apt-get install -y git \
+                                build-essential \
+                                gdb-multiarch \
+                                qemu-system-misc=1:4.2-3ubuntu6 \
+                                gcc-riscv64-linux-gnu \
+                                binutils-riscv64-linux-gnu \
+        ```
+
+2. 创建`.dockerignore`文件，用来忽略其他文件，我这里会忽略`.vscode`和`xv6-labs-2020`两个
+   文件夹。如果没有设置，Docker会把`Dockerfile`所在文件夹中的其他所有文件都提前打包到镜像里。
+3. 创建镜像：`docker build -t xv6-labs-2020 .`，这个镜像的名字是`xv6-labs-2020`。 
+
+
+## 关于使用Docker来进行调试
+
+为了方便，我在`Makefile`中添加了相关指令：
+
+```bash
+## ==================Docker Commands Start======================================
+docker-qemu: 
+	-docker rm -f xv6-labs-2020
+	docker run  -it --name "xv6-labs-2020"\
+				-w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+				penglingwei/xv6-labs-2020:latest \
+				/bin/bash -c "make qemu" 
+
+docker-qemu-gdb: 
+	-docker rm -f xv6-labs-2020
+	docker run  -it --name "xv6-labs-2020"\
+				-w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+				penglingwei/xv6-labs-2020:latest \
+				/bin/bash -c "make qemu-gdb" 
+
+docker-gdb: .gdbinit
+	docker exec -it xv6-labs-2020 /bin/bash -c "gdb-multiarch --command .gdbinit"
+
+docker-rm:
+	docker rm -f xv6-labs-2020
+## ==================Docker Commands End========================================
+```
+
+- `make docker-qemu`: 创建容器`xv6-labs-2020`，并且在容器中运行`make qemu`;
+- `make docker-qemu-gdb`: 创建容器`xv6-labs-2020`，并且在容器中运行`make qemu-gdb`;
+- `make docker-gdb`: 在容器`xv6-labs-2020`中进行`gdb`调试，需要运行过`make docker-qemu-gdb`;
+- `make docker-rm`: 删除容器`xv6-labs-2020`。
+
+> 其中在命令前面加`-`号表示忽略对应指令的报错信号。
