@@ -91,11 +91,11 @@ nav:
     - 堆排序: Algorithms/12-堆排序.md
   
   - 操作系统/6.S081:
-    - Lab0-环境准备: 6.S081/Lab0-环境准备.md
-    - Lab1-Xv6 and Unix utilities: 6.S081/Lab1-Xv6-and-Unix-utilities.md
-    - Lab2-System Calls: 6.S081/Lab2-System-Calls.md
-    - Lab3-Page Tables: 6.S081/Lab3-Page-Tables.md
-    - Lab4-Traps: 6.S081/Lab4-Traps.md
+    - Lab0-环境准备: 6.S081/Lab00-环境准备.md
+    - Lab1-Xv6 and Unix utilities: 6.S081/Lab01-Xv6-and-Unix-utilities.md
+    - Lab2-System Calls: 6.S081/Lab02-System-Calls.md
+    - Lab3-Page Tables: 6.S081/Lab03-Page-Tables.md
+    - Lab4-Traps: 6.S081/Lab04-Traps.md
 
   - Blog:
     - 计算机网络: Blog/计算机网络.md
