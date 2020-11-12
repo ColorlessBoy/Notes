@@ -106,20 +106,212 @@ $ make clean
 阅读`call.asm`的函数`g`，`f`和`main`。回答下面的问题:
 
 - 哪些寄存器包含函数的参数?当`main`调用`printf`时，哪个寄存器保存了`13`?
+    使用`a0-a7`寄存器来保存函数变量。这里`printf`使用`a2`保存`13`。
 - `main`中调用`f`的语句是哪些，调用`g`的语句是哪些?
-- `printf`的地址是什么？
-- `main`中`printf`的`jalr`指令运行后，`ra`寄存器保存了什么值？
-- 下面的代码将输出什么？输出值取决于RISC-V是大端还是小端。如果是打断，应该改变变量成什么
+    被优化了，没有调用这两个函数。
+- `printf`的地址是什么？起始地址是`0x630`。
+- `main`中`printf`的`jalr`指令运行后，`ra`寄存器保存了什么值？ `ra`保存值是`0x38`。
+- 下面的代码将输出什么？输出值取决于RISC-V是大端还是小端。如果是大端，应该改变变量成什么
   才能保证输出不变？57616需要改变吗？
 
     ```c
     unsigned int i = 0x00646c72;
-    printf("H%x W0%s", 57616, &i);
+    printf("H%x Wo%s", 57616, &i);
     ```
 
-- `printf("x=%d y=%d", 3)` 会输出什么？
+    输出的`HE110 World`，如果是大端则`i = 0x726c6400`。
+
+- `printf("x=%d y=%d", 3)` 会输出什么？`y=`后面输出的是`a2`寄存器的内容，但是没有赋值，
+    所以要看运行到这里的时候`a2`被其他程序赋值成什么值。
 
 !!!Note
-    这里要理解RISC-V函数调用的时候，规定的堆栈变化标准。在课程视频的第五节有专门的讲解，这一节
-    还讲了很多gdb的调试方法，非常值得看一下。
+    这里要理解RISC-V函数调用的时候，规定的堆栈变化标准。在课程视频的第五节有专门的讲解，
+    这一节 还讲了很多gdb的调试方法，非常值得看一下。
     另外这里有一篇[博客](https://twilco.github.io/riscv-from-scratch/2019/07/28/riscv-from-scratch-4.html)真不错。
+
+## Backtrace
+
+实现一个`gdb`中很有用的指令`backtrace`，当遇到运行出错时，打印函数调用栈上面的指针情况。
+
+!!!题目描述
+    在`kernel/printf.c`实现一个`backtrace()`函数。在`sys_sleep`调用这个函数。然后运行
+    `bttest`命令，它会呼叫`sys_sleep`。输出应该是：
+    
+    ```bash
+    backtrace:
+    0x0000000080002cda
+    0x0000000080002bb6
+    0x0000000080002898
+    ```
+
+    之后退出`qemu`。在终端输入：地址会有一些不同，可以使用`addr2line -e kernel/kernel`，
+    或者`riscv64-unknown-elf-addr2line -e kernel/kernel` 然后复制`bttest`输出的结果：
+
+    ```bash
+    $ addr2line -e kernel/kernel
+    0x0000000080002de2
+    0x0000000080002f4a
+    0x0000000080002dfc
+    Ctrl-D
+    ```
+
+    然后我们会看到
+    
+    ```
+    kernel/sysproc.c:74
+    kernel/syscall.c:224
+    kernel/trap.c:85
+    ```
+
+编译器给一片一片的栈区放置一个指针，保存着`caller`的片指针。`backtrace`应该用到这些栈指针
+沿着栈去搜索保存着的指针。
+
+一些提示：
+
+- 在`kernel/defs.h`声明`backtrace`，然后就能在`sys_sleep`中调用`backtrace`。
+- 在GCC编译器中保存着当前函数的片指针$s0$。在`kernel/riscv.h`中添加函数：
+
+    ```c
+    static inline uint64
+    r_fp()
+    {
+        uint64 x;
+        asm volatile("mv %0, s0" : "=r" (x));
+        return x;
+    }    
+    ```
+
+    然后再`backtrace`中调用这个函数来读取当前的片指针。
+- 在课程笔记中有一张图片画着栈片的结构。返回地址在栈指针的(-8)位置，保存的栈指针在当前
+    栈指针的(-16)的位置。
+- `Xv6` 给栈分配一个内存页。可以使用`PGROUNDDOWN(fp)`和`PGROUNDUP(fp)`（看`kernel/riscv.h`。
+    这个数字有助于`backtrace`结束循环。）
+
+一旦`backtrace`有用，在`kernel/printf.c:panic`中调用它，当内核出错时打印`backtrace`。
+
+???参考答案
+    其中用于判断的`0x3fffff9000`是试出来的。
+
+    ```c
+    void
+    backtrace(void)
+    {
+        printf("backtrace:\n");
+        uint64 *p = (uint64 *)r_fp();
+        while(PGROUNDDOWN((uint64)p) == 0x3fffff9000){
+            printf("%p\n", p[-1]);
+            p = (uint64 *)p[-2];
+        }
+    }
+    ```
+
+## Alarm
+
+!!!题目描述
+    为`xv6`增加一个新特性：周期性地提示程序使用的CPU时间。这是一个基础的用户级别的中断/
+    错误程序，需要通过`alarmtest`和`usertests`。
+
+需要添加系统调用`sigalarm(interval, handler)`。调用`sigalarm(n, fn)`，用户程序每n个
+CPU时钟周期，内核就会调用一下`fn`，当`fn`执行完毕，继续执行用户程序。`sigalarm(0, 0)`
+应该不产生中断。
+
+将`user/alarmtest.c`加入到`Makefile`，它需要系统调用`sigalarm`和`sigreturn`。
+`alarmtest.c`调用`sigalarm(2, periodic)`。
+
+需要实现的代码可能很短，但是非常巧妙。
+
+> 我建议`sys_sigalarm(void)`和`sys_sigreturn(void)`的实现放到`sysproc.c`中。
+
+### 针对`test0`
+
+提示：
+
+- 将`alarmtest.c`加入到`Makefile`。
+- 在`user/user.h`中加入声明：
+
+    ```c
+    int sigalarm(int ticks, void (*handler)());
+    int sigreturn(void);
+    ```
+
+- 更新`user/usys.pl`，`kernel/syscall.h` 和 `kernel/syscall.c` 来创建这两个系统调用。
+- 目前`sys_sigreturn`目前只需要返回0。
+- `sys_sigalarm()`应该在`proc`(`kernel/proc.h`)结构中保存`interval`和指针。
+- 需要记录程序已经用过了多少CPU时钟周期，在`proc`中保存这个内容。在`proc.c/allocproc()`中
+    初始化为零。
+- 只需要操作时钟周期，例如：`if(which_dev == 0)`。
+- 只有进程有未完成的计时器时才会启用警报方程。用户的警告函数地址可能是0（`user/alarmtest.asm`
+    里显示`periodic`地址为0）。
+- 需要修改`usertrap()`来使得警告中断暂时失效时，运行handler函数。当陷阱返回用户空间时，
+    什么指令决定了返回用户空间执行什么指令？
+- 当只用一个CPU时比较好使用gdb调试，可以使用`make CPUS=1 qemu-gdb`。
+- 这时候应该能成功打印`alarm`。
+
+### 针对`test1/test2`
+
+警告指令的最后需要调用`sigreturn`，参考`alarmtest.c:periodic()`。需要修改`usertrap`
+和`sys_sigreturn`来保证程序恢复正常运行。
+
+提示：
+
+- 需要保存一系列的寄存器；
+- 当计时器关闭时，`usertrap`在`struct proc`中保存重要的信息，以便`sigreturn`返回正
+    确的用户代码。
+- 防止程序重入调用——当处理程序还没有返回，内核不应该继续调用它。
+
+???参考答案
+    1. 关于添加系统调用等操作在提示里面已经比较到位了。
+    2. 针对`struct proc`结构体的修改。添加成员变量
+
+        ```c
+        int interval;                // Alarm interval
+        uint64 handler;              // Handler function
+        int ticks;                   // The number of ticks since last call
+        int inhandler;               // inhandler != 0 when the process is running in handler function
+        struct trapframe handler_trapframe; // The trapframe before into handler
+        ```
+
+    3. 在`trap.c:79`中添加如下程序段，用于调用中断函数。需要注意的是，`trapframe`是指针，
+        `handler_trapframe`是结构体。
+
+        ```c
+        // give up the CPU if this is a timer interrupt.
+        if(which_dev == 2){
+            if(p->inhandler == 0) {
+                p->ticks += 1;
+                if(p->interval > 0 && p->ticks % p->interval == 0){
+                    p->handler_trapframe = *(p->trapframe);
+                    p->inhandler = 1;
+                    p->ticks = 0;
+                    p->trapframe->epc = p->handler;
+                }
+            }
+            yield();
+        }
+        ```
+
+    4. 在`sysproc.c`中定义系统调用。同样需要注意，`trapframe`是指针，`handler_trapframe`
+        是结构体。
+
+        ```c
+        // alarm system call
+        uint64
+        sys_sigalarm(void)
+        {
+            struct proc *p = myproc();
+            if(argint(0, &(p->interval)) < 0)
+                return -1;
+            if(argaddr(1, &(p->handler)) < 0)
+                return -1;
+            return 0;
+        }
+
+        uint64
+        sys_sigreturn(void)
+        {
+            struct proc *p = myproc();
+            p->inhandler = 0;
+            *(p->trapframe) = p->handler_trapframe;
+            return 0;
+        }
+        ```

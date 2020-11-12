@@ -159,3 +159,12 @@ docker-rm:
 - `make docker-rm`: 删除容器`xv6-labs-2020`。
 
 > 其中在命令前面加`-`号表示忽略对应指令的报错信号。
+
+## 调试用户空间的程序
+这里我想了解一下如果对用户程序进行调试，折腾了大半天。如果配置
+
+- 第一步：运行`make docker-qemu-gdb` 和 `make docker-gdb`;
+- 第二步：在gdb的开始就运行`file user/_<program name>`；
+- 打断点调试。
+
+如果没有在`gdb`的开头就载入`file user/_<program name>` 会报错。
