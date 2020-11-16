@@ -96,6 +96,7 @@ nav:
     - Lab2-System Calls: 6.S081/Lab02-System-Calls.md
     - Lab3-Page Tables: 6.S081/Lab03-Page-Tables.md
     - Lab4-Traps: 6.S081/Lab04-Traps.md
+    - Lab5-Xv6-Lazy-Allocation: 6.S081/Lab05-Xv6-Lazy-Allocation.md
 
   - Blog:
     - 计算机网络: Blog/计算机网络.md
