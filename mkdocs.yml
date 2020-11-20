@@ -97,6 +97,7 @@ nav:
     - Lab3-Page Tables: 6.S081/Lab03-Page-Tables.md
     - Lab4-Traps: 6.S081/Lab04-Traps.md
     - Lab5-Xv6-Lazy-Allocation: 6.S081/Lab05-Xv6-Lazy-Allocation.md
+    - Lab6-Copy-on-Write: 6.S081/Lab06-Copy-on-Write.md
 
   - Blog:
     - 计算机网络: Blog/计算机网络.md

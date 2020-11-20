@@ -1,11 +1,60 @@
 # Lab6: Copy-on-Write Fork for xv6
 
-虚拟内存提供了一层间接的级别：内核感知到内存指向的PTEs被标记为非法或者只读时，产生一个页错误， 
+虚拟内存提供了一层间接的级别：当内核感知到内存指向的PTEs被标记为非法或者只读时，它会产生一个页错
+误， 然后中断处理来修改这个PTEs的地址，从而间接寻址的功能。也就是说，在计算机系统里，任何一个系
+统错误都可以使用间接的方式来解决。Lazy allocation是这样，Copy-on-Write也是这样。
 
-Virtual memory provides a level of indirection: the kernel can intercept memory references by marking PTEs invalid or read-only, leading to page faults, and can change what addresses mean by modifying PTEs. There is a saying in computer systems that any systems problem can be solved with a level of indirection. The lazy allocation lab provided one example. This lab explores another example: copy-on write fork.
+切换到COW实验的分支：
 
-To start the lab, switch to the cow branch:
-
+```bash
 $ git fetch
 $ git checkout cow
 $ make clean
+```
+
+## 问题
+
+xv6中的系统调用`fork()`将拷贝父进程所有的用户空间内存到子进程中。如果父进程非常大，那么这种拷贝
+要花费大量的时间和空间。通常，我们完全不需要复制所有的用户空间：例如，`fork()`后，子进程紧跟着
+执行一个`exec()`指令时，子进程会完全忽略大部分的父进程的用户空间。另一方面，父进程和子进程有时
+候会对同一个页表进行写入操作导致冲突，复制页表非常重要。
+
+## 解决方法
+
+`Copy-on-write (COW) fork()` 延迟分配与拷贝物理内存页给子进程，直到拷贝是必须的。
+`COW fork()`给子进程创建一个页表指向父进程的物理内存。 `COW fork()` 给父进程和子进程的PTEs
+都标记为不可写。当任意一个进程尝试写入某个内存页时，CPU会产生一个页表错误。内核页错误处理handler
+会检测并处理这个错误，为这个虚拟页表分配物理内存页表，拷贝原本的内存页到一个新的内存页，然后将报
+错的PTE指向这个新的内存页，同时被标记为可写入。这时，页错误handler返回时，程序就能够写入这个虚
+拟地址了。
+
+`COW fork()`释放用户空间的物理地址会有一些麻烦。 多个进程的页表会指向同一个物理地址，仅仅当最
+后一个进程选择释放这个物理地址后，物理地址才真的被释放。
+
+## 实现Copy-on-Write
+
+!!!问题描述
+    实现`Copy-on-Write`来通过`cowtest`和`usertests`。
+
+合理的实现流程：
+
+1. 调整`uvmcopy()`将父进程的物理地址映射给子进程，但是不分配新物理内存页。同时将PTEs的PTE_W
+    置0；
+2. 调整`usertrap()`来识别页错误。当页错误发生在COW页，那么使用`kalloc()`来分配新的物理内存；
+3. 确保物理内存页被正确地释放：当且仅当最后一个指向它的PTE被释放。最好的方法是为每一个物理内存
+    页保存一个`reference count`来记录指向它的PTE有多少个。修改`kalloc()`分配这个`reference
+    count`。在`fork`中，当父子进程共享物理内存页时，增加`reference count`，在不共享后降低
+    `reference count`。`kfree`也要有所修改，仅当物理内存页真正需要被释放时，再放到free list
+    后面。可以将这些计数器放在一个固定大小的整数数组中。你需要研究整数数组的下标和大小该如何确定。
+    例如，可以直接将物理地址除以4096来作为下标，数组的大小为最大物理地址除以4096。然后再`kinit`
+    中声明数组。
+4. 修改`copyout()`来使用类似的技术来使用COW技术。
+
+提示：
+
+- 不要基于`lazy allocation`，但是`lazy allocation`实验能够给一些提示；
+- 记录每个PTE是否是COW产生的映射会很有用。可以使用PTE中的RSW位（reserved for software），
+    目前的xv6没有使用这个标志位。
+- `usertests` 和 `cowtest` 的实验并不重合，所以要同时通过两个测试才可以。
+- `kernel/riscv.h`中有很多有用的宏定义。
+- 如果COW页错误发生，但是没有空余的内存，那么进程应该被杀死。
