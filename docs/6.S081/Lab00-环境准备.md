@@ -131,28 +131,44 @@ $
 
 ```bash
 ## ==================Docker Commands Start======================================
+docker: 
+       -docker rm -f xv6-labs-2020
+       docker run  -it --name "xv6-labs-2020"\
+                               -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                               penglingwei/xv6-labs-2020:latest \
+                               /bin/bash
+
+docker-grade: 
+       -docker rm -f xv6-labs-2020
+       docker run  -it --name "xv6-labs-2020"\
+                               -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                               penglingwei/xv6-labs-2020:latest \
+                               /bin/bash -c "make grade" 
+
 docker-qemu: 
-	-docker rm -f xv6-labs-2020
-	docker run  -it --name "xv6-labs-2020"\
-				-w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
-				penglingwei/xv6-labs-2020:latest \
-				/bin/bash -c "make qemu" 
+       -docker rm -f xv6-labs-2020
+       docker run  -it --name "xv6-labs-2020"\
+                               -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                               penglingwei/xv6-labs-2020:latest \
+                               /bin/bash -c "make qemu" 
 
 docker-qemu-gdb: 
-	-docker rm -f xv6-labs-2020
-	docker run  -it --name "xv6-labs-2020"\
-				-w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
-				penglingwei/xv6-labs-2020:latest \
-				/bin/bash -c "make qemu-gdb" 
+       -docker rm -f xv6-labs-2020
+       docker run  -it --name "xv6-labs-2020"\
+                               -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                               penglingwei/xv6-labs-2020:latest \
+                               /bin/bash -c "make qemu-gdb" 
 
 docker-gdb: .gdbinit
-	docker exec -it xv6-labs-2020 /bin/bash -c "gdb-multiarch --command .gdbinit"
+       docker exec -it xv6-labs-2020 /bin/bash -c "gdb-multiarch --command .gdbinit"
 
 docker-rm:
-	docker rm -f xv6-labs-2020
+       docker rm -f xv6-labs-2020
 ## ==================Docker Commands End========================================
 ```
 
+- `make docker`: 创建并进入容器；
+- `make docker-grade`: 创建容器，并且在容器中运行`make grade`;
 - `make docker-qemu`: 创建容器`xv6-labs-2020`，并且在容器中运行`make qemu`;
 - `make docker-qemu-gdb`: 创建容器`xv6-labs-2020`，并且在容器中运行`make qemu-gdb`;
 - `make docker-gdb`: 在容器`xv6-labs-2020`中进行`gdb`调试，需要运行过`make docker-qemu-gdb`;
