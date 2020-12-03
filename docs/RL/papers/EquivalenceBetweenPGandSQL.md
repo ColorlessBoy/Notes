@@ -153,6 +153,8 @@ $$
 \end{aligned}
 $$
 
+（用到了 $\sum_a \nabla_{\theta} \pi(a \vert s; \theta) = 0$。）
+
 其中
 
 $$
