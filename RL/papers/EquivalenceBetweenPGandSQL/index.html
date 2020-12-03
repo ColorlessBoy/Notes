@@ -19,7 +19,7 @@
     
     
       
-        <title>shell - Notes</title>
+        <title>Equivalence Between PG and SQL - Notes</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#-shell" class="md-skip">
+        <a href="#equivalence-between-policy-gradient-and-soft-q-learning" class="md-skip">
           跳转至
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              shell
+              Equivalence Between PG and SQL
             
           </span>
         </div>
@@ -388,10 +388,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       强化学习
@@ -440,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../RL/basis/01-MarkovChains/" title="Markov Chains" class="md-nav__link">
+    <a href="../../basis/01-MarkovChains/" title="Markov Chains" class="md-nav__link">
       Markov Chains
     </a>
   </li>
@@ -452,7 +454,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../RL/basis/02-MDPs/" title="Markov Decision Processes" class="md-nav__link">
+    <a href="../../basis/02-MDPs/" title="Markov Decision Processes" class="md-nav__link">
       Markov Decision Processes
     </a>
   </li>
@@ -464,7 +466,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../RL/basis/03-PolicyEvaluation/" title="Policy Evaluation" class="md-nav__link">
+    <a href="../../basis/03-PolicyEvaluation/" title="Policy Evaluation" class="md-nav__link">
       Policy Evaluation
     </a>
   </li>
@@ -476,7 +478,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../RL/basis/04-PolicyImprovement/" title="Policy Improvement" class="md-nav__link">
+    <a href="../../basis/04-PolicyImprovement/" title="Policy Improvement" class="md-nav__link">
       Policy Improvement
     </a>
   </li>
@@ -491,10 +493,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
     
     <label class="md-nav__link" for="nav-3-2">
       论文
@@ -516,11 +520,60 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../../RL/papers/EquivalenceBetweenPGandSQL/" title="Equivalence Between PG and SQL" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Equivalence Between PG and SQL
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Equivalence Between PG and SQL" class="md-nav__link md-nav__link--active">
       Equivalence Between PG and SQL
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    熵正则化强化学习
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soft-q-learning" class="md-nav__link">
+    Soft Q-Learning
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -535,7 +588,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../RL/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-nav__link">
+    <a href="../../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-nav__link">
       论文阅读摘要
     </a>
   </li>
@@ -838,12 +891,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       Blog
@@ -865,12 +916,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
     
     <label class="md-nav__link" for="nav-6-1">
       子弹笔记
@@ -894,7 +943,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-docker/" title="docker" class="md-nav__link">
+    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-docker/" title="docker" class="md-nav__link">
       docker
     </a>
   </li>
@@ -906,7 +955,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-gdb/" title="gdb" class="md-nav__link">
+    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-gdb/" title="gdb" class="md-nav__link">
       gdb
     </a>
   </li>
@@ -918,7 +967,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-git/" title="git" class="md-nav__link">
+    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-git/" title="git" class="md-nav__link">
       git
     </a>
   </li>
@@ -930,7 +979,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-makefile/" title="makefile" class="md-nav__link">
+    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-makefile/" title="makefile" class="md-nav__link">
       makefile
     </a>
   </li>
@@ -940,53 +989,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        shell
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="shell" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-shell/" title="shell" class="md-nav__link">
       shell
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    命令前修饰符
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -1001,7 +1008,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-nav__link">
+    <a href="../../../Blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-nav__link">
       计算机网络
     </a>
   </li>
@@ -1013,7 +1020,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E8%99%9A%E6%8B%9F%E5%AE%B9%E5%99%A8Docker%E5%85%A5%E9%97%A8/" title="虚拟容器Docker入门" class="md-nav__link">
+    <a href="../../../Blog/%E8%99%9A%E6%8B%9F%E5%AE%B9%E5%99%A8Docker%E5%85%A5%E9%97%A8/" title="虚拟容器Docker入门" class="md-nav__link">
       虚拟容器Docker入门
     </a>
   </li>
@@ -1025,7 +1032,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../vscode%E5%AF%B9markdown%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/" title="vscode对markdown进行自动换行" class="md-nav__link">
+    <a href="../../../Blog/vscode%E5%AF%B9markdown%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/" title="vscode对markdown进行自动换行" class="md-nav__link">
       vscode对markdown进行自动换行
     </a>
   </li>
@@ -1063,7 +1070,14 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    命令前修饰符
+    熵正则化强化学习
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soft-q-learning" class="md-nav__link">
+    Soft Q-Learning
   </a>
   
 </li>
@@ -1080,7 +1094,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/Blog/子弹笔记/子弹笔记-shell.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/RL/papers/EquivalenceBetweenPGandSQL.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1088,19 +1102,270 @@
                   
                 
                 
-                <h1 id="-shell">子弹笔记-Shell<a class="headerlink" href="#-shell" title="Permanent link">&para;</a></h1>
-<h2 id="_1">命令前修饰符<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>@</code>: 使命令在被执行前不被回显；</li>
-<li><code>-</code>: 使任何命令行的任何非零退出状态都被忽略；</li>
-<li><code>+</code>: 使命令行可以通过指定 -n、-q 或 -t 选项来执行。</li>
-</ul>
-<p>与<code>makefile</code>的联动：</p>
-<ul>
-<li><code>makefile</code>中命令行前面加上减号: 忽略当前此行命令执行时候所遇到的错误；</li>
-<li><code>makefile</code>中命令行前面加上<code>@</code>: 在make执行时候，输出的信息中，不要显示此行命令；</li>
-<li><code>makefile</code>中命令行前面加上<code>+</code>: 还不是很了解。</li>
-</ul>
+                <h1 id="equivalence-between-policy-gradient-and-soft-q-learning">Equivalence Between Policy Gradient and Soft Q-Learning<a class="headerlink" href="#equivalence-between-policy-gradient-and-soft-q-learning" title="Permanent link">&para;</a></h1>
+<p><a href="https://arxiv.org/abs/1704.06440">论文链接</a></p>
+<p>这篇文章更像是Schulman的个人数学笔记，他这个人比较偏好数学推导。但是数学推导很容易让人陷入其中。人们往往最后发现强化学习的数学并不完备，而大受打击。这篇文章是挂在Arxiv上的小文章，尝试揭示Policy Gradient和Soft Q-Learning的关系，算是有一定的启发性。 我按照个人的习惯进行了重新的推导。</p>
+<h2 id="_1">熵正则化强化学习<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>首先，原始的强化学习问题是为了求解</p>
+<div>
+<div class="MathJax_Preview">
+  \begin{aligned}
+  \max_{\pi} \rho(\pi) =&amp; (1 - \gamma) \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[\sum^{\infty}_{t=0} \gamma^t r_t \bigg] \\
+  =&amp; \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s)} [r(s, a)].
+  \end{aligned}
+</div>
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  \max_{\pi} \rho(\pi) =& (1 - \gamma) \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[\sum^{\infty}_{t=0} \gamma^t r_t \bigg] \\
+  =& \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s)} [r(s, a)].
+  \end{aligned}
+</script>
+</div>
+<p>最直接地，从最大熵理论中得到启发，熵正则化强化学习问题变成了</p>
+<div>
+<div class="MathJax_Preview">
+  \begin{aligned}
+  \max_{\pi} \rho(\pi) =&amp; \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s)} [r(s, a)] - \alpha \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi)}[D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))] \\
+  =&amp; \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s)} [r(s, a) - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))] \\
+  =&amp; (1 - \gamma) \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[\sum^{\infty}_{t=0} \gamma^t [r_t - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))] \bigg] 
+  \end{aligned}
+</div>
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  \max_{\pi} \rho(\pi) =& \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s)} [r(s, a)] - \alpha \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi)}[D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))] \\
+  =& \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s)} [r(s, a) - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))] \\
+  =& (1 - \gamma) \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[\sum^{\infty}_{t=0} \gamma^t [r_t - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))] \bigg] 
+  \end{aligned}
+</script>
+</div>
+<hr />
+<p>首先我们来研究一种定义方式</p>
+<div>
+<div class="MathJax_Preview">
+  Q_\pi(s, a) = \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[\sum^{\infty}_{t=0} \gamma^t [r_t - \alpha D_{KL}(\pi(\cdot \vert s_t) \Vert \tilde \pi(\cdot \vert s_t)) \vert s_0 = s, a_0 = a] \bigg].
+</div>
+<script type="math/tex; mode=display">
+  Q_\pi(s, a) = \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[\sum^{\infty}_{t=0} \gamma^t [r_t - \alpha D_{KL}(\pi(\cdot \vert s_t) \Vert \tilde \pi(\cdot \vert s_t)) \vert s_0 = s, a_0 = a] \bigg].
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  V_\pi(s) = \mathbb{E}_{a \sim \pi(\cdot \vert s)} [Q_\pi(s, a)].
+</div>
+<script type="math/tex; mode=display">
+  V_\pi(s) = \mathbb{E}_{a \sim \pi(\cdot \vert s)} [Q_\pi(s, a)].
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  \rho(\pi) = \mathbb{E}_{s \sim p_0, a \sim \pi(\cdot \vert s)} [Q_\pi(s, a)].
+</div>
+<script type="math/tex; mode=display">
+  \rho(\pi) = \mathbb{E}_{s \sim p_0, a \sim \pi(\cdot \vert s)} [Q_\pi(s, a)].
+</script>
+</div>
+<p>可见这是一个牵一发而动全身的改变，并且最优贝尔曼操作也因此变形为(矩阵形式，要求状态动作都是有限集)</p>
+<div>
+<div class="MathJax_Preview">
+  TQ = R - \alpha D_{KL}(\pi\Vert\tilde \pi) + \gamma \mathbf{P}_{\pi} Q.
+</div>
+<script type="math/tex; mode=display">
+  TQ = R - \alpha D_{KL}(\pi\Vert\tilde \pi) + \gamma \mathbf{P}_{\pi} Q.
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  \begin{aligned}
+  TQ(s, a) =&amp; \max_{\pi} R(s, a) - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))\\ &amp;+ \gamma \sum_{s'} p(s' \vert s, a) \sum_{a'} \pi(a' \vert s') Q(s', a').
+  \end{aligned}
+</div>
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  TQ(s, a) =& \max_{\pi} R(s, a) - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))\\ &+ \gamma \sum_{s'} p(s' \vert s, a) \sum_{a'} \pi(a' \vert s') Q(s', a').
+  \end{aligned}
+</script>
+</div>
+<p>其中<span><span class="MathJax_Preview">\tilde \pi(a \vert s)</span><script type="math/tex">\tilde \pi(a \vert s)</script></span>通常是均匀分布。</p>
+<hr />
+<p>上面这种定义方式会导致最优贝尔曼操作很难求解，所以人们定义了另一套符号。这套符号会看起来稍微绕一些，但是在计算中能够提供很大的方便。</p>
+<div>
+<div class="MathJax_Preview">
+  Q_\pi(s, a) = \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[r_0 + \sum^{\infty}_{t=1} \gamma^t [r_t - \alpha D_{KL}(\pi(\cdot \vert s_t) \Vert \tilde \pi(\cdot \vert s_t)) \vert s_0 = s, a_0 = a] \bigg].
+</div>
+<script type="math/tex; mode=display">
+  Q_\pi(s, a) = \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)} \bigg[r_0 + \sum^{\infty}_{t=1} \gamma^t [r_t - \alpha D_{KL}(\pi(\cdot \vert s_t) \Vert \tilde \pi(\cdot \vert s_t)) \vert s_0 = s, a_0 = a] \bigg].
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  V_\pi(s) = \mathbb{E}_{a \sim \pi(\cdot \vert s)} [Q_\pi(s, a)] - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s)).
+</div>
+<script type="math/tex; mode=display">
+  V_\pi(s) = \mathbb{E}_{a \sim \pi(\cdot \vert s)} [Q_\pi(s, a)] - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s)).
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  \rho(\pi) = \mathbb{E}_{s \sim p_0, a \sim \pi(\cdot \vert s)}[Q_\pi(s, a) - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))].
+</div>
+<script type="math/tex; mode=display">
+  \rho(\pi) = \mathbb{E}_{s \sim p_0, a \sim \pi(\cdot \vert s)}[Q_\pi(s, a) - \alpha D_{KL}(\pi(\cdot \vert s) \Vert \tilde \pi(\cdot \vert s))].
+</script>
+</div>
+<p>类似的，最优贝尔曼操作变为</p>
+<div>
+<div class="MathJax_Preview">
+  TQ = \max_{\pi} R + \gamma \mathbf{P}_{\pi} (Q - \alpha D_{KL}(\pi \Vert \tilde \pi)).
+</div>
+<script type="math/tex; mode=display">
+  TQ = \max_{\pi} R + \gamma \mathbf{P}_{\pi} (Q - \alpha D_{KL}(\pi \Vert \tilde \pi)).
+</script>
+</div>
+<p>或者等价为</p>
+<div>
+<div class="MathJax_Preview">
+  \begin{aligned}
+  TQ(s, a) =&amp; \max_{\pi} R(s, a) + \gamma \sum_{s'} p(s' \vert s, a) \sum_{a'} \pi(a' \vert s') \\
+  &amp; [ Q(s', a') - \alpha(\ln\pi(a' \vert s') - \ln\tilde\pi(a' \vert s')) ]. \\
+  \end{aligned}
+</div>
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  TQ(s, a) =& \max_{\pi} R(s, a) + \gamma \sum_{s'} p(s' \vert s, a) \sum_{a'} \pi(a' \vert s') \\
+  & [ Q(s', a') - \alpha(\ln\pi(a' \vert s') - \ln\tilde\pi(a' \vert s')) ]. \\
+  \end{aligned}
+</script>
+</div>
+<hr />
+<p>可以证明最优贝尔曼操作是一个收缩映射，存在不动点。我们定义</p>
+<div>
+<div class="MathJax_Preview">
+  \pi_Q = \arg\max_{\pi} \sum_{a} \pi(a \vert s) 
+  [ Q(s, a) - \alpha(\ln\pi(a \vert s) - \ln\tilde\pi(a \vert s)) ].
+</div>
+<script type="math/tex; mode=display">
+  \pi_Q = \arg\max_{\pi} \sum_{a} \pi(a \vert s) 
+  [ Q(s, a) - \alpha(\ln\pi(a \vert s) - \ln\tilde\pi(a \vert s)) ].
+</script>
+</div>
+<p>求解可得</p>
+<div>
+<div class="MathJax_Preview">
+  \pi_Q(s, a) = \frac{\tilde\pi(a\vert s) \exp{[Q(s, a)/\alpha]}}{\sum_{a'} \tilde\pi(a' \vert s) \exp{[Q(s, a')/\alpha]}}.
+</div>
+<script type="math/tex; mode=display">
+  \pi_Q(s, a) = \frac{\tilde\pi(a\vert s) \exp{[Q(s, a)/\alpha]}}{\sum_{a'} \tilde\pi(a' \vert s) \exp{[Q(s, a')/\alpha]}}.
+</script>
+</div>
+<p>再定义</p>
+<div>
+<div class="MathJax_Preview">
+  V_Q(s) = \alpha \ln \bigg\{\sum_{a} \tilde \pi(a \vert s) \exp[Q(s, a; \theta_Q)/\alpha]\bigg\}.
+</div>
+<script type="math/tex; mode=display">
+  V_Q(s) = \alpha \ln \bigg\{\sum_{a} \tilde \pi(a \vert s) \exp[Q(s, a; \theta_Q)/\alpha]\bigg\}.
+</script>
+</div>
+<p>那么有关系</p>
+<div>
+<div class="MathJax_Preview">
+  \pi_Q(a \vert s) = \tilde\pi(a \vert s) \exp\{[Q(s, a) - V_Q(s)]/\alpha\};
+</div>
+<script type="math/tex; mode=display">
+  \pi_Q(a \vert s) = \tilde\pi(a \vert s) \exp\{[Q(s, a) - V_Q(s)]/\alpha\};
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  Q(s, a) = V_Q(s) + \alpha \ln \frac{\pi_Q(a \vert s)}{\tilde\pi(a \vert s)};
+</div>
+<script type="math/tex; mode=display">
+  Q(s, a) = V_Q(s) + \alpha \ln \frac{\pi_Q(a \vert s)}{\tilde\pi(a \vert s)};
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+  V_Q(s) = \sum_{a}\pi_Q(a \vert s) Q(s, a) - \alpha D^Q_{KL}(s),
+</div>
+<script type="math/tex; mode=display">
+  V_Q(s) = \sum_{a}\pi_Q(a \vert s) Q(s, a) - \alpha D^Q_{KL}(s),
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">D^{Q}_{KL}(s) = D_{KL}(\pi_Q(\cdot \vert s) \Vert \tilde\pi(\cdot \vert s))</span><script type="math/tex">D^{Q}_{KL}(s) = D_{KL}(\pi_Q(\cdot \vert s) \Vert \tilde\pi(\cdot \vert s))</script></span>;</p>
+<div>
+<div class="MathJax_Preview">
+  TQ = R + \gamma \mathbf{P}_{\pi} V_Q.
+</div>
+<script type="math/tex; mode=display">
+  TQ = R + \gamma \mathbf{P}_{\pi} V_Q.
+</script>
+</div>
+<hr />
+<h2 id="soft-q-learning">Soft Q-Learning<a class="headerlink" href="#soft-q-learning" title="Permanent link">&para;</a></h2>
+<p>我们使用<span><span class="MathJax_Preview">\theta_Q</span><script type="math/tex">\theta_Q</script></span>来参数化<span><span class="MathJax_Preview">Q</span><script type="math/tex">Q</script></span>函数，写为<span><span class="MathJax_Preview">Q(s, a; \theta_Q)</span><script type="math/tex">Q(s, a; \theta_Q)</script></span>。
+那么 Soft Q-Learning 使用的损失函数为</p>
+<div>
+<div class="MathJax_Preview">
+  L(\theta_Q) = \mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)}\bigg[\frac{1}{2} \Vert Q(s, a; \theta_Q) - TQ(s, a;\theta) \Vert^2\bigg\vert_{\theta=\theta_Q}\bigg],
+</div>
+<script type="math/tex; mode=display">
+  L(\theta_Q) = \mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)}\bigg[\frac{1}{2} \Vert Q(s, a; \theta_Q) - TQ(s, a;\theta) \Vert^2\bigg\vert_{\theta=\theta_Q}\bigg],
+</script>
+</div>
+<p>那么</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+&amp; \nabla_{\theta_Q} L(\theta_Q) \\
+= &amp;\mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)}\bigg\{[Q(s, a; \theta_Q) - TQ(s, a;\theta_Q)]\nabla_{\theta_Q} Q(s, a; \theta_Q) \bigg\}\\
+=&amp;\mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)}\bigg\{\bigg[V(s;\theta_Q) + \alpha \ln \frac{\pi(a \vert s; \theta_Q)}{\tilde \pi(a \vert s)} - r(s, a) \\
+&amp; - \gamma \sum_{s'} p(s'\vert s, a) V(s';\theta_Q) \bigg]
+\nabla_{\theta_Q} \bigg[V(s;\theta_Q) + \alpha \ln\frac{\pi(a \vert s; \theta_Q)}{\tilde \pi(a \vert s)}\bigg] \bigg\}\\
+=&amp; \mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)} \bigg\{ - \alpha \hat Q(s, a; \theta_Q) \nabla_{\theta_Q}\ln \pi(a \vert s; \theta_Q) \\
+&amp; + \nabla_{\theta_Q} \frac{1}{2}\Vert V(s; \theta_Q) - \hat V(s; \theta) \Vert^2\vert_{\theta = \theta_Q}\bigg\}.
+\end{aligned}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& \nabla_{\theta_Q} L(\theta_Q) \\
+= &\mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)}\bigg\{[Q(s, a; \theta_Q) - TQ(s, a;\theta_Q)]\nabla_{\theta_Q} Q(s, a; \theta_Q) \bigg\}\\
+=&\mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)}\bigg\{\bigg[V(s;\theta_Q) + \alpha \ln \frac{\pi(a \vert s; \theta_Q)}{\tilde \pi(a \vert s)} - r(s, a) \\
+& - \gamma \sum_{s'} p(s'\vert s, a) V(s';\theta_Q) \bigg]
+\nabla_{\theta_Q} \bigg[V(s;\theta_Q) + \alpha \ln\frac{\pi(a \vert s; \theta_Q)}{\tilde \pi(a \vert s)}\bigg] \bigg\}\\
+=& \mathbb{E}_{s\sim p, a \sim \pi(\cdot \vert s; \theta_Q)} \bigg\{ - \alpha \hat Q(s, a; \theta_Q) \nabla_{\theta_Q}\ln \pi(a \vert s; \theta_Q) \\
+& + \nabla_{\theta_Q} \frac{1}{2}\Vert V(s; \theta_Q) - \hat V(s; \theta) \Vert^2\vert_{\theta = \theta_Q}\bigg\}.
+\end{aligned}
+</script>
+</div>
+<p>其中</p>
+<div>
+<div class="MathJax_Preview">
+\hat Q(s, a;\theta_Q) = r(s, a) + \gamma \sum_{s'}p(s' \vert s, a) V(s'; \theta_Q) - \alpha \ln\frac{\pi(a \vert s; \theta_Q)}{\tilde \pi(a \vert s)}.
+</div>
+<script type="math/tex; mode=display">
+\hat Q(s, a;\theta_Q) = r(s, a) + \gamma \sum_{s'}p(s' \vert s, a) V(s'; \theta_Q) - \alpha \ln\frac{\pi(a \vert s; \theta_Q)}{\tilde \pi(a \vert s)}.
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+\hat V(s; \theta) = \sum_{a} \pi(a \vert s; \theta) \bigg[r(s, a) + \gamma \sum_{s'}p(s' \vert s, a) V(s';\theta)\bigg] - \alpha D_{KL}(s; \theta).
+</div>
+<script type="math/tex; mode=display">
+\hat V(s; \theta) = \sum_{a} \pi(a \vert s; \theta) \bigg[r(s, a) + \gamma \sum_{s'}p(s' \vert s, a) V(s';\theta)\bigg] - \alpha D_{KL}(s; \theta).
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">-\alpha \hat Q(s, a; \theta_Q) \nabla_{\theta_Q} \ln \pi(s, a; \theta_Q)</span><script type="math/tex">-\alpha \hat Q(s, a; \theta_Q) \nabla_{\theta_Q} \ln \pi(s, a; \theta_Q)</script></span> 和策略梯度的形式非常类似，但实际上存在着某种偏差，再原论文中就没有再深入讨论了。我暂时也没有更深入地研究。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span><span class="MathJax_Preview">\hat Q(s, a; \theta_Q)</span><script type="math/tex">\hat Q(s, a; \theta_Q)</script></span> 和第一次定义的<span><span class="MathJax_Preview">Q(s, a)</span><script type="math/tex">Q(s, a)</script></span>是统一的，不是后面定义的。也就是后面定义的<span><span class="MathJax_Preview">Q</span><script type="math/tex">Q</script></span>函数少了起始项的交叉熵，这里<span><span class="MathJax_Preview">\hat Q(s, a)</span><script type="math/tex">\hat Q(s, a)</script></span>补充回来了。</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">schulman2017equivalence</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">=</span><span class="s">{Equivalence between policy gradients and soft q-learning}</span><span class="p">,</span>
+  <span class="na">author</span><span class="p">=</span><span class="s">{Schulman, John and Chen, Xi and Abbeel, Pieter}</span><span class="p">,</span>
+  <span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:1704.06440}</span><span class="p">,</span>
+  <span class="na">year</span><span class="p">=</span><span class="s">{2017}</span>
+<span class="p">}</span>
+</code></pre></div>
                 
                   
                     
@@ -1109,7 +1374,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年11月21日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年12月3日</span>
     
   </small>
 </div>
@@ -1132,7 +1397,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-makefile/" title="makefile" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../basis/04-PolicyImprovement/" title="Policy Improvement" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1141,19 +1406,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                makefile
+                Policy Improvement
               </div>
             </div>
           </a>
         
         
-          <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                计算机网络
+                论文阅读摘要
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
