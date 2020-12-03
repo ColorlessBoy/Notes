@@ -72,11 +72,13 @@ nav:
   
   - 强化学习:
     - 基础:
-      - Markov Chains: RL/01-MarkovChains.md
-      - Markov Decision Processes: RL/02-MDPs.md
-      - Policy Evaluation: RL/03-PolicyEvaluation.md
-      - Policy Improvement: RL/04-PolicyImprovement.md
-    - 论文阅读笔记: RL/强化学习论文阅读笔记.md
+      - Markov Chains: RL/basis/01-MarkovChains.md
+      - Markov Decision Processes: RL/basis/02-MDPs.md
+      - Policy Evaluation: RL/basis/03-PolicyEvaluation.md
+      - Policy Improvement: RL/basis/04-PolicyImprovement.md
+    - 论文:
+      - Equivalence Between PG and SQL: RL/papers/EquivalenceBetweenPGandSQL.md
+    - 论文阅读摘要: RL/强化学习论文阅读摘要.md
 
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md
@@ -103,11 +105,11 @@ nav:
 
   - Blog:
     - 子弹笔记:
-      - docker: 子弹笔记/子弹笔记-docker.md
-      - gdb: 子弹笔记/子弹笔记-gdb.md
-      - git: 子弹笔记/子弹笔记-git.md
-      - makefile: 子弹笔记/子弹笔记-makefile.md
-      - shell: 子弹笔记/子弹笔记-shell.md
+      - docker: Blog/子弹笔记/子弹笔记-docker.md
+      - gdb: Blog/子弹笔记/子弹笔记-gdb.md
+      - git: Blog/子弹笔记/子弹笔记-git.md
+      - makefile: Blog/子弹笔记/子弹笔记-makefile.md
+      - shell: Blog/子弹笔记/子弹笔记-shell.md
     - 计算机网络: Blog/计算机网络.md
     - 虚拟容器Docker入门: Blog/虚拟容器Docker入门.md
     - vscode对markdown进行自动换行: Blog/vscode对markdown进行自动换行.md
