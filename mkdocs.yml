@@ -78,6 +78,7 @@ nav:
       - Policy Improvement: RL/basis/04-PolicyImprovement.md
     - 论文:
       - Equivalence Between PG and SQL: RL/papers/EquivalenceBetweenPGandSQL.md
+      - ACKTR & A2C: RL/papers/ACKTRandA2C.md
     - 论文阅读摘要: RL/强化学习论文阅读摘要.md
 
   - 算法:
