@@ -58,3 +58,207 @@ xv6中的系统调用`fork()`将拷贝父进程所有的用户空间内存到子
 - `usertests` 和 `cowtest` 的实验并不重合，所以要同时通过两个测试才可以。
 - `kernel/riscv.h`中有很多有用的宏定义。
 - 如果COW页错误发生，但是没有空余的内存，那么进程应该被杀死。
+
+## 参考答案
+
+1. 首先在`riscv.h：334`中声明超参数`#define PTE_RSW (1L << 8)`用于标记COW页。
+2. 在这个实验中，将用到`xv6-book`第六章涉及到的内容——并发锁（concurrency lock）。并发锁用于控制`kernel/kalloc.c`文件中的数据结构`pacnt`用于保存物理内存页被几个虚拟地址所指向。同时需要一个函数`incpacnt()`来更新这个数据结构。(这里我没有使用结构体内部成员函数)
+
+    ```c
+    struct {
+        struct spinlock lock;
+        uint64 cnt[PHYSTOP>>PGSHIFT]; 
+    } pacnt; // physical addresses' reference count
+
+    void
+    incpacnt(uint64 pa)
+    {
+        acquire(&pacnt.lock);
+        pacnt.cnt[(uint64)pa >> PGSHIFT]++;
+        release(&pacnt.lock);
+    }
+    ```
+
+3. 接着我们为`pacnt`结构体修改`kernel/kalloc.c:kinit()`、`kernel/kalloc.c:kfree()`和`kernel/kalloc.c:kalloc()`三个函数。
+
+    ```c
+    void
+    kinit()
+    {
+        initlock(&kmem.lock, "kmem");
+        initlock(&pacnt.lock, "pacnt");
+
+        freerange(end, (void*)PHYSTOP);
+    }
+
+    void
+    kfree(void *pa)
+    {
+        acquire(&pacnt.lock);
+        if(pacnt.cnt[(uint64)pa >> PGSHIFT] > 0)
+            pacnt.cnt[(uint64)pa >> PGSHIFT]--;
+        if(pacnt.cnt[(uint64)pa >> PGSHIFT] > 0){
+            release(&pacnt.lock);
+            return;
+        }
+        release(&pacnt.lock);
+        
+        //...
+    }
+
+    void *
+    kalloc(void)
+    {
+        struct run *r;
+
+        acquire(&kmem.lock);
+        r = kmem.freelist;
+        if(r)
+            kmem.freelist = r->next;
+        release(&kmem.lock);
+
+        // update the physical address' reference count
+        incpacnt((uint64)r);
+
+        if(r){
+            memset((char*)r, 5, PGSIZE); // fill with junk
+        }
+        return (void*)r;
+    }
+    ```
+
+4. 修改`kernel/vm.c:uvmcopy()`函数，构造COW页。
+
+    ```c
+    int
+    uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)
+    {
+        pte_t *pte;
+        uint64 pa, i;
+        uint flags;
+        // char *mem;
+
+        for(i = 0; i < sz; i += PGSIZE){
+            if((pte = walk(old, i, 0)) == 0)
+                panic("uvmcopy: pte should exist");
+            if((*pte & PTE_V) == 0)
+                panic("uvmcopy: page not present");
+
+            *pte = ((*pte | PTE_RSW) & (~PTE_W));
+            pa = PTE2PA(*pte);
+            flags = PTE_FLAGS(*pte);
+
+            incpacnt(pa); //update the physical address's reference count.
+            if(mappages(new, i, PGSIZE, pa, flags) != 0){
+                goto err;
+            }
+            
+            // if((mem = kalloc()) == 0)
+            //   goto err;
+            // memmove(mem, (char*)pa, PGSIZE);
+            // if(mappages(new, i, PGSIZE, (uint64)mem, flags) != 0){
+            //   kfree(mem);
+            //   goto err;
+            // }
+        }
+        return 0;
+
+        err:
+            uvmunmap(new, 0, i / PGSIZE, 1);
+            return -1;
+    }
+    ```
+
+5. 由此引发的COW页错误的处理程序在`trap.c:usertrap()`中实现。其中为了方便，我在`vm.c`实现了一个分配COW冲突页的函数`cowalloc()`。
+   
+    ```c
+    else if(r_scause() == 13 || r_scause() == 15){
+        uint64 va = r_stval();
+        if(va >= p->sz){
+        p->killed = 1;
+        }
+        else{
+        if(cowalloc(p->pagetable, va) < 0)
+            p->killed = 1;
+        }
+    }
+    ```
+
+    ```c
+    int
+    cowalloc(pagetable_t pagetable, uint64 va){
+        pte_t *pte;
+        uint64 pa;
+        uint flags;
+        char *mem;
+
+        if((pte = walk(pagetable, PGROUNDDOWN(va), 0)) == 0)
+            return -1;
+        if((*pte & PTE_V) == 0 || (*pte & PTE_RSW) == 0)
+            return -1;
+        
+        pa = PTE2PA(*pte);
+        flags = ((PTE_FLAGS(*pte) | PTE_W) & (~PTE_RSW));
+
+        if((mem = kalloc()) == 0)
+            return -1;
+        memmove(mem, (char*)pa, PGSIZE);
+        
+        *pte = PA2PTE(mem) | flags;
+
+        kfree((char*)pa);
+        return 0;
+    }
+    ```
+
+6. 函数`vm.c:copyout()`也会遇到COW页，需要我们处理相应的情况
+
+    ```c
+    int
+    copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)
+    {
+        \\...
+        pa0 = cowwalkaddr(pagetable, va0);
+        \\...
+    }
+    ```
+
+    其中`cowwalkaddr()`会在遇到COW页时，再复制物理地址页
+
+    ```c
+    uint64
+    cowwalkaddr(pagetable_t pagetable, uint64 va)
+    {
+        pte_t *pte;
+        uint64 pa;
+
+        if(va >= MAXVA)
+            return 0;
+
+        pte = walk(pagetable, va, 0);
+        if(pte == 0)
+            return 0;
+        if((*pte & PTE_V) == 0)
+            return 0;
+        if((*pte & PTE_U) == 0)
+            return 0;
+        if(*pte & PTE_RSW) {
+            if(cowalloc(pagetable, va) < 0)
+            return 0;
+        }
+        pa = PTE2PA(*pte);
+        return pa;
+    }
+    ```
+
+7. 为了能在不同文件中调用新定义的函数，需要再`def.h`中声明这些函数：
+
+    ```c
+    // kalloc.c
+    // ...
+    void            incpacnt(uint64);
+
+    // vm.c
+    // ...
+    int             cowalloc(pagetable_t, uint64);
+    ```

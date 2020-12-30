@@ -488,10 +488,22 @@ $$
     \right\} \ge 1 - \delta.
 $$
 
+通常我们将误差进一步近似为
+
+$$
+\begin{aligned}
+    &\frac{2}{\theta} \sqrt{\frac{2d}{m} \ln(em/d)} 
+    + 3 \sqrt{\frac{2}{m}\ln(2 / \delta)} \\
+    \approx& \tilde{O} \bigg( \sqrt{\frac{d/\theta^2}{m}} \bigg) + 
+    O\bigg( \sqrt{\ln(1 / \delta)}{m}\bigg) \\
+    \approx& \tilde{O} \bigg(\sqrt{\frac{d/\theta^2 + \ln(1/\delta)}{m}}\bigg).
+\end{aligned}
+$$
+
+
 ## Boosting 对 Margin 分布的影响
 
-前面的分析广泛适用于使用假设集 $co(\mathcal{H})$ 的算法。这一节，我们分析一下 Boosting
-有没有什么特别之处，总的来说就是通过给小margin样本更大的权重，来显著增大整个训练集的margin。
+前面的分析广泛适用于使用假设集 $co(\mathcal{H})$ 的算法，例如：投票分类算法（voting classifier）。这一节，我们分析一下 Boosting 的特别之处，总的来说就是通过给小margin样本更大的权重，来显著增大整个训练集的margin。
 
 !!! 定理3
     在 AdaBoost 中定义 $\gamma_t = \frac{1}{2} - \epsilon_t$, 我们可以保证：
@@ -537,42 +549,32 @@ $$
             \right)\\
         =& \frac{1}{m} \exp\left(\theta \sum^T_{t=1} \alpha_t \right)
             \sum^m_{i=1} \exp\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)\\
-        =& \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t.
+        =& \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t\\
+        =& \prod^{T}_{t=1} e^{\theta \alpha_t} Z_t\\
+        =& \prod^{T}_{t=1} \bigg[2 \sqrt{\epsilon^{1-\theta}_t (1 - \epsilon_t)^{1+\theta}}\bigg]\\
+        &\quad \bigg(\alpha_t = \frac{1}{2} \ln \frac{1 - \epsilon_t}{\epsilon_t}, Z_t=2\sqrt{\epsilon_t(1 - \epsilon_t)} \bigg)\\
+        =& \prod^{T}_{t=1} \bigg[(1 - 2 \gamma_t)^{1 - \theta} (1 + 2\gamma_t)^{1+\theta}\bigg]. \quad \bigg(\epsilon_t = \frac{1}{2} - \gamma_t\bigg)
     \end{aligned}
     $$
 
-    我们回忆一下
+    其中一个等式用到了$\prod^{T}_{t=1}Z_t$，特此证明一下。我们回忆一下Adaboost里
     
     $$
     \begin{aligned}
         D_{T+1}(i) 
         &= D_1(i) \times \frac{e^{-y_i \alpha_1 h_1(x_i)}}{Z_1} \times \cdots \times
         \frac{e^{-y_i\alpha_T h_T(x_i)}}{Z_T}\\
-        &= D_1(i) \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
+        &= \frac{1}{m} \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
     \end{aligned}
     $$
 
     所以 
     
     $$
-        {\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
-        = \sum^m_{i=1} D_1(i) \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
+        {\prod^T_{t=1} Z_t}
+        ={\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
+        = \frac{1}{m} \sum^m_{i=1} \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
     $$
-
-    又因为 
-
-    $$
-        \alpha_t = \frac{1}{2} \ln\left(\frac{1 - \epsilon}{\epsilon}\right)
-        = \frac{1}{2}\ln\left(\frac{1 + 2\gamma_t}{1 - 2 \gamma_t}\right),
-    $$
-
-    以及
-
-    $$
-        Z_t = \sqrt{1 - 4\gamma^2_t},
-    $$
-
-    我们可以直接得到定理3。
 
 如果 $\epsilon_t \le \frac{1}{2} - \gamma$, 那么界就变成了
 $\left(\sqrt{(1 + 2 \gamma)^{1 + \theta} (1 - 2 \gamma)^{1 - \theta}}\right)^T$。
@@ -585,8 +587,88 @@ $$
     {\ln\left(\frac{1 + 2 \gamma}{ 1 - 2 \gamma}\right)}.
 $$
 
-因为 $0 \le \gamma \le \frac{1}{2}$，所以我们得到 $\gamma \le \Upsilon(\gamma) \le 2 \gamma$。
-而且，当 $\gamma$ 接近0时，$\Upsilon(\gamma) \approx \gamma$。所以经过一定轮数，
-$\Upsilon(\gamma)$ 给了一定的界保障了 margin。 $\gamma_t$ 越大，margin越大。这里通常
-将 $\gamma_t$ 称为 edge。这里有点博弈的意味：更强的基础分类器能保证 edge 更大，但是也会
-导致基础分类器的复杂度增加，有会对算法的效果有负面影响。
+因为 $0 \le \gamma \le \frac{1}{2}$，所以我们得到 $\gamma \le \Upsilon(\gamma) \le 2 \gamma$。 而且，当 $\gamma$ 接近0时，$\Upsilon(\gamma) \approx \gamma$。所以经过一定轮数，$\Upsilon(\gamma)$ 给了一定的界保障了 margin。 $\gamma_t$ 越大，margin越大。这里通常将 $\gamma_t$ 称为 edge。这里有点博弈的意味：更强的基础分类器能保证 edge 更大，margin也越大，能够避免过拟合。但是更强的基础分类器也会导致的复杂度增加（Rademacher复杂度大），也会对算法的效果有负面影响。
+
+## Margin最大化Boosting
+
+上一节证明了，在原始的AdaBoost中，Margin由$\Upsilon(\gamma)$限制。而$\Upsilon(\gamma)$在$\gamma$趋近于0时，满足$\Upsilon(\gamma) \approx \gamma$。$\gamma$这个界太小了，本节提出一种AdaBoost的变种，将会提高这个结果到$2\gamma$。
+
+在AdaBoost中，有关系
+
+$$
+Z_t = e^{-\alpha_t} \bigg(\frac{1}{2} + \gamma_t\bigg) + e^{\alpha_t} \bigg( \frac{1}{2} - \gamma_t\bigg).
+$$
+
+带入上节的一个等式可得
+
+$$
+\mathbb{Pr}_{(x, y)\sim \mathcal{S}} [y f(x) \le \theta]
+\le \prod^{T}_{t=1} \bigg[e^{(\theta-1)\alpha_t}(\frac{1}{2} + \gamma_t) + e^{(\theta+1) \alpha_t} (\frac{1}{2} - \gamma_t)\bigg].
+$$
+
+那么，我们为什么不最小化上面的margin的界呢？对$\alpha_t$求极值可得
+
+$$
+\alpha^*_t = \frac{1}{2}\ln\frac{1+2\gamma_t}{1-2\gamma_t} - \frac{1}{2} \ln\frac{1 + \theta}{1 - \theta}.
+$$
+
+如果我们提前取 $\theta$ 满足 $\gamma_t \ge \theta/2$，那么$\alpha^*_t \ge 0$。经过一些复杂的缩放，我们可以得到一个简洁的界（我没有验证过，书上也是跳过了这个证明）
+
+$$
+\mathbb{Pr}_{(x, y)\sim \mathcal{S}} [y f(x) \le \theta]
+\le \exp\bigg[- \sum^T_{t=1} \mathrm{RE}_{b}\bigg(\frac{1}{2}+\frac{\theta}{2} \bigg\Vert \frac{1}{2} + \gamma_t\bigg)\bigg].
+$$
+
+其中$\mathrm{RE}_b(p \Vert q)$表示两个伯努利分布的相对熵
+
+$$
+\mathrm{RE}_b(p \Vert q) = p \ln\frac{p}{q} + (1 - p) \ln\frac{1 - p}{1 - q}.
+$$
+
+如果提前确定了 $\theta$ 并且 $\gamma$-弱分类假设中 $\gamma > \theta_2$，那么训练集的关于margin界的误差率不大于
+
+$$
+\exp\bigg[- T \cdot \mathrm{RE}_{b}\bigg(\frac{1}{2}+\frac{\theta}{2} \bigg\Vert \frac{1}{2} + \gamma\bigg)\bigg].
+$$
+
+反之，如果提前知道了 $\gamma$，那么 $\theta$ 可以取得比 $2\gamma$ 略小一些。
+
+理论很丰满，现实很骨感。我们通常不能获得 $\gamma$ 或者 $\theta$ 的信息，只能通过不断调整$\theta$来得到类似的界，如算法 $arc-gv$ 或者 $AdaBoost^*_\nu$（我也不知道具体细节，但是应该没关系）。设置 $\theta$ 的目的本意是为了增加泛化性，但是实践中，这些算法往往会失败。第一个原因是 margin 设置得高，还要保持错误率低，就需要基础分类器的复杂度非常高（例如决策树的树的深度和宽度会非常大），样本需求就越来越大。 我们往往没有那么多样本，就导致了算法的失败。另一方面，使用表达能力较差的分类器（如 decision stumps）同样也会导致无法提升 AdaBoost。虽然它提高了最小的margin，但是付出的代价可能是大部分其他样本的margin降低，整体来看，margin其实还是降低的。而泛化误差的界是和整体的margin有关，而不是最小的margin。
+
+## Weak Learnability 的充分必要条件
+
+### 充分条件
+
+充分条件是对于所有的样本 $(x_i, y_i) \in \mathcal{S}$，弱分类器 $g_1, \ldots, g_k$ 存在凸组合分类器满足
+
+$$
+    y_i \sum^{k}_{j=1} a_j g_j(x_i) \ge \theta.
+$$
+
+那么对于任意定义在训练集 $\mathcal{S}$ 上的分布 $\mathcal{D}$ 都有
+
+$$
+    \sum^{k}_{j=1} \alpha_j \mathbb{E}_{i \sim\mathcal{D}} [y_i g_j(x_i)] = \mathbb{E}_{i \sim \mathcal{D}} \bigg[y_i \sum^{k}_{j=1} a_j g_j(x_i)\bigg] \ge \theta.
+$$
+
+又因为
+
+$$
+\begin{aligned}
+    \mathbb{E}_{i \sim \mathcal{D}} [y_i g_j(x_i)] =& 
+    1 \cdot \mathbf{Pr}_{i \sim \mathcal{D}}[y_i = g_j(x_i)] + (-1) \cdot \mathbf{Pr}_{i \sim \mathcal{D}} [y_i \ne g_j(x_i)]\\
+    =& 1 - 2 \mathbf{Pr}_{i \sim \mathcal{D}} [y_i \ne g_j(x_i)],
+\end{aligned}
+$$
+
+所以
+
+$$
+    \mathbf{Pr}_{i \sim \mathcal{D}}[y_i \ne g_j(x_i)] \le \frac{1}{2} - \frac{\theta}{2}.
+$$
+
+所以，弱分类器的一个充分条件是，在样本是线性可分的，并且线性分类的margin至少为 $2\gamma$。
+
+### 必要条件
+
+上面的 $2\gamma$-线性可分条件也是必要条件。
