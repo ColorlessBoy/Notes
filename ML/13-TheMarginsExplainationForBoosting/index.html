@@ -437,6 +437,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#marginboosting" class="md-nav__link">
+    Margin最大化Boosting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-learnability" class="md-nav__link">
+    Weak Learnability 的充分必要条件
+  </a>
+  
+    <nav class="md-nav" aria-label="Weak Learnability 的充分必要条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    充分条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    必要条件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -906,6 +940,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../6.S081/Xv6%E7%9A%84%E8%B5%B7%E5%A7%8B%E9%99%B7%E9%98%B1%E6%9C%BA%E5%88%B6/" title="Xv6的起始陷阱机制" class="md-nav__link">
+      Xv6的起始陷阱机制
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1117,6 +1163,40 @@
   <a href="#boosting-margin" class="md-nav__link">
     Boosting 对 Margin 分布的影响
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marginboosting" class="md-nav__link">
+    Margin最大化Boosting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-learnability" class="md-nav__link">
+    Weak Learnability 的充分必要条件
+  </a>
+  
+    <nav class="md-nav" aria-label="Weak Learnability 的充分必要条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    充分条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    必要条件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1902,9 +1982,29 @@ h_1, \ldots, h_T \in \mathcal{H}; T \ge 1\right\}.
     \right\} \ge 1 - \delta.
 </script>
 </div>
+<p>通常我们将误差进一步近似为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+    &amp;\frac{2}{\theta} \sqrt{\frac{2d}{m} \ln(em/d)} 
+    + 3 \sqrt{\frac{2}{m}\ln(2 / \delta)} \\
+    \approx&amp; \tilde{O} \bigg( \sqrt{\frac{d/\theta^2}{m}} \bigg) + 
+    O\bigg( \sqrt{\ln(1 / \delta)}{m}\bigg) \\
+    \approx&amp; \tilde{O} \bigg(\sqrt{\frac{d/\theta^2 + \ln(1/\delta)}{m}}\bigg).
+\end{aligned}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    &\frac{2}{\theta} \sqrt{\frac{2d}{m} \ln(em/d)} 
+    + 3 \sqrt{\frac{2}{m}\ln(2 / \delta)} \\
+    \approx& \tilde{O} \bigg( \sqrt{\frac{d/\theta^2}{m}} \bigg) + 
+    O\bigg( \sqrt{\ln(1 / \delta)}{m}\bigg) \\
+    \approx& \tilde{O} \bigg(\sqrt{\frac{d/\theta^2 + \ln(1/\delta)}{m}}\bigg).
+\end{aligned}
+</script>
+</div>
 <h2 id="boosting-margin">Boosting 对 Margin 分布的影响<a class="headerlink" href="#boosting-margin" title="Permanent link">&para;</a></h2>
-<p>前面的分析广泛适用于使用假设集 <span><span class="MathJax_Preview">co(\mathcal{H})</span><script type="math/tex">co(\mathcal{H})</script></span> 的算法。这一节，我们分析一下 Boosting
-有没有什么特别之处，总的来说就是通过给小margin样本更大的权重，来显著增大整个训练集的margin。</p>
+<p>前面的分析广泛适用于使用假设集 <span><span class="MathJax_Preview">co(\mathcal{H})</span><script type="math/tex">co(\mathcal{H})</script></span> 的算法，例如：投票分类算法（voting classifier）。这一节，我们分析一下 Boosting 的特别之处，总的来说就是通过给小margin样本更大的权重，来显著增大整个训练集的margin。</p>
 <div class="admonition 定理3">
 <p class="admonition-title">定理3</p>
 <p>在 AdaBoost 中定义 <span><span class="MathJax_Preview">\gamma_t = \frac{1}{2} - \epsilon_t</span><script type="math/tex">\gamma_t = \frac{1}{2} - \epsilon_t</script></span>, 我们可以保证：
@@ -1966,7 +2066,11 @@ h_1, \ldots, h_T \in \mathcal{H}; T \ge 1\right\}.
         \right)\\
     =&amp; \frac{1}{m} \exp\left(\theta \sum^T_{t=1} \alpha_t \right)
         \sum^m_{i=1} \exp\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)\\
-    =&amp; \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t.
+    =&amp; \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t\\
+    =&amp; \prod^{T}_{t=1} e^{\theta \alpha_t} Z_t\\
+    =&amp; \prod^{T}_{t=1} \bigg[2 \sqrt{\epsilon^{1-\theta}_t (1 - \epsilon_t)^{1+\theta}}\bigg]\\
+    &amp;\quad \bigg(\alpha_t = \frac{1}{2} \ln \frac{1 - \epsilon_t}{\epsilon_t}, Z_t=2\sqrt{\epsilon_t(1 - \epsilon_t)} \bigg)\\
+    =&amp; \prod^{T}_{t=1} \bigg[(1 - 2 \gamma_t)^{1 - \theta} (1 + 2\gamma_t)^{1+\theta}\bigg]. \quad \bigg(\epsilon_t = \frac{1}{2} - \gamma_t\bigg)
 \end{aligned}
 </div>
 <script type="math/tex; mode=display">
@@ -1980,18 +2084,22 @@ h_1, \ldots, h_T \in \mathcal{H}; T \ge 1\right\}.
         \right)\\
     =& \frac{1}{m} \exp\left(\theta \sum^T_{t=1} \alpha_t \right)
         \sum^m_{i=1} \exp\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)\\
-    =& \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t.
+    =& \exp\left(\theta \sum^T_{t=1} \alpha_t \right) \prod^T_{t=1} Z_t\\
+    =& \prod^{T}_{t=1} e^{\theta \alpha_t} Z_t\\
+    =& \prod^{T}_{t=1} \bigg[2 \sqrt{\epsilon^{1-\theta}_t (1 - \epsilon_t)^{1+\theta}}\bigg]\\
+    &\quad \bigg(\alpha_t = \frac{1}{2} \ln \frac{1 - \epsilon_t}{\epsilon_t}, Z_t=2\sqrt{\epsilon_t(1 - \epsilon_t)} \bigg)\\
+    =& \prod^{T}_{t=1} \bigg[(1 - 2 \gamma_t)^{1 - \theta} (1 + 2\gamma_t)^{1+\theta}\bigg]. \quad \bigg(\epsilon_t = \frac{1}{2} - \gamma_t\bigg)
 \end{aligned}
 </script>
 </div>
-<p>我们回忆一下</p>
+<p>其中一个等式用到了<span><span class="MathJax_Preview">\prod^{T}_{t=1}Z_t</span><script type="math/tex">\prod^{T}_{t=1}Z_t</script></span>，特此证明一下。我们回忆一下Adaboost里</p>
 <div>
 <div class="MathJax_Preview">
 \begin{aligned}
     D_{T+1}(i) 
     &amp;= D_1(i) \times \frac{e^{-y_i \alpha_1 h_1(x_i)}}{Z_1} \times \cdots \times
     \frac{e^{-y_i\alpha_T h_T(x_i)}}{Z_T}\\
-    &amp;= D_1(i) \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
+    &amp;= \frac{1}{m} \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
 \end{aligned}
 </div>
 <script type="math/tex; mode=display">
@@ -1999,42 +2107,23 @@ h_1, \ldots, h_T \in \mathcal{H}; T \ge 1\right\}.
     D_{T+1}(i) 
     &= D_1(i) \times \frac{e^{-y_i \alpha_1 h_1(x_i)}}{Z_1} \times \cdots \times
     \frac{e^{-y_i\alpha_T h_T(x_i)}}{Z_T}\\
-    &= D_1(i) \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
+    &= \frac{1}{m} \frac{\exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}}{\prod^T_{t=1} Z_t}.
 \end{aligned}
 </script>
 </div>
 <p>所以 </p>
 <div>
 <div class="MathJax_Preview">
-    {\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
-    = \sum^m_{i=1} D_1(i) \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
+    {\prod^T_{t=1} Z_t}
+    ={\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
+    = \frac{1}{m} \sum^m_{i=1} \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
 </div>
 <script type="math/tex; mode=display">
-    {\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
-    = \sum^m_{i=1} D_1(i) \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
+    {\prod^T_{t=1} Z_t}
+    ={\prod^T_{t=1} Z_t} \sum^m_{i=1} D_{T+1}(i) 
+    = \frac{1}{m} \sum^m_{i=1} \exp{\left(-y_i \sum^T_{t=1} \alpha_t h_t(x_i)\right)}.
 </script>
 </div>
-<p>又因为 </p>
-<div>
-<div class="MathJax_Preview">
-    \alpha_t = \frac{1}{2} \ln\left(\frac{1 - \epsilon}{\epsilon}\right)
-    = \frac{1}{2}\ln\left(\frac{1 + 2\gamma_t}{1 - 2 \gamma_t}\right),
-</div>
-<script type="math/tex; mode=display">
-    \alpha_t = \frac{1}{2} \ln\left(\frac{1 - \epsilon}{\epsilon}\right)
-    = \frac{1}{2}\ln\left(\frac{1 + 2\gamma_t}{1 - 2 \gamma_t}\right),
-</script>
-</div>
-<p>以及</p>
-<div>
-<div class="MathJax_Preview">
-    Z_t = \sqrt{1 - 4\gamma^2_t},
-</div>
-<script type="math/tex; mode=display">
-    Z_t = \sqrt{1 - 4\gamma^2_t},
-</script>
-</div>
-<p>我们可以直接得到定理3。</p>
 </details>
 <p>如果 <span><span class="MathJax_Preview">\epsilon_t \le \frac{1}{2} - \gamma</span><script type="math/tex">\epsilon_t \le \frac{1}{2} - \gamma</script></span>, 那么界就变成了
 <span><span class="MathJax_Preview">\left(\sqrt{(1 + 2 \gamma)^{1 + \theta} (1 - 2 \gamma)^{1 - \theta}}\right)^T</span><script type="math/tex">\left(\sqrt{(1 + 2 \gamma)^{1 + \theta} (1 - 2 \gamma)^{1 - \theta}}\right)^T</script></span>。
@@ -2051,11 +2140,118 @@ h_1, \ldots, h_T \in \mathcal{H}; T \ge 1\right\}.
     {\ln\left(\frac{1 + 2 \gamma}{ 1 - 2 \gamma}\right)}.
 </script>
 </div>
-<p>因为 <span><span class="MathJax_Preview">0 \le \gamma \le \frac{1}{2}</span><script type="math/tex">0 \le \gamma \le \frac{1}{2}</script></span>，所以我们得到 <span><span class="MathJax_Preview">\gamma \le \Upsilon(\gamma) \le 2 \gamma</span><script type="math/tex">\gamma \le \Upsilon(\gamma) \le 2 \gamma</script></span>。
-而且，当 <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> 接近0时，<span><span class="MathJax_Preview">\Upsilon(\gamma) \approx \gamma</span><script type="math/tex">\Upsilon(\gamma) \approx \gamma</script></span>。所以经过一定轮数，
-<span><span class="MathJax_Preview">\Upsilon(\gamma)</span><script type="math/tex">\Upsilon(\gamma)</script></span> 给了一定的界保障了 margin。 <span><span class="MathJax_Preview">\gamma_t</span><script type="math/tex">\gamma_t</script></span> 越大，margin越大。这里通常
-将 <span><span class="MathJax_Preview">\gamma_t</span><script type="math/tex">\gamma_t</script></span> 称为 edge。这里有点博弈的意味：更强的基础分类器能保证 edge 更大，但是也会
-导致基础分类器的复杂度增加，有会对算法的效果有负面影响。</p>
+<p>因为 <span><span class="MathJax_Preview">0 \le \gamma \le \frac{1}{2}</span><script type="math/tex">0 \le \gamma \le \frac{1}{2}</script></span>，所以我们得到 <span><span class="MathJax_Preview">\gamma \le \Upsilon(\gamma) \le 2 \gamma</span><script type="math/tex">\gamma \le \Upsilon(\gamma) \le 2 \gamma</script></span>。 而且，当 <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> 接近0时，<span><span class="MathJax_Preview">\Upsilon(\gamma) \approx \gamma</span><script type="math/tex">\Upsilon(\gamma) \approx \gamma</script></span>。所以经过一定轮数，<span><span class="MathJax_Preview">\Upsilon(\gamma)</span><script type="math/tex">\Upsilon(\gamma)</script></span> 给了一定的界保障了 margin。 <span><span class="MathJax_Preview">\gamma_t</span><script type="math/tex">\gamma_t</script></span> 越大，margin越大。这里通常将 <span><span class="MathJax_Preview">\gamma_t</span><script type="math/tex">\gamma_t</script></span> 称为 edge。这里有点博弈的意味：更强的基础分类器能保证 edge 更大，margin也越大，能够避免过拟合。但是更强的基础分类器也会导致的复杂度增加（Rademacher复杂度大），也会对算法的效果有负面影响。</p>
+<h2 id="marginboosting">Margin最大化Boosting<a class="headerlink" href="#marginboosting" title="Permanent link">&para;</a></h2>
+<p>上一节证明了，在原始的AdaBoost中，Margin由<span><span class="MathJax_Preview">\Upsilon(\gamma)</span><script type="math/tex">\Upsilon(\gamma)</script></span>限制。而<span><span class="MathJax_Preview">\Upsilon(\gamma)</span><script type="math/tex">\Upsilon(\gamma)</script></span>在<span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>趋近于0时，满足<span><span class="MathJax_Preview">\Upsilon(\gamma) \approx \gamma</span><script type="math/tex">\Upsilon(\gamma) \approx \gamma</script></span>。<span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>这个界太小了，本节提出一种AdaBoost的变种，将会提高这个结果到<span><span class="MathJax_Preview">2\gamma</span><script type="math/tex">2\gamma</script></span>。</p>
+<p>在AdaBoost中，有关系</p>
+<div>
+<div class="MathJax_Preview">
+Z_t = e^{-\alpha_t} \bigg(\frac{1}{2} + \gamma_t\bigg) + e^{\alpha_t} \bigg( \frac{1}{2} - \gamma_t\bigg).
+</div>
+<script type="math/tex; mode=display">
+Z_t = e^{-\alpha_t} \bigg(\frac{1}{2} + \gamma_t\bigg) + e^{\alpha_t} \bigg( \frac{1}{2} - \gamma_t\bigg).
+</script>
+</div>
+<p>带入上节的一个等式可得</p>
+<div>
+<div class="MathJax_Preview">
+\mathbb{Pr}_{(x, y)\sim \mathcal{S}} [y f(x) \le \theta]
+\le \prod^{T}_{t=1} \bigg[e^{(\theta-1)\alpha_t}(\frac{1}{2} + \gamma_t) + e^{(\theta+1) \alpha_t} (\frac{1}{2} - \gamma_t)\bigg].
+</div>
+<script type="math/tex; mode=display">
+\mathbb{Pr}_{(x, y)\sim \mathcal{S}} [y f(x) \le \theta]
+\le \prod^{T}_{t=1} \bigg[e^{(\theta-1)\alpha_t}(\frac{1}{2} + \gamma_t) + e^{(\theta+1) \alpha_t} (\frac{1}{2} - \gamma_t)\bigg].
+</script>
+</div>
+<p>那么，我们为什么不最小化上面的margin的界呢？对<span><span class="MathJax_Preview">\alpha_t</span><script type="math/tex">\alpha_t</script></span>求极值可得</p>
+<div>
+<div class="MathJax_Preview">
+\alpha^*_t = \frac{1}{2}\ln\frac{1+2\gamma_t}{1-2\gamma_t} - \frac{1}{2} \ln\frac{1 + \theta}{1 - \theta}.
+</div>
+<script type="math/tex; mode=display">
+\alpha^*_t = \frac{1}{2}\ln\frac{1+2\gamma_t}{1-2\gamma_t} - \frac{1}{2} \ln\frac{1 + \theta}{1 - \theta}.
+</script>
+</div>
+<p>如果我们提前取 <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> 满足 <span><span class="MathJax_Preview">\gamma_t \ge \theta/2</span><script type="math/tex">\gamma_t \ge \theta/2</script></span>，那么<span><span class="MathJax_Preview">\alpha^*_t \ge 0</span><script type="math/tex">\alpha^*_t \ge 0</script></span>。经过一些复杂的缩放，我们可以得到一个简洁的界（我没有验证过，书上也是跳过了这个证明）</p>
+<div>
+<div class="MathJax_Preview">
+\mathbb{Pr}_{(x, y)\sim \mathcal{S}} [y f(x) \le \theta]
+\le \exp\bigg[- \sum^T_{t=1} \mathrm{RE}_{b}\bigg(\frac{1}{2}+\frac{\theta}{2} \bigg\Vert \frac{1}{2} + \gamma_t\bigg)\bigg].
+</div>
+<script type="math/tex; mode=display">
+\mathbb{Pr}_{(x, y)\sim \mathcal{S}} [y f(x) \le \theta]
+\le \exp\bigg[- \sum^T_{t=1} \mathrm{RE}_{b}\bigg(\frac{1}{2}+\frac{\theta}{2} \bigg\Vert \frac{1}{2} + \gamma_t\bigg)\bigg].
+</script>
+</div>
+<p>其中<span><span class="MathJax_Preview">\mathrm{RE}_b(p \Vert q)</span><script type="math/tex">\mathrm{RE}_b(p \Vert q)</script></span>表示两个伯努利分布的相对熵</p>
+<div>
+<div class="MathJax_Preview">
+\mathrm{RE}_b(p \Vert q) = p \ln\frac{p}{q} + (1 - p) \ln\frac{1 - p}{1 - q}.
+</div>
+<script type="math/tex; mode=display">
+\mathrm{RE}_b(p \Vert q) = p \ln\frac{p}{q} + (1 - p) \ln\frac{1 - p}{1 - q}.
+</script>
+</div>
+<p>如果提前确定了 <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> 并且 <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>-弱分类假设中 <span><span class="MathJax_Preview">\gamma &gt; \theta_2</span><script type="math/tex">\gamma > \theta_2</script></span>，那么训练集的关于margin界的误差率不大于</p>
+<div>
+<div class="MathJax_Preview">
+\exp\bigg[- T \cdot \mathrm{RE}_{b}\bigg(\frac{1}{2}+\frac{\theta}{2} \bigg\Vert \frac{1}{2} + \gamma\bigg)\bigg].
+</div>
+<script type="math/tex; mode=display">
+\exp\bigg[- T \cdot \mathrm{RE}_{b}\bigg(\frac{1}{2}+\frac{\theta}{2} \bigg\Vert \frac{1}{2} + \gamma\bigg)\bigg].
+</script>
+</div>
+<p>反之，如果提前知道了 <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>，那么 <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> 可以取得比 <span><span class="MathJax_Preview">2\gamma</span><script type="math/tex">2\gamma</script></span> 略小一些。</p>
+<p>理论很丰满，现实很骨感。我们通常不能获得 <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> 或者 <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> 的信息，只能通过不断调整<span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span>来得到类似的界，如算法 <span><span class="MathJax_Preview">arc-gv</span><script type="math/tex">arc-gv</script></span> 或者 <span><span class="MathJax_Preview">AdaBoost^*_\nu</span><script type="math/tex">AdaBoost^*_\nu</script></span>（我也不知道具体细节，但是应该没关系）。设置 <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> 的目的本意是为了增加泛化性，但是实践中，这些算法往往会失败。第一个原因是 margin 设置得高，还要保持错误率低，就需要基础分类器的复杂度非常高（例如决策树的树的深度和宽度会非常大），样本需求就越来越大。 我们往往没有那么多样本，就导致了算法的失败。另一方面，使用表达能力较差的分类器（如 decision stumps）同样也会导致无法提升 AdaBoost。虽然它提高了最小的margin，但是付出的代价可能是大部分其他样本的margin降低，整体来看，margin其实还是降低的。而泛化误差的界是和整体的margin有关，而不是最小的margin。</p>
+<h2 id="weak-learnability">Weak Learnability 的充分必要条件<a class="headerlink" href="#weak-learnability" title="Permanent link">&para;</a></h2>
+<h3 id="_1">充分条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>充分条件是对于所有的样本 <span><span class="MathJax_Preview">(x_i, y_i) \in \mathcal{S}</span><script type="math/tex">(x_i, y_i) \in \mathcal{S}</script></span>，弱分类器 <span><span class="MathJax_Preview">g_1, \ldots, g_k</span><script type="math/tex">g_1, \ldots, g_k</script></span> 存在凸组合分类器满足</p>
+<div>
+<div class="MathJax_Preview">
+    y_i \sum^{k}_{j=1} a_j g_j(x_i) \ge \theta.
+</div>
+<script type="math/tex; mode=display">
+    y_i \sum^{k}_{j=1} a_j g_j(x_i) \ge \theta.
+</script>
+</div>
+<p>那么对于任意定义在训练集 <span><span class="MathJax_Preview">\mathcal{S}</span><script type="math/tex">\mathcal{S}</script></span> 上的分布 <span><span class="MathJax_Preview">\mathcal{D}</span><script type="math/tex">\mathcal{D}</script></span> 都有</p>
+<div>
+<div class="MathJax_Preview">
+    \sum^{k}_{j=1} \alpha_j \mathbb{E}_{i \sim\mathcal{D}} [y_i g_j(x_i)] = \mathbb{E}_{i \sim \mathcal{D}} \bigg[y_i \sum^{k}_{j=1} a_j g_j(x_i)\bigg] \ge \theta.
+</div>
+<script type="math/tex; mode=display">
+    \sum^{k}_{j=1} \alpha_j \mathbb{E}_{i \sim\mathcal{D}} [y_i g_j(x_i)] = \mathbb{E}_{i \sim \mathcal{D}} \bigg[y_i \sum^{k}_{j=1} a_j g_j(x_i)\bigg] \ge \theta.
+</script>
+</div>
+<p>又因为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+    \mathbb{E}_{i \sim \mathcal{D}} [y_i g_j(x_i)] =&amp; 
+    1 \cdot \mathbf{Pr}_{i \sim \mathcal{D}}[y_i = g_j(x_i)] + (-1) \cdot \mathbf{Pr}_{i \sim \mathcal{D}} [y_i \ne g_j(x_i)]\\
+    =&amp; 1 - 2 \mathbf{Pr}_{i \sim \mathcal{D}} [y_i \ne g_j(x_i)],
+\end{aligned}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    \mathbb{E}_{i \sim \mathcal{D}} [y_i g_j(x_i)] =& 
+    1 \cdot \mathbf{Pr}_{i \sim \mathcal{D}}[y_i = g_j(x_i)] + (-1) \cdot \mathbf{Pr}_{i \sim \mathcal{D}} [y_i \ne g_j(x_i)]\\
+    =& 1 - 2 \mathbf{Pr}_{i \sim \mathcal{D}} [y_i \ne g_j(x_i)],
+\end{aligned}
+</script>
+</div>
+<p>所以</p>
+<div>
+<div class="MathJax_Preview">
+    \mathbf{Pr}_{i \sim \mathcal{D}}[y_i \ne g_j(x_i)] \le \frac{1}{2} - \frac{\theta}{2}.
+</div>
+<script type="math/tex; mode=display">
+    \mathbf{Pr}_{i \sim \mathcal{D}}[y_i \ne g_j(x_i)] \le \frac{1}{2} - \frac{\theta}{2}.
+</script>
+</div>
+<p>所以，弱分类器的一个充分条件是，在样本是线性可分的，并且线性分类的margin至少为 <span><span class="MathJax_Preview">2\gamma</span><script type="math/tex">2\gamma</script></span>。</p>
+<h3 id="_2">必要条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>上面的 <span><span class="MathJax_Preview">2\gamma</span><script type="math/tex">2\gamma</script></span>-线性可分条件也是必要条件。</p>
                 
                   
                     

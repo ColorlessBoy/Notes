@@ -892,10 +892,29 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    参考答案
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Xv6%E7%9A%84%E8%B5%B7%E5%A7%8B%E9%99%B7%E9%98%B1%E6%9C%BA%E5%88%B6/" title="Xv6的起始陷阱机制" class="md-nav__link">
+      Xv6的起始陷阱机制
+    </a>
   </li>
 
         
@@ -1106,6 +1125,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    参考答案
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1178,6 +1204,208 @@ $ make clean
 <li><code>kernel/riscv.h</code>中有很多有用的宏定义。</li>
 <li>如果COW页错误发生，但是没有空余的内存，那么进程应该被杀死。</li>
 </ul>
+<h2 id="_3">参考答案<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>首先在<code>riscv.h：334</code>中声明超参数<code>#define PTE_RSW (1L &lt;&lt; 8)</code>用于标记COW页。</li>
+<li>
+<p>在这个实验中，将用到<code>xv6-book</code>第六章涉及到的内容——并发锁（concurrency lock）。并发锁用于控制<code>kernel/kalloc.c</code>文件中的数据结构<code>pacnt</code>用于保存物理内存页被几个虚拟地址所指向。同时需要一个函数<code>incpacnt()</code>来更新这个数据结构。(这里我没有使用结构体内部成员函数)</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">spinlock</span> <span class="n">lock</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">cnt</span><span class="p">[</span><span class="n">PHYSTOP</span><span class="o">&gt;&gt;</span><span class="n">PGSHIFT</span><span class="p">];</span> 
+<span class="p">}</span> <span class="n">pacnt</span><span class="p">;</span> <span class="c1">// physical addresses&#39; reference count</span>
+
+<span class="kt">void</span>
+<span class="nf">incpacnt</span><span class="p">(</span><span class="n">uint64</span> <span class="n">pa</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pacnt</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+    <span class="n">pacnt</span><span class="p">.</span><span class="n">cnt</span><span class="p">[(</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa</span> <span class="o">&gt;&gt;</span> <span class="n">PGSHIFT</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pacnt</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>接着我们为<code>pacnt</code>结构体修改<code>kernel/kalloc.c:kinit()</code>、<code>kernel/kalloc.c:kfree()</code>和<code>kernel/kalloc.c:kalloc()</code>三个函数。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span>
+<span class="nf">kinit</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">initlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">,</span> <span class="s">&quot;kmem&quot;</span><span class="p">);</span>
+    <span class="n">initlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pacnt</span><span class="p">.</span><span class="n">lock</span><span class="p">,</span> <span class="s">&quot;pacnt&quot;</span><span class="p">);</span>
+
+    <span class="n">freerange</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">PHYSTOP</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span>
+<span class="nf">kfree</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">pa</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pacnt</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pacnt</span><span class="p">.</span><span class="n">cnt</span><span class="p">[(</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa</span> <span class="o">&gt;&gt;</span> <span class="n">PGSHIFT</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">pacnt</span><span class="p">.</span><span class="n">cnt</span><span class="p">[(</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa</span> <span class="o">&gt;&gt;</span> <span class="n">PGSHIFT</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pacnt</span><span class="p">.</span><span class="n">cnt</span><span class="p">[(</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa</span> <span class="o">&gt;&gt;</span> <span class="n">PGSHIFT</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pacnt</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pacnt</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+
+    <span class="c1">//...</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="o">*</span>
+<span class="nf">kalloc</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">run</span> <span class="o">*</span><span class="n">r</span><span class="p">;</span>
+
+    <span class="n">acquire</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">kmem</span><span class="p">.</span><span class="n">freelist</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">kmem</span><span class="p">.</span><span class="n">freelist</span> <span class="o">=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span>
+
+    <span class="c1">// update the physical address&#39; reference count</span>
+    <span class="n">incpacnt</span><span class="p">((</span><span class="n">uint64</span><span class="p">)</span><span class="n">r</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="p">){</span>
+        <span class="n">memset</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">r</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">PGSIZE</span><span class="p">);</span> <span class="c1">// fill with junk</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>修改<code>kernel/vm.c:uvmcopy()</code>函数，构造COW页。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span>
+<span class="nf">uvmcopy</span><span class="p">(</span><span class="n">pagetable_t</span> <span class="n">old</span><span class="p">,</span> <span class="n">pagetable_t</span> <span class="n">new</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">sz</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">pte_t</span> <span class="o">*</span><span class="n">pte</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">pa</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">uint</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="c1">// char *mem;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">PGSIZE</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">pte</span> <span class="o">=</span> <span class="n">walk</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">panic</span><span class="p">(</span><span class="s">&quot;uvmcopy: pte should exist&quot;</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">((</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">panic</span><span class="p">(</span><span class="s">&quot;uvmcopy: page not present&quot;</span><span class="p">);</span>
+
+        <span class="o">*</span><span class="n">pte</span> <span class="o">=</span> <span class="p">((</span><span class="o">*</span><span class="n">pte</span> <span class="o">|</span> <span class="n">PTE_RSW</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">PTE_W</span><span class="p">));</span>
+        <span class="n">pa</span> <span class="o">=</span> <span class="n">PTE2PA</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">);</span>
+        <span class="n">flags</span> <span class="o">=</span> <span class="n">PTE_FLAGS</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">);</span>
+
+        <span class="n">incpacnt</span><span class="p">(</span><span class="n">pa</span><span class="p">);</span> <span class="c1">//update the physical address&#39;s reference count.</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mappages</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">PGSIZE</span><span class="p">,</span> <span class="n">pa</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="k">goto</span> <span class="n">err</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// if((mem = kalloc()) == 0)</span>
+        <span class="c1">//   goto err;</span>
+        <span class="c1">// memmove(mem, (char*)pa, PGSIZE);</span>
+        <span class="c1">// if(mappages(new, i, PGSIZE, (uint64)mem, flags) != 0){</span>
+        <span class="c1">//   kfree(mem);</span>
+        <span class="c1">//   goto err;</span>
+        <span class="c1">// }</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="nl">err</span><span class="p">:</span>
+        <span class="n">uvmunmap</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">/</span> <span class="n">PGSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>由此引发的COW页错误的处理程序在<code>trap.c:usertrap()</code>中实现。其中为了方便，我在<code>vm.c</code>实现了一个分配COW冲突页的函数<code>cowalloc()</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">r_scause</span><span class="p">()</span> <span class="o">==</span> <span class="mi">13</span> <span class="o">||</span> <span class="n">r_scause</span><span class="p">()</span> <span class="o">==</span> <span class="mi">15</span><span class="p">){</span>
+    <span class="n">uint64</span> <span class="n">va</span> <span class="o">=</span> <span class="n">r_stval</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">va</span> <span class="o">&gt;=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">sz</span><span class="p">){</span>
+    <span class="n">p</span><span class="o">-&gt;</span><span class="n">killed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">cowalloc</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">pagetable</span><span class="p">,</span> <span class="n">va</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">killed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kt">int</span>
+<span class="nf">cowalloc</span><span class="p">(</span><span class="n">pagetable_t</span> <span class="n">pagetable</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">va</span><span class="p">){</span>
+    <span class="n">pte_t</span> <span class="o">*</span><span class="n">pte</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">pa</span><span class="p">;</span>
+    <span class="n">uint</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">mem</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">((</span><span class="n">pte</span> <span class="o">=</span> <span class="n">walk</span><span class="p">(</span><span class="n">pagetable</span><span class="p">,</span> <span class="n">PGROUNDDOWN</span><span class="p">(</span><span class="n">va</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">((</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_RSW</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">pa</span> <span class="o">=</span> <span class="n">PTE2PA</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">);</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="p">((</span><span class="n">PTE_FLAGS</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">)</span> <span class="o">|</span> <span class="n">PTE_W</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">PTE_RSW</span><span class="p">));</span>
+
+    <span class="k">if</span><span class="p">((</span><span class="n">mem</span> <span class="o">=</span> <span class="n">kalloc</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">memmove</span><span class="p">(</span><span class="n">mem</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">pa</span><span class="p">,</span> <span class="n">PGSIZE</span><span class="p">);</span>
+
+    <span class="o">*</span><span class="n">pte</span> <span class="o">=</span> <span class="n">PA2PTE</span><span class="p">(</span><span class="n">mem</span><span class="p">)</span> <span class="o">|</span> <span class="n">flags</span><span class="p">;</span>
+
+    <span class="n">kfree</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">pa</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>函数<code>vm.c:copyout()</code>也会遇到COW页，需要我们处理相应的情况</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span>
+<span class="nf">copyout</span><span class="p">(</span><span class="n">pagetable_t</span> <span class="n">pagetable</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">dstva</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="err">\\</span><span class="p">...</span>
+    <span class="n">pa0</span> <span class="o">=</span> <span class="n">cowwalkaddr</span><span class="p">(</span><span class="n">pagetable</span><span class="p">,</span> <span class="n">va0</span><span class="p">);</span>
+    <span class="err">\\</span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>其中<code>cowwalkaddr()</code>会在遇到COW页时，再复制物理地址页</p>
+<div class="highlight"><pre><span></span><code><span class="n">uint64</span>
+<span class="nf">cowwalkaddr</span><span class="p">(</span><span class="n">pagetable_t</span> <span class="n">pagetable</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">va</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">pte_t</span> <span class="o">*</span><span class="n">pte</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">pa</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">va</span> <span class="o">&gt;=</span> <span class="n">MAXVA</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">pte</span> <span class="o">=</span> <span class="n">walk</span><span class="p">(</span><span class="n">pagetable</span><span class="p">,</span> <span class="n">va</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pte</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">((</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">((</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_U</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_RSW</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">cowalloc</span><span class="p">(</span><span class="n">pagetable</span><span class="p">,</span> <span class="n">va</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">pa</span> <span class="o">=</span> <span class="n">PTE2PA</span><span class="p">(</span><span class="o">*</span><span class="n">pte</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">pa</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>为了能在不同文件中调用新定义的函数，需要再<code>def.h</code>中声明这些函数：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// kalloc.c</span>
+<span class="c1">// ...</span>
+<span class="kt">void</span>            <span class="nf">incpacnt</span><span class="p">(</span><span class="n">uint64</span><span class="p">);</span>
+
+<span class="c1">// vm.c</span>
+<span class="c1">// ...</span>
+<span class="kt">int</span>             <span class="nf">cowalloc</span><span class="p">(</span><span class="n">pagetable_t</span><span class="p">,</span> <span class="n">uint64</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+</ol>
                 
                   
                     
@@ -1224,13 +1452,13 @@ $ make clean
           </a>
         
         
-          <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-docker/" title="docker" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Xv6%E7%9A%84%E8%B5%B7%E5%A7%8B%E9%99%B7%E9%98%B1%E6%9C%BA%E5%88%B6/" title="Xv6的起始陷阱机制" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                docker
+                Xv6的起始陷阱机制
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
