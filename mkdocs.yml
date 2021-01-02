@@ -69,6 +69,7 @@ nav:
     - VC Dimension:   ML/11-VCDimension.md
     - Generation Of Boosting: ML/12-GenerationsOfBoosting.md
     - The Margins Explanation For Boosting: ML/13-TheMarginsExplainationForBoosting.md
+    - Game Theory, Online Learning and Boosting: ML/14-GameTheory.md
   
   - 强化学习:
     - 基础:
