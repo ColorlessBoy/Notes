@@ -105,6 +105,7 @@ nav:
     - Lab5-Xv6-Lazy-Allocation: 6.S081/Lab05-Xv6-Lazy-Allocation.md
     - Lab6-Copy-on-Write: 6.S081/Lab06-Copy-on-Write.md
     - Xv6的起始陷阱机制: 6.S081/Xv6的起始陷阱机制.md
+    - Lab7-MultiThreading: 6.S081/Lab07-MultiThreading.md
 
   - Blog:
     - 子弹笔记:
