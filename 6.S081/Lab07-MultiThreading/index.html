@@ -14,18 +14,18 @@
       
         <meta name="author" content="ColorlessBoy">
       
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.0">
     
     
       
-        <title>ACKTR & A2C - Notes</title>
+        <title>Lab7-MultiThreading - Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.b5d04df8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.b5d04df8.min.css">
       
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9ab2c1f8.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9ab2c1f8.min.css">
       
       
         
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="manifest" href="../../../manifest.webmanifest" crossorigin="use-credentials">
+      <link rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
     
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openai-baseline-acktr-a2c" class="md-skip">
+        <a href="#lab7-multithreading" class="md-skip">
           跳转至
         </a>
       
@@ -75,7 +75,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../../.." title="Notes" class="md-header-nav__button md-logo" aria-label="Notes">
+    <a href="../.." title="Notes" class="md-header-nav__button md-logo" aria-label="Notes">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              ACKTR & A2C
+              Lab7-MultiThreading
             
           </span>
         </div>
@@ -162,7 +162,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Notes" class="md-nav__button md-logo" aria-label="Notes">
+    <a href="../.." title="Notes" class="md-nav__button md-logo" aria-label="Notes">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -192,7 +192,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../.." title="介绍" class="md-nav__link">
+    <a href="../.." title="介绍" class="md-nav__link">
       介绍
     </a>
   </li>
@@ -229,7 +229,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/01-EM/" title="EM" class="md-nav__link">
+    <a href="../../ML/01-EM/" title="EM" class="md-nav__link">
       EM
     </a>
   </li>
@@ -241,7 +241,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/02-SVM/" title="SVM" class="md-nav__link">
+    <a href="../../ML/02-SVM/" title="SVM" class="md-nav__link">
       SVM
     </a>
   </li>
@@ -253,7 +253,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/03-Rademacher/" title="Rademacher" class="md-nav__link">
+    <a href="../../ML/03-Rademacher/" title="Rademacher" class="md-nav__link">
       Rademacher
     </a>
   </li>
@@ -265,7 +265,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/04-Regression/" title="Regression" class="md-nav__link">
+    <a href="../../ML/04-Regression/" title="Regression" class="md-nav__link">
       Regression
     </a>
   </li>
@@ -277,7 +277,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/05-AdaBoost/" title="AdaBoost" class="md-nav__link">
+    <a href="../../ML/05-AdaBoost/" title="AdaBoost" class="md-nav__link">
       AdaBoost
     </a>
   </li>
@@ -289,7 +289,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/06-PAC/" title="PAC" class="md-nav__link">
+    <a href="../../ML/06-PAC/" title="PAC" class="md-nav__link">
       PAC
     </a>
   </li>
@@ -301,7 +301,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/07-KalmanFilter/" title="Kalman Filter" class="md-nav__link">
+    <a href="../../ML/07-KalmanFilter/" title="Kalman Filter" class="md-nav__link">
       Kalman Filter
     </a>
   </li>
@@ -313,7 +313,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/08-Classification/" title="Classification" class="md-nav__link">
+    <a href="../../ML/08-Classification/" title="Classification" class="md-nav__link">
       Classification
     </a>
   </li>
@@ -325,7 +325,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/09-PCA/" title="PCA" class="md-nav__link">
+    <a href="../../ML/09-PCA/" title="PCA" class="md-nav__link">
       PCA
     </a>
   </li>
@@ -337,7 +337,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/10-NoFreeLunch/" title="No Free Lunch" class="md-nav__link">
+    <a href="../../ML/10-NoFreeLunch/" title="No Free Lunch" class="md-nav__link">
       No Free Lunch
     </a>
   </li>
@@ -349,7 +349,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/11-VCDimension/" title="VC Dimension" class="md-nav__link">
+    <a href="../../ML/11-VCDimension/" title="VC Dimension" class="md-nav__link">
       VC Dimension
     </a>
   </li>
@@ -361,7 +361,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/12-GenerationsOfBoosting/" title="Generation Of Boosting" class="md-nav__link">
+    <a href="../../ML/12-GenerationsOfBoosting/" title="Generation Of Boosting" class="md-nav__link">
       Generation Of Boosting
     </a>
   </li>
@@ -373,7 +373,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/13-TheMarginsExplainationForBoosting/" title="The Margins Explanation For Boosting" class="md-nav__link">
+    <a href="../../ML/13-TheMarginsExplainationForBoosting/" title="The Margins Explanation For Boosting" class="md-nav__link">
       The Margins Explanation For Boosting
     </a>
   </li>
@@ -385,7 +385,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../ML/14-GameTheory/" title="Game Theory, Online Learning and Boosting" class="md-nav__link">
+    <a href="../../ML/14-GameTheory/" title="Game Theory, Online Learning and Boosting" class="md-nav__link">
       Game Theory, Online Learning and Boosting
     </a>
   </li>
@@ -400,12 +400,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       强化学习
@@ -454,7 +452,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../basis/01-MarkovChains/" title="Markov Chains" class="md-nav__link">
+    <a href="../../RL/basis/01-MarkovChains/" title="Markov Chains" class="md-nav__link">
       Markov Chains
     </a>
   </li>
@@ -466,7 +464,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../basis/02-MDPs/" title="Markov Decision Processes" class="md-nav__link">
+    <a href="../../RL/basis/02-MDPs/" title="Markov Decision Processes" class="md-nav__link">
       Markov Decision Processes
     </a>
   </li>
@@ -478,7 +476,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../basis/03-PolicyEvaluation/" title="Policy Evaluation" class="md-nav__link">
+    <a href="../../RL/basis/03-PolicyEvaluation/" title="Policy Evaluation" class="md-nav__link">
       Policy Evaluation
     </a>
   </li>
@@ -490,7 +488,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../basis/04-PolicyImprovement/" title="Policy Improvement" class="md-nav__link">
+    <a href="../../RL/basis/04-PolicyImprovement/" title="Policy Improvement" class="md-nav__link">
       Policy Improvement
     </a>
   </li>
@@ -502,7 +500,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../basis/RLNotes.pdf" title="RLNotes" class="md-nav__link">
+    <a href="../../RL/basis/RLNotes.pdf" title="RLNotes" class="md-nav__link">
       RLNotes
     </a>
   </li>
@@ -517,12 +515,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
     
     <label class="md-nav__link" for="nav-3-2">
       论文
@@ -546,7 +542,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../EquivalenceBetweenPGandSQL/" title="Equivalence Between PG and SQL" class="md-nav__link">
+    <a href="../../RL/papers/EquivalenceBetweenPGandSQL/" title="Equivalence Between PG and SQL" class="md-nav__link">
       Equivalence Between PG and SQL
     </a>
   </li>
@@ -556,60 +552,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        ACKTR & A2C
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="ACKTR & A2C" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../RL/papers/ACKTRandA2C/" title="ACKTR & A2C" class="md-nav__link">
       ACKTR & A2C
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a3c" class="md-nav__link">
-    A3C
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#acktr" class="md-nav__link">
-    ACKTR
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -624,7 +571,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-nav__link">
+    <a href="../../RL/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-nav__link">
       论文阅读摘要
     </a>
   </li>
@@ -666,7 +613,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-nav__link">
+    <a href="../../Algorithms/01-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/" title="最长递增子序列" class="md-nav__link">
       最长递增子序列
     </a>
   </li>
@@ -678,7 +625,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/02-%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="区间调度问题" class="md-nav__link">
+    <a href="../../Algorithms/02-%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="区间调度问题" class="md-nav__link">
       区间调度问题
     </a>
   </li>
@@ -690,7 +637,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴蜀定理" class="md-nav__link">
+    <a href="../../Algorithms/03-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" title="裴蜀定理" class="md-nav__link">
       裴蜀定理
     </a>
   </li>
@@ -702,7 +649,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/04-%E5%89%AA%E7%BB%B3%E5%AD%90%E9%97%AE%E9%A2%98/" title="剪绳子问题" class="md-nav__link">
+    <a href="../../Algorithms/04-%E5%89%AA%E7%BB%B3%E5%AD%90%E9%97%AE%E9%A2%98/" title="剪绳子问题" class="md-nav__link">
       剪绳子问题
     </a>
   </li>
@@ -714,7 +661,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/05-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/" title="欧拉函数" class="md-nav__link">
+    <a href="../../Algorithms/05-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/" title="欧拉函数" class="md-nav__link">
       欧拉函数
     </a>
   </li>
@@ -726,7 +673,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/06-%E8%93%84%E6%B0%B4%E6%B1%A0%E6%8A%BD%E6%A0%B7/" title="蓄水池抽样" class="md-nav__link">
+    <a href="../../Algorithms/06-%E8%93%84%E6%B0%B4%E6%B1%A0%E6%8A%BD%E6%A0%B7/" title="蓄水池抽样" class="md-nav__link">
       蓄水池抽样
     </a>
   </li>
@@ -738,7 +685,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/07-%E9%87%8D%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/" title="重编码技巧" class="md-nav__link">
+    <a href="../../Algorithms/07-%E9%87%8D%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7/" title="重编码技巧" class="md-nav__link">
       重编码技巧
     </a>
   </li>
@@ -750,7 +697,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-nav__link">
+    <a href="../../Algorithms/08-%E6%94%BE%E6%9D%BE%E6%9D%A1%E4%BB%B6%E6%B3%95/" title="放松条件法" class="md-nav__link">
       放松条件法
     </a>
   </li>
@@ -762,7 +709,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/09-%E5%8D%95%E8%B0%83%E6%A0%88/" title="单调栈" class="md-nav__link">
+    <a href="../../Algorithms/09-%E5%8D%95%E8%B0%83%E6%A0%88/" title="单调栈" class="md-nav__link">
       单调栈
     </a>
   </li>
@@ -774,7 +721,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/10-%E6%9C%80%E9%95%BF%E5%85%A8%E6%8E%92%E5%88%97/" title="最长全排列" class="md-nav__link">
+    <a href="../../Algorithms/10-%E6%9C%80%E9%95%BF%E5%85%A8%E6%8E%92%E5%88%97/" title="最长全排列" class="md-nav__link">
       最长全排列
     </a>
   </li>
@@ -786,7 +733,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/11-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" title="强连通分量" class="md-nav__link">
+    <a href="../../Algorithms/11-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" title="强连通分量" class="md-nav__link">
       强连通分量
     </a>
   </li>
@@ -798,7 +745,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Algorithms/12-%E5%A0%86%E6%8E%92%E5%BA%8F/" title="堆排序" class="md-nav__link">
+    <a href="../../Algorithms/12-%E5%A0%86%E6%8E%92%E5%BA%8F/" title="堆排序" class="md-nav__link">
       堆排序
     </a>
   </li>
@@ -813,10 +760,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       操作系统/6.S081
@@ -840,7 +789,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab00-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" title="Lab0-环境准备" class="md-nav__link">
+    <a href="../Lab00-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" title="Lab0-环境准备" class="md-nav__link">
       Lab0-环境准备
     </a>
   </li>
@@ -852,7 +801,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab01-Xv6-and-Unix-utilities/" title="Lab1-Xv6 and Unix utilities" class="md-nav__link">
+    <a href="../Lab01-Xv6-and-Unix-utilities/" title="Lab1-Xv6 and Unix utilities" class="md-nav__link">
       Lab1-Xv6 and Unix utilities
     </a>
   </li>
@@ -864,7 +813,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab02-System-Calls/" title="Lab2-System Calls" class="md-nav__link">
+    <a href="../Lab02-System-Calls/" title="Lab2-System Calls" class="md-nav__link">
       Lab2-System Calls
     </a>
   </li>
@@ -876,7 +825,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab03-Page-Tables/" title="Lab3-Page Tables" class="md-nav__link">
+    <a href="../Lab03-Page-Tables/" title="Lab3-Page Tables" class="md-nav__link">
       Lab3-Page Tables
     </a>
   </li>
@@ -888,7 +837,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab04-Traps/" title="Lab4-Traps" class="md-nav__link">
+    <a href="../Lab04-Traps/" title="Lab4-Traps" class="md-nav__link">
       Lab4-Traps
     </a>
   </li>
@@ -900,7 +849,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab05-Xv6-Lazy-Allocation/" title="Lab5-Xv6-Lazy-Allocation" class="md-nav__link">
+    <a href="../Lab05-Xv6-Lazy-Allocation/" title="Lab5-Xv6-Lazy-Allocation" class="md-nav__link">
       Lab5-Xv6-Lazy-Allocation
     </a>
   </li>
@@ -912,7 +861,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Lab06-Copy-on-Write/" title="Lab6-Copy-on-Write" class="md-nav__link">
+    <a href="../Lab06-Copy-on-Write/" title="Lab6-Copy-on-Write" class="md-nav__link">
       Lab6-Copy-on-Write
     </a>
   </li>
@@ -924,7 +873,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../6.S081/Xv6%E7%9A%84%E8%B5%B7%E5%A7%8B%E9%99%B7%E9%98%B1%E6%9C%BA%E5%88%B6/" title="Xv6的起始陷阱机制" class="md-nav__link">
+    <a href="../Xv6%E7%9A%84%E8%B5%B7%E5%A7%8B%E9%99%B7%E9%98%B1%E6%9C%BA%E5%88%B6/" title="Xv6的起始陷阱机制" class="md-nav__link">
       Xv6的起始陷阱机制
     </a>
   </li>
@@ -934,11 +883,67 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../../6.S081/Lab07-MultiThreading/" title="Lab7-MultiThreading" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Lab7-MultiThreading
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Lab7-MultiThreading" class="md-nav__link md-nav__link--active">
       Lab7-MultiThreading
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uthread-switching-between-threads" class="md-nav__link">
+    Uthread: switching between threads
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-threads" class="md-nav__link">
+    Using threads
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#barrier" class="md-nav__link">
+    Barrier
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1003,7 +1008,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-docker/" title="docker" class="md-nav__link">
+    <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-docker/" title="docker" class="md-nav__link">
       docker
     </a>
   </li>
@@ -1015,7 +1020,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-gdb/" title="gdb" class="md-nav__link">
+    <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-gdb/" title="gdb" class="md-nav__link">
       gdb
     </a>
   </li>
@@ -1027,7 +1032,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-git/" title="git" class="md-nav__link">
+    <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-git/" title="git" class="md-nav__link">
       git
     </a>
   </li>
@@ -1039,7 +1044,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-makefile/" title="makefile" class="md-nav__link">
+    <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-makefile/" title="makefile" class="md-nav__link">
       makefile
     </a>
   </li>
@@ -1051,7 +1056,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-shell/" title="shell" class="md-nav__link">
+    <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-shell/" title="shell" class="md-nav__link">
       shell
     </a>
   </li>
@@ -1068,7 +1073,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-nav__link">
+    <a href="../../Blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" class="md-nav__link">
       计算机网络
     </a>
   </li>
@@ -1080,7 +1085,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/%E8%99%9A%E6%8B%9F%E5%AE%B9%E5%99%A8Docker%E5%85%A5%E9%97%A8/" title="虚拟容器Docker入门" class="md-nav__link">
+    <a href="../../Blog/%E8%99%9A%E6%8B%9F%E5%AE%B9%E5%99%A8Docker%E5%85%A5%E9%97%A8/" title="虚拟容器Docker入门" class="md-nav__link">
       虚拟容器Docker入门
     </a>
   </li>
@@ -1092,7 +1097,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Blog/vscode%E5%AF%B9markdown%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/" title="vscode对markdown进行自动换行" class="md-nav__link">
+    <a href="../../Blog/vscode%E5%AF%B9markdown%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/" title="vscode对markdown进行自动换行" class="md-nav__link">
       vscode对markdown进行自动换行
     </a>
   </li>
@@ -1129,15 +1134,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a3c" class="md-nav__link">
-    A3C
+  <a href="#uthread-switching-between-threads" class="md-nav__link">
+    Uthread: switching between threads
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#acktr" class="md-nav__link">
-    ACKTR
+  <a href="#using-threads" class="md-nav__link">
+    Using threads
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#barrier" class="md-nav__link">
+    Barrier
   </a>
   
 </li>
@@ -1154,7 +1166,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/RL/papers/ACKTRandA2C.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/6.S081/Lab07-MultiThreading.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1162,38 +1174,93 @@
                   
                 
                 
-                <h1 id="openai-baseline-acktr-a2c">OpenAI Baseline: ACKTR &amp; A2C<a class="headerlink" href="#openai-baseline-acktr-a2c" title="Permanent link">&para;</a></h1>
-<p>这是一篇OpenAI的<a href="https://openai.com/blog/baselines-acktr-a2c/">博客</a>，介绍了一个添加了置信域的Actor-Critic框架的算法。它同时附带了一个Advantage Actor Critic(A2C)算法，对标DeepMind的Asynchronous Advantage Actor Critic算法。它自称A2C算法和A3C算法的表现差不多。（我不禁吐槽，异步更新算法显然比同步更新算法的适用范围更广才对。）接着阅读本文的由头，我们一次性搞清楚三个算法：A3C、A2C和ACKTR算法。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>不过我本人对使用随机策略梯度法构造的Actor-Critic框架的算法保持鄙视态度，因为对数函数使得这个两玩家的算法的纳什均衡点表现得很奇怪。我比较看好基于最优贝尔曼等式构造的Actor-Critic框架的算法，因为它的纳什均衡点就是最优策略。</p>
-</div>
-<h2 id="a3c">A3C<a class="headerlink" href="#a3c" title="Permanent link">&para;</a></h2>
-<p>在这篇论文里，作者自称提出了一个不使用经验池（Replay Buffer），而是通过分布式计算的方式，来保证每次使用的样本的多样性（我是比较吐槽这种说法的）。算法本身确实没有什么可以称道的地方，就是并行优化版本的策略梯度优化算法，并且是异步更新。</p>
-<h2 id="acktr">ACKTR<a class="headerlink" href="#acktr" title="Permanent link">&para;</a></h2>
-<p>这篇论文里，作者使用自然梯度法（类似TRPO）来更新策略函数，但是使用的是A3C和A2C的算法框架。与TRPO不同的是，它使用了A Kronecker-factored approximate Fisher matrix for convolutional layers中的技术来估计Fisher Matrix而不是共轭梯度法。所以这也是一篇应用文而已。</p>
-<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">mnih2016asynchronous</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{Asynchronous methods for deep reinforcement learning}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Mnih, Volodymyr and Badia, Adria Puigdomenech and Mirza, Mehdi and Graves, Alex and Lillicrap, Timothy and Harley, Tim and Silver, David and Kavukcuoglu, Koray}</span><span class="p">,</span>
-  <span class="na">booktitle</span><span class="p">=</span><span class="s">{International conference on machine learning}</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">=</span><span class="s">{1928--1937}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2016}</span>
-<span class="p">}</span>
-<span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">wu2017scalable</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{Scalable trust-region method for deep reinforcement learning using kronecker-factored approximation}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Wu, Yuhuai and Mansimov, Elman and Grosse, Roger B and Liao, Shun and Ba, Jimmy}</span><span class="p">,</span>
-  <span class="na">booktitle</span><span class="p">=</span><span class="s">{Advances in neural information processing systems}</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">=</span><span class="s">{5279--5288}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2017}</span>
-<span class="p">}</span>
-<span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">grosse2016kronecker</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{A kronecker-factored approximate fisher matrix for convolution layers}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Grosse, Roger and Martens, James}</span><span class="p">,</span>
-  <span class="na">booktitle</span><span class="p">=</span><span class="s">{International Conference on Machine Learning}</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">=</span><span class="s">{573--582}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2016}</span>
-<span class="p">}</span>
+                <h1 id="lab7-multithreading">Lab7: Multithreading<a class="headerlink" href="#lab7-multithreading" title="Permanent link">&para;</a></h1>
+<p>这个实验是为了熟悉多线程。在实验中我们将实现一个用户层级的多线程调度器，来加速进程的运行速度，并且实现一个<code>barrier</code>。 这一章需要阅读<code>xv6-book</code>第七章的内容。</p>
+<p>切换到本章实验的分支为：</p>
+<div class="highlight"><pre><span></span><code>git betch
+git checkout thread
+make clean
 </code></pre></div>
+
+<h2 id="uthread-switching-between-threads">Uthread: switching between threads<a class="headerlink" href="#uthread-switching-between-threads" title="Permanent link">&para;</a></h2>
+<p>本节要设计一个上下文切换机制（context switch mechanism）来实现一个用户层级的多线程系统。有两个关键的文件<code>user/uthread.c</code>和<code>user/uthread_switch.S</code>,并且在<code>Makefile</code>中构建了一个多线程程序。<code>uthread.c</code>包含大部分用户层级的多线程包，并且程序包含三个简单的线程测试程序。现在多线程包缺失了一些代码来创建和切换线程。</p>
+<div class="admonition 问题描述">
+<p class="admonition-title">问题描述</p>
+<p>补全代码来通过<code>uthread</code>测试。首先需要补全<code>user/thread.c</code>中的代码<code>thread_create()</code>和<code>thread_schedule()</code>，以及<code>user/uthread_switch.S</code>中的代码<code>thread_switch</code>。</p>
+<ul>
+<li>目标一：保证<code>thread_schedule()</code>执行第一次执行线程时，线程调用函数<code>thread_create()</code>，创建它自己的栈空间；</li>
+<li>目标二：保证<code>thread_switch</code>能够在切换线程时正确地保存寄存器，并且正确地恢复寄存器。这里可以修改<code>struct thread</code>来保存寄存器。在<code>thread_schedule</code>中需要调用<code>thread_switch</code>，最终实现从线程<code>t</code>切换到线程<code>next_thread</code>。</li>
+</ul>
+</div>
+<p>提示：</p>
+<ul>
+<li><code>thread_swtich</code>只需要保存<code>callee-save</code>寄存器；</li>
+<li>
+<p>Debug可以参考<code>user/uthread.asm</code>，具体方式是</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> file user/_uthread
+Reading symbols from user/_uthread...
+<span class="o">(</span>gdb<span class="o">)</span> b uthread.c:60
+</code></pre></div>
+
+<p>下面是一些<a href="https://sourceware.org/gdb/current/onlinedocs/gdb/">gdb</a>的命令</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> p/x *next_thread
+<span class="o">(</span>gdb<span class="o">)</span> x/x next_thread-&gt;stack
+<span class="o">(</span>gdb<span class="o">)</span> b thread_switch
+<span class="o">(</span>gdb<span class="o">)</span> c
+<span class="o">(</span>gdb<span class="o">)</span> si
+</code></pre></div>
+
+</li>
+</ul>
+<h2 id="using-threads">Using threads<a class="headerlink" href="#using-threads" title="Permanent link">&para;</a></h2>
+<p>在这一节将实现一个多线程编程，并且实现一个多线程哈希表。具体是使用UNIX的<code>pthread</code>多线程库。<code>man pthread</code>可以查看具体文档，或者查看网站文档<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_lock.html">here</a>,<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_init.html">here</a>,<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_create.html">here</a>。</p>
+<p><code>notxv6/ph.c</code>包含一个简单的哈希表，它在单线程运行时是正常的。具体编译方式是（使用本地编译器）</p>
+<div class="highlight"><pre><span></span><code>make ph
+./ph <span class="m">1</span>
+</code></pre></div>
+
+<p>也可以输入<code>./ph 2</code>来使用多核心来运行这个哈希表。</p>
+<div class="admonition 问题1">
+<p class="admonition-title">问题1</p>
+<p>为什么多线程会导致原本的程序报错。</p>
+</div>
+<div class="admonition 问题2">
+<p class="admonition-title">问题2</p>
+<p>加入多线程锁的声明</p>
+<div class="highlight"><pre><span></span><code><span class="n">pthread_mutex_t</span> <span class="n">lock</span><span class="p">;</span>            <span class="c1">// declare a lock</span>
+<span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> <span class="c1">// initialize the lock</span>
+<span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span>       <span class="c1">// acquire lock</span>
+<span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">);</span>     <span class="c1">// release lock</span>
+</code></pre></div>
+
+<p>这时<code>make grade</code>可以实现<code>ph_safe</code>测试。这样只会报<code>0</code>关键词缺失。</p>
+</div>
+<p>不要忘记调用<code>pthread_mutex_init()</code>。可以尝试为每个哈希桶单独分配一个锁来加速<code>put()</code>。</p>
+<div class="admonition 问题3">
+<p class="admonition-title">问题3</p>
+<p>修改<code>put</code>来保证多线程程序的正确性，运行<code>make grade</code>来通过<code>ph_safe</code>和<code>ph_fast</code>两个测试。</p>
+</div>
+<h2 id="barrier">Barrier<a class="headerlink" href="#barrier" title="Permanent link">&para;</a></h2>
+<p>实现一个函数<code>barrier</code>来使得所有线程同步到该函数。需要使用<code>pthread</code>条件变量，类似于<code>xv6</code>中的<code>sleep</code>和<code>wakeup</code>。本节的测试将在真实计算机上实现。具体执行如下</p>
+<div class="highlight"><pre><span></span><code>make barrier
+./barrier <span class="m">2</span>
+</code></pre></div>
+
+<div class="admonition 问题描述">
+<p class="admonition-title">问题描述</p>
+<p>我们的目标是实现<code>barrier</code>。具体包含一些<code>ph</code>题目中的锁，以及两个新的请求（具体可以参考<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_cond_wait.html">here</a>和<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_cond_broadcast.html">here</a>）</p>
+<div class="highlight"><pre><span></span><code><span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cond</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>  <span class="c1">// go to sleep on cond, releasing lock mutex, acquiring upon wake up</span>
+<span class="n">pthread_cond_broadcast</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cond</span><span class="p">);</span>     <span class="c1">// wake up every thread sleeping on cond</span>
+</code></pre></div>
+
+<p>最终通过<code>make grade</code>的测试<code>barrier</code>。</p>
+</div>
+<p>已经实现了<code>barrier_init()</code>和<code>struct barrier</code>。</p>
+<p>提示：</p>
+<ul>
+<li>核心是要同步<code>bstate.round</code>；</li>
+<li>需要注意循环中一个程序已经退出了，另一个程序还在等待的情况。保证进程在当前轮次更新<code>bstate.nthread</code>前，上一个轮次没有其他线程更新<code>bstate.nthread</code>。</li>
+</ul>
                 
                   
                     
@@ -1202,7 +1269,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年12月15日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年1月4日</span>
     
   </small>
 </div>
@@ -1225,7 +1292,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../EquivalenceBetweenPGandSQL/" title="Equivalence Between PG and SQL" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Xv6%E7%9A%84%E8%B5%B7%E5%A7%8B%E9%99%B7%E9%98%B1%E6%9C%BA%E5%88%B6/" title="Xv6的起始陷阱机制" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1234,19 +1301,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Equivalence Between PG and SQL
+                Xv6的起始陷阱机制
               </div>
             </div>
           </a>
         
         
-          <a href="../../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../Blog/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0/%E5%AD%90%E5%BC%B9%E7%AC%94%E8%AE%B0-docker/" title="docker" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                论文阅读摘要
+                docker
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -1273,15 +1340,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.92ffa368.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5123e3d4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../assets/javascripts/vendor.92ffa368.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5123e3d4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
-          base: "../../..",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.a68abb33.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
