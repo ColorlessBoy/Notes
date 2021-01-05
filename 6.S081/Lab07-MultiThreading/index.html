@@ -1194,7 +1194,7 @@ make clean
 </div>
 <p>提示：</p>
 <ul>
-<li><code>thread_swtich</code>只需要保存<code>callee-save</code>寄存器；</li>
+<li><code>thread_swtich</code>只需要保存<code>callee-save</code>寄存器；（原因请写在<code>answers-thread.txt</code>文件中）</li>
 <li>
 <p>Debug可以参考<code>user/uthread.asm</code>，具体方式是</p>
 <div class="highlight"><pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> file user/_uthread
@@ -1212,6 +1212,108 @@ Reading symbols from user/_uthread...
 
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>我发现这道实验题还需要两个提示：</p>
+<ul>
+<li><code>ra</code>寄存器是保存返回地址的寄存器，可以用于修改<code>uthread_shedule()</code>的返回地址；</li>
+<li><code>sp</code>寄存器保存的是栈地址，并且riscv的栈指针是从高地址往低地址更新的。</li>
+</ul>
+</div>
+<details class="参考答案"><summary>参考答案</summary><ol>
+<li>
+<p><code>uthread</code>结构体的定义，增加一个关于<code>context</code>的变量。</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">uthread_context</span> <span class="p">{</span>
+    <span class="n">uint64</span> <span class="n">ra</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">sp</span><span class="p">;</span>
+
+    <span class="c1">// callee-saved</span>
+    <span class="n">uint64</span> <span class="n">s0</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s1</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s2</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s3</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s4</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s5</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s6</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s7</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s8</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s9</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s10</span><span class="p">;</span>
+    <span class="n">uint64</span> <span class="n">s11</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="kr">thread</span> <span class="p">{</span>
+    <span class="kt">char</span>       <span class="n">stack</span><span class="p">[</span><span class="n">STACK_SIZE</span><span class="p">];</span> <span class="cm">/* the thread&#39;s stack */</span>
+    <span class="kt">int</span>        <span class="n">state</span><span class="p">;</span>             <span class="cm">/* FREE, RUNNING, RUNNABLE */</span>
+    <span class="k">struct</span> <span class="n">uthread_context</span> <span class="n">context</span><span class="p">;</span> <span class="cm">/* context for user thread */</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>更新<code>context</code>的函数<code>uthread_switch.S</code>和内核中的切换函数<code>swtch</code>一模一样。</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="n">globl</span> <span class="n">swtch</span>
+<span class="nl">swtch</span><span class="p">:</span>
+        <span class="n">sd</span> <span class="n">ra</span><span class="p">,</span> <span class="mi">0</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">sp</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s0</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s1</span><span class="p">,</span> <span class="mi">24</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s2</span><span class="p">,</span> <span class="mi">32</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s3</span><span class="p">,</span> <span class="mi">40</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s4</span><span class="p">,</span> <span class="mi">48</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s5</span><span class="p">,</span> <span class="mi">56</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s6</span><span class="p">,</span> <span class="mi">64</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s7</span><span class="p">,</span> <span class="mi">72</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s8</span><span class="p">,</span> <span class="mi">80</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s9</span><span class="p">,</span> <span class="mi">88</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s10</span><span class="p">,</span> <span class="mi">96</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">sd</span> <span class="n">s11</span><span class="p">,</span> <span class="mi">104</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+
+        <span class="n">ld</span> <span class="n">ra</span><span class="p">,</span> <span class="mi">0</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">sp</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s0</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s1</span><span class="p">,</span> <span class="mi">24</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s2</span><span class="p">,</span> <span class="mi">32</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s3</span><span class="p">,</span> <span class="mi">40</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s4</span><span class="p">,</span> <span class="mi">48</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s5</span><span class="p">,</span> <span class="mi">56</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s6</span><span class="p">,</span> <span class="mi">64</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s7</span><span class="p">,</span> <span class="mi">72</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s8</span><span class="p">,</span> <span class="mi">80</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s9</span><span class="p">,</span> <span class="mi">88</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s10</span><span class="p">,</span> <span class="mi">96</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+        <span class="n">ld</span> <span class="n">s11</span><span class="p">,</span> <span class="mi">104</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+
+        <span class="n">ret</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>核心难点就是<code>thread_create</code>函数的实现，对寄存器的更新需要一定的先验知识。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> 
+<span class="nf">thread_create</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)())</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="kr">thread</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">all_thread</span><span class="p">;</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">all_thread</span> <span class="o">+</span> <span class="n">MAX_THREAD</span><span class="p">;</span> <span class="n">t</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">==</span> <span class="n">FREE</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">RUNNABLE</span><span class="p">;</span>
+    <span class="c1">// YOUR CODE HERE</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">context</span><span class="p">.</span><span class="n">ra</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="n">func</span><span class="p">;</span>
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">context</span><span class="p">.</span><span class="n">sp</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint64</span><span class="p">)(</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">stack</span> <span class="o">+</span> <span class="n">STACK_SIZE</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>对<code>thread_schedule()</code>函数的补充就比较简单了，和内核中的多线程一样。</p>
+<div class="highlight"><pre><span></span><code><span class="n">thread_switch</span><span class="p">((</span><span class="n">uint64</span><span class="p">)</span><span class="o">&amp;</span><span class="n">t</span><span class="o">-&gt;</span><span class="n">context</span><span class="p">,</span> <span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="o">&amp;</span><span class="n">current_thread</span><span class="o">-&gt;</span><span class="n">context</span><span class="p">);</span>
+</code></pre></div>
+
+</li>
+</ol>
+</details>
 <h2 id="using-threads">Using threads<a class="headerlink" href="#using-threads" title="Permanent link">&para;</a></h2>
 <p>在这一节将实现一个多线程编程，并且实现一个多线程哈希表。具体是使用UNIX的<code>pthread</code>多线程库。<code>man pthread</code>可以查看具体文档，或者查看网站文档<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_lock.html">here</a>,<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_init.html">here</a>,<a href="https://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_create.html">here</a>。</p>
 <p><code>notxv6/ph.c</code>包含一个简单的哈希表，它在单线程运行时是正常的。具体编译方式是（使用本地编译器）</p>
@@ -1240,6 +1342,40 @@ Reading symbols from user/_uthread...
 <p class="admonition-title">问题3</p>
 <p>修改<code>put</code>来保证多线程程序的正确性，运行<code>make grade</code>来通过<code>ph_safe</code>和<code>ph_fast</code>两个测试。</p>
 </div>
+<details class="参考答案"><summary>参考答案</summary><ol>
+<li>两个线程交替运行<code>put</code>会造成<code>table</code>后面添加元素时后面的操作把前面的操作覆盖，所以造成关键词缺失；</li>
+<li>
+<p>首先在<code>user/ph.c:20</code>处声明线程锁</p>
+<div class="highlight"><pre><span></span><code><span class="n">pthread_mutex_t</span> <span class="n">lock</span><span class="p">[</span><span class="n">NBUCKET</span><span class="p">];</span>            <span class="c1">// declare a lock</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>接着修改<code>user/ph.c:put()</code>函数</p>
+<div class="highlight"><pre><span></span><code><span class="k">static</span> 
+<span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="n">NBUCKET</span><span class="p">;</span>
+
+    <span class="c1">// is the key already present?</span>
+    <span class="k">struct</span> <span class="n">entry</span> <span class="o">*</span><span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>       <span class="c1">// acquire lock</span>
+    <span class="c1">// ...</span>
+    <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>     <span class="c1">// release lock</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>最后在<code>user/ph.c:main()</code>中启动锁</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NBUCKET</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">NULL</span><span class="p">);</span> <span class="c1">// initialize the lock</span>
+</code></pre></div>
+
+</li>
+</ol>
+</details>
 <h2 id="barrier">Barrier<a class="headerlink" href="#barrier" title="Permanent link">&para;</a></h2>
 <p>实现一个函数<code>barrier</code>来使得所有线程同步到该函数。需要使用<code>pthread</code>条件变量，类似于<code>xv6</code>中的<code>sleep</code>和<code>wakeup</code>。本节的测试将在真实计算机上实现。具体执行如下</p>
 <div class="highlight"><pre><span></span><code>make barrier
@@ -1261,6 +1397,30 @@ Reading symbols from user/_uthread...
 <li>核心是要同步<code>bstate.round</code>；</li>
 <li>需要注意循环中一个程序已经退出了，另一个程序还在等待的情况。保证进程在当前轮次更新<code>bstate.nthread</code>前，上一个轮次没有其他线程更新<code>bstate.nthread</code>。</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>本实验题也是需要<code>pthread_mutex_lock</code>和<code>pthread_mutex_unlock</code>来防止产生死锁。</li>
+<li>本实验需要了解<code>pthread_cond_broadcast</code>和<code>pthread_cond_waint</code>两个函数的作用，尤其是wait，它关系到锁的解除和申请。网上稍微查点例程就搞明白了。</li>
+</ul>
+</div>
+<details class="参考答案"><summary>参考答案</summary><div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="kt">void</span> 
+<span class="nf">barrier</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bstate</span><span class="p">.</span><span class="n">barrier_mutex</span><span class="p">);</span>       <span class="c1">// acquire lock</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">bstate</span><span class="p">.</span><span class="n">nthread</span> <span class="o">==</span> <span class="n">nthread</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">bstate</span><span class="p">.</span><span class="n">nthread</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">bstate</span><span class="p">.</span><span class="n">round</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">pthread_cond_broadcast</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bstate</span><span class="p">.</span><span class="n">barrier_cond</span><span class="p">);</span>
+        <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bstate</span><span class="p">.</span><span class="n">barrier_mutex</span><span class="p">);</span> 
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bstate</span><span class="p">.</span><span class="n">barrier_cond</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bstate</span><span class="p">.</span><span class="n">barrier_mutex</span><span class="p">);</span>
+        <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bstate</span><span class="p">.</span><span class="n">barrier_mutex</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
                 
                   
                     
@@ -1269,7 +1429,7 @@ Reading symbols from user/_uthread...
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年1月4日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年1月5日</span>
     
   </small>
 </div>
