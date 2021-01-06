@@ -81,7 +81,8 @@ nav:
     - 论文:
       - Equivalence Between PG and SQL: RL/papers/EquivalenceBetweenPGandSQL.md
       - ACKTR & A2C: RL/papers/ACKTRandA2C.md
-    - 论文阅读摘要: RL/强化学习论文阅读摘要.md
+      - GAIL: RL/papers/GAIL.md
+      - 论文阅读摘要: RL/papers/强化学习论文阅读摘要.md
 
   - 算法:
     - 最长递增子序列: Algorithms/01-最长递增子序列.md

@@ -1,5 +1,14 @@
 # Equivalence Between Policy Gradient and Soft Q-Learning
 
+```bib
+@article{schulman2017equivalence,
+  title={Equivalence between policy gradients and soft q-learning},
+  author={Schulman, John and Chen, Xi and Abbeel, Pieter},
+  journal={arXiv preprint arXiv:1704.06440},
+  year={2017}
+}
+```
+
 [论文链接](https://arxiv.org/abs/1704.06440)
 
 这篇文章更像是Schulman的个人数学笔记，他这个人比较偏好数学推导。但是数学推导很容易让人陷入其中。人们往往最后发现强化学习的数学并不完备，而大受打击。这篇文章是挂在Arxiv上的小文章，尝试揭示Policy Gradient和Soft Q-Learning的关系，算是有一定的启发性。 我按照个人的习惯进行了重新的推导。
@@ -169,12 +178,3 @@ $$
 
 !!!Note
     $\hat Q(s, a; \theta_Q)$ 和第一次定义的$Q(s, a)$是统一的，不是后面定义的。也就是后面定义的$Q$函数少了起始项的交叉熵，这里$\hat Q(s, a)$补充回来了。
-
-```bib
-@article{schulman2017equivalence,
-  title={Equivalence between policy gradients and soft q-learning},
-  author={Schulman, John and Chen, Xi and Abbeel, Pieter},
-  journal={arXiv preprint arXiv:1704.06440},
-  year={2017}
-}
-```
