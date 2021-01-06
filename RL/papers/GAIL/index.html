@@ -19,7 +19,7 @@
     
     
       
-        <title>ACKTR & A2C - Notes</title>
+        <title>GAIL - Notes</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openai-baseline-acktr-a2c" class="md-skip">
+        <a href="#generative-adversarial-imitation-learning" class="md-skip">
           跳转至
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              ACKTR & A2C
+              GAIL
             
           </span>
         </div>
@@ -556,6 +556,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../ACKTRandA2C/" title="ACKTR & A2C" class="md-nav__link">
+      ACKTR & A2C
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -567,14 +579,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        ACKTR & A2C
+        GAIL
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="ACKTR & A2C" class="md-nav__link md-nav__link--active">
-      ACKTR & A2C
+    <a href="./" title="GAIL" class="md-nav__link md-nav__link--active">
+      GAIL
     </a>
     
       
@@ -593,15 +605,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a3c" class="md-nav__link">
-    A3C
+  <a href="#_1" class="md-nav__link">
+    定义符号
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#acktr" class="md-nav__link">
-    ACKTR
+  <a href="#_2" class="md-nav__link">
+    推导逆强化学习的最优策略
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gail" class="md-nav__link">
+    GAIL
   </a>
   
 </li>
@@ -610,18 +629,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../GAIL/" title="GAIL" class="md-nav__link">
-      GAIL
-    </a>
   </li>
 
         
@@ -1141,15 +1148,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a3c" class="md-nav__link">
-    A3C
+  <a href="#_1" class="md-nav__link">
+    定义符号
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#acktr" class="md-nav__link">
-    ACKTR
+  <a href="#_2" class="md-nav__link">
+    推导逆强化学习的最优策略
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gail" class="md-nav__link">
+    GAIL
   </a>
   
 </li>
@@ -1166,7 +1180,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/RL/papers/ACKTRandA2C.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/colorlessboy/Notes/edit/master/docs/RL/papers/GAIL.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1174,39 +1188,595 @@
                   
                 
                 
-                <h1 id="openai-baseline-acktr-a2c">OpenAI Baseline: ACKTR &amp; A2C<a class="headerlink" href="#openai-baseline-acktr-a2c" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">mnih2016asynchronous</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{Asynchronous methods for deep reinforcement learning}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Mnih, Volodymyr and Badia, Adria Puigdomenech and Mirza, Mehdi and Graves, Alex and Lillicrap, Timothy and Harley, Tim and Silver, David and Kavukcuoglu, Koray}</span><span class="p">,</span>
-  <span class="na">booktitle</span><span class="p">=</span><span class="s">{International conference on machine learning}</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">=</span><span class="s">{1928--1937}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2016}</span>
-<span class="p">}</span>
-<span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">wu2017scalable</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{Scalable trust-region method for deep reinforcement learning using kronecker-factored approximation}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Wu, Yuhuai and Mansimov, Elman and Grosse, Roger B and Liao, Shun and Ba, Jimmy}</span><span class="p">,</span>
-  <span class="na">booktitle</span><span class="p">=</span><span class="s">{Advances in neural information processing systems}</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">=</span><span class="s">{5279--5288}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2017}</span>
-<span class="p">}</span>
-<span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">grosse2016kronecker</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{A kronecker-factored approximate fisher matrix for convolution layers}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Grosse, Roger and Martens, James}</span><span class="p">,</span>
-  <span class="na">booktitle</span><span class="p">=</span><span class="s">{International Conference on Machine Learning}</span><span class="p">,</span>
-  <span class="na">pages</span><span class="p">=</span><span class="s">{573--582}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2016}</span>
+                <h1 id="generative-adversarial-imitation-learning">Generative Adversarial Imitation Learning<a class="headerlink" href="#generative-adversarial-imitation-learning" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">ho2016generative</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">=</span><span class="s">{Generative Adversarial Imitation Learning}</span><span class="p">,</span>
+    <span class="na">author</span><span class="p">=</span><span class="s">{Ho, Jonathan and Ermon, Stefano}</span><span class="p">,</span>
+    <span class="na">pages</span><span class="p">=</span><span class="s">{4565--4573}</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">=</span><span class="s">{2016}</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>这是一篇OpenAI的<a href="https://openai.com/blog/baselines-acktr-a2c/">博客</a>，介绍了一个添加了置信域的Actor-Critic框架的算法。它同时附带了一个Advantage Actor Critic(A2C)算法，对标DeepMind的Asynchronous Advantage Actor Critic算法。它自称A2C算法和A3C算法的表现差不多。（我不禁吐槽，异步更新算法显然比同步更新算法的适用范围更广才对。）接着阅读本文的由头，我们一次性搞清楚三个算法：A3C、A2C和ACKTR算法。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>不过我本人对使用随机策略梯度法构造的Actor-Critic框架的算法保持鄙视态度，因为对数函数使得这个两玩家的算法的纳什均衡点表现得很奇怪。我比较看好基于最优贝尔曼等式构造的Actor-Critic框架的算法，因为它的纳什均衡点就是最优策略。</p>
+<p><a href="https://arxiv.org/pdf/1606.03476.pdf">论文链接</a></p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>本文介绍了一个非常有名的模仿学习算法GAIL。我做这篇论文的笔记，主要是比较看中这篇文章对逆强化学习数学问题的描述与分析。虽然它本身的GAIL算法和GAN算法如出一辙，但是文章本身的分析对我理解逆强化学习问题帮助比较大。</p>
 </div>
-<h2 id="a3c">A3C<a class="headerlink" href="#a3c" title="Permanent link">&para;</a></h2>
-<p>在这篇论文里，作者自称提出了一个不使用经验池（Replay Buffer），而是通过分布式计算的方式，来保证每次使用的样本的多样性（我是比较吐槽这种说法的）。算法本身确实没有什么可以称道的地方，就是并行优化版本的策略梯度优化算法，并且是异步更新。</p>
-<h2 id="acktr">ACKTR<a class="headerlink" href="#acktr" title="Permanent link">&para;</a></h2>
-<p>这篇论文里，作者使用自然梯度法（类似TRPO）来更新策略函数，但是使用的是A3C和A2C的算法框架。与TRPO不同的是，它使用了A Kronecker-factored approximate Fisher matrix for convolutional layers中的技术来估计Fisher Matrix而不是共轭梯度法。所以这也是一篇应用文而已。</p>
+<h2 id="_1">定义符号<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition 定义">
+<p class="admonition-title">定义</p>
+<p>（ <strong>逆强化学习</strong> ， Inverse Reinforcement Learning） 设马尔可夫决策问题<span><span class="MathJax_Preview">\mathcal{MDP}=\{\mathcal{S}, \mathcal{A}, p_0, p, \gamma, C\}</span><script type="math/tex">\mathcal{MDP}=\{\mathcal{S}, \mathcal{A}, p_0, p, \gamma, C\}</script></span> （<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>是损失函数），以及专家策略<span><span class="MathJax_Preview">\pi_E</span><script type="math/tex">\pi_E</script></span>，那么逆强化学习需要求解如下问题：</p>
+<div>
+<div class="MathJax_Preview">
+\tag{1}\label{equ:irl}
+\max_{c \in \mathcal{C}} \bigg(\min_{\pi \in \Pi} \rho(\pi)\bigg) - \rho(\pi_E).
+</div>
+<script type="math/tex; mode=display">
+\tag{1}\label{equ:irl}
+\max_{c \in \mathcal{C}} \bigg(\min_{\pi \in \Pi} \rho(\pi)\bigg) - \rho(\pi_E).
+</script>
+</div>
+<p>或者添加与策略的熵有关的正则项</p>
+<div>
+<div class="MathJax_Preview">
+\tag{2}\label{equ:irl-entropy}
+\max_{c \in \mathcal{C}} \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E).
+</div>
+<script type="math/tex; mode=display">
+\tag{2}\label{equ:irl-entropy}
+\max_{c \in \mathcal{C}} \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E).
+</script>
+</div>
+<p>其中<span><span class="MathJax_Preview">H(\pi) = \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi)}[-\int_{a}\pi(a \vert s) \ln \pi(a \vert s) \mathrm{d} a ]</span><script type="math/tex">H(\pi) = \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi)}[-\int_{a}\pi(a \vert s) \ln \pi(a \vert s) \mathrm{d} a ]</script></span>。</p>
+<p>或者添加与奖励函数有关的正则项</p>
+<div>
+<div class="MathJax_Preview">
+\tag{3}\label{equ:irl-entropy-psi}
+\max_{c \in \mathcal{C}} -\psi(c) + \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E).
+</div>
+<script type="math/tex; mode=display">
+\tag{3}\label{equ:irl-entropy-psi}
+\max_{c \in \mathcal{C}} -\psi(c) + \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E).
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">\psi(c)</span><script type="math/tex">\psi(c)</script></span> 是关于<span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span>的凸函数。</p>
+</div>
+<p>同时，我们定义符号</p>
+<div>
+<div class="MathJax_Preview">
+\tag{4}
+IRL_{\psi}(\pi_E) = \arg\max_{c \in \mathcal{C}} -\psi(c) + \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E),
+</div>
+<script type="math/tex; mode=display">
+\tag{4}
+IRL_{\psi}(\pi_E) = \arg\max_{c \in \mathcal{C}} -\psi(c) + \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E),
+</script>
+</div>
+<p>以及</p>
+<div>
+<div class="MathJax_Preview">
+\tag{5}
+RL(c) = \arg\min_{\pi \in \Pi} -H(\pi) + \mathbb{E}_{\pi}[c(s, a)].
+</div>
+<script type="math/tex; mode=display">
+\tag{5}
+RL(c) = \arg\min_{\pi \in \Pi} -H(\pi) + \mathbb{E}_{\pi}[c(s, a)].
+</script>
+</div>
+<h2 id="_2">推导逆强化学习的最优策略<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>首先回忆强化学习策略值函数为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+\rho(\pi) =&amp; \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)}\bigg[(1 - \gamma) \sum^{\infty}_{t=0} \gamma^t c(s_t, a_t) \bigg]\\
+=&amp; \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s; \pi)}[c(s, a)]\\
+=&amp; \sum_{s, a} p_{\gamma}(s, a; \pi) c(s, a).
+\end{aligned}
+\tag{6}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\rho(\pi) =& \mathbb{E}_{\tau \sim \mathcal{MDP}(\pi)}\bigg[(1 - \gamma) \sum^{\infty}_{t=0} \gamma^t c(s_t, a_t) \bigg]\\
+=& \mathbb{E}_{s \sim p_{\gamma}(\cdot; \pi), a \sim \pi(\cdot \vert s; \pi)}[c(s, a)]\\
+=& \sum_{s, a} p_{\gamma}(s, a; \pi) c(s, a).
+\end{aligned}
+\tag{6}
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">p_{\gamma}(s; \pi) = (1 - \gamma) \sum^{\infty}_{t=0}\gamma^t p_t(s; \pi)</span><script type="math/tex">p_{\gamma}(s; \pi) = (1 - \gamma) \sum^{\infty}_{t=0}\gamma^t p_t(s; \pi)</script></span>， 以及<span><span class="MathJax_Preview">p_{\gamma}(s, a; \pi) = p_{\gamma}(s; \pi) \pi(a \vert s)</span><script type="math/tex">p_{\gamma}(s, a; \pi) = p_{\gamma}(s; \pi) \pi(a \vert s)</script></span>。联合分布<span><span class="MathJax_Preview">p_{\gamma}(s, a; \pi)</span><script type="math/tex">p_{\gamma}(s, a; \pi)</script></span>也被叫做关于<span><span class="MathJax_Preview">\pi</span><script type="math/tex">\pi</script></span>的 <strong>occupancy measures</strong>。</p>
+<div class="admonition 定理">
+<p class="admonition-title">定理</p>
+<p>设两个集合</p>
+<div>
+<div class="MathJax_Preview">
+\tag{7}
+\mathcal{D}_1 = \{p_{\gamma}(s, a; \pi) : \pi \in \Pi\},
+</div>
+<script type="math/tex; mode=display">
+\tag{7}
+\mathcal{D}_1 = \{p_{\gamma}(s, a; \pi) : \pi \in \Pi\},
+</script>
+</div>
+<p>以及</p>
+<div>
+<div class="MathJax_Preview">
+\tag{8}
+\mathcal{D}_2 = \bigg\{p(s, a):  \sum_a p(s, a) = (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p(s', a')\bigg\}.
+</div>
+<script type="math/tex; mode=display">
+\tag{8}
+\mathcal{D}_2 = \bigg\{p(s, a):  \sum_a p(s, a) = (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p(s', a')\bigg\}.
+</script>
+</div>
+<p>那么 <span><span class="MathJax_Preview">\mathcal{D}_1</span><script type="math/tex">\mathcal{D}_1</script></span> 和 <span><span class="MathJax_Preview">\mathcal{D}_2</span><script type="math/tex">\mathcal{D}_2</script></span> 之间存在一个双射关系。</p>
+</div>
+<details class="证明"><summary>证明</summary><ol>
+<li>
+<p>对于任意的<span><span class="MathJax_Preview">p_{\gamma}(s, a; \pi) \in \mathcal{D}_1</span><script type="math/tex">p_{\gamma}(s, a; \pi) \in \mathcal{D}_1</script></span>满足<span><span class="MathJax_Preview">p_{\gamma}(s, a; \pi) \in \mathcal{D}_2</span><script type="math/tex">p_{\gamma}(s, a; \pi) \in \mathcal{D}_2</script></span>， 即 <span><span class="MathJax_Preview">\mathcal{D}_1 \subseteq \mathcal{D}_2</span><script type="math/tex">\mathcal{D}_1 \subseteq \mathcal{D}_2</script></span>。任意<span><span class="MathJax_Preview">p_{\gamma}(s, a; \pi) \in \mathcal{D}_1</span><script type="math/tex">p_{\gamma}(s, a; \pi) \in \mathcal{D}_1</script></span>， 可以被带入<span><span class="MathJax_Preview">\mathcal{D}_2</span><script type="math/tex">\mathcal{D}_2</script></span>的条件</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+&amp; (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p_{\gamma}(s, a; \pi) \\
+=&amp; (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') (1 - \gamma) \sum^{\infty}_{t=0} \gamma^t p_t(s; \pi) \\
+=&amp; (1 - \gamma) p_0(s) + (1 - \gamma) \sum^{\infty}_{t=0} \gamma^{t+1} p_{t+1}(s; \pi) \\
+=&amp; (1 - \gamma) \sum^{\infty}_{t=0} \gamma^{t} p_{t}(s; \pi).
+\end{aligned}
+\tag{9}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p_{\gamma}(s, a; \pi) \\
+=& (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') (1 - \gamma) \sum^{\infty}_{t=0} \gamma^t p_t(s; \pi) \\
+=& (1 - \gamma) p_0(s) + (1 - \gamma) \sum^{\infty}_{t=0} \gamma^{t+1} p_{t+1}(s; \pi) \\
+=& (1 - \gamma) \sum^{\infty}_{t=0} \gamma^{t} p_{t}(s; \pi).
+\end{aligned}
+\tag{9}
+</script>
+</div>
+</li>
+<li>
+<p>接着证明<span><span class="MathJax_Preview">\mathcal{D}_2 \subseteq \mathcal{D}_1</span><script type="math/tex">\mathcal{D}_2 \subseteq \mathcal{D}_1</script></span>。对于任意的<span><span class="MathJax_Preview">p(s, a) \in \mathcal{D}_2</span><script type="math/tex">p(s, a) \in \mathcal{D}_2</script></span>， 人为定义和它相关的分布</p>
+<div>
+<div class="MathJax_Preview">
+p(s) = \sum_{a} p(s, a),
+\tag{10}
+</div>
+<script type="math/tex; mode=display">
+p(s) = \sum_{a} p(s, a),
+\tag{10}
+</script>
+</div>
+<p>以及策略</p>
+<div>
+<div class="MathJax_Preview">
+\pi_p(a \vert s) = \frac{p(s, a)}{\sum_{a'} p(s, a')}.
+\tag{11}
+</div>
+<script type="math/tex; mode=display">
+\pi_p(a \vert s) = \frac{p(s, a)}{\sum_{a'} p(s, a')}.
+\tag{11}
+</script>
+</div>
+<p>那么</p>
+<div>
+<div class="MathJax_Preview">
+p(s) = (1 - \gamma)p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') \pi_p(a' \vert s') p(s').
+\tag{12}
+</div>
+<script type="math/tex; mode=display">
+p(s) = (1 - \gamma)p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') \pi_p(a' \vert s') p(s').
+\tag{12}
+</script>
+</div>
+<p>写成矩阵的形式可得</p>
+<div>
+<div class="MathJax_Preview">
+\mathbf{p}^T = (1 - \gamma)\mathbf{p}^T_0 + \gamma \mathbf{p}^T \mathbf{P}^{\pi_p}.
+\tag{13}
+</div>
+<script type="math/tex; mode=display">
+\mathbf{p}^T = (1 - \gamma)\mathbf{p}^T_0 + \gamma \mathbf{p}^T \mathbf{P}^{\pi_p}.
+\tag{13}
+</script>
+</div>
+<p>其中<span><span class="MathJax_Preview">\mathbf{P}^{\pi_p}_{ij} = \sum_{a'} p(s_j \vert s'_i, a') \pi(a' \vert s'_i)</span><script type="math/tex">\mathbf{P}^{\pi_p}_{ij} = \sum_{a'} p(s_j \vert s'_i, a') \pi(a' \vert s'_i)</script></span>。求解可得</p>
+<div>
+<div class="MathJax_Preview">
+\mathbf{p}^T = (1 - \gamma)\mathbf{p}^T_0 (I - \gamma \mathbf{P}^{\pi_p})^{-1} = (1 - \gamma) \mathbf{p}^T_0 \sum^{\infty}_{t=0} (\gamma \mathbf{P}^{\pi_p})^{t}.
+\tag{13}
+</div>
+<script type="math/tex; mode=display">
+\mathbf{p}^T = (1 - \gamma)\mathbf{p}^T_0 (I - \gamma \mathbf{P}^{\pi_p})^{-1} = (1 - \gamma) \mathbf{p}^T_0 \sum^{\infty}_{t=0} (\gamma \mathbf{P}^{\pi_p})^{t}.
+\tag{13}
+</script>
+</div>
+<p>写回到泛化形式可得</p>
+<div>
+<div class="MathJax_Preview">
+p(s) = (1 - \gamma) \sum^{\infty}_{t=0} \gamma^t p_t(s; \pi_p) = p_{\gamma}(s; \pi_p).
+\tag{14}
+</div>
+<script type="math/tex; mode=display">
+p(s) = (1 - \gamma) \sum^{\infty}_{t=0} \gamma^t p_t(s; \pi_p) = p_{\gamma}(s; \pi_p).
+\tag{14}
+</script>
+</div>
+</li>
+</ol>
+</details>
+<div class="admonition 性质">
+<p class="admonition-title">性质</p>
+<p><span><span class="MathJax_Preview">\mathcal{D}_2</span><script type="math/tex">\mathcal{D}_2</script></span>是一个凸集合。</p>
+</div>
+<details class="证明"><summary>证明</summary><p>对于任意的<span><span class="MathJax_Preview">p_A(s, a) \in \mathcal{D}_2</span><script type="math/tex">p_A(s, a) \in \mathcal{D}_2</script></span>和<span><span class="MathJax_Preview">p_B(s, a) \in \mathcal{D}_2</span><script type="math/tex">p_B(s, a) \in \mathcal{D}_2</script></span>，</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+&amp;\sum_a [\lambda p_A(s, a) + (1 - \lambda) p_B(s, a)] \\
+=&amp; \lambda \bigg[(1 - \gamma)p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p_A(s', a')\bigg] \\
+&amp; + (1 - \lambda) \bigg[(1 - \gamma)p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p_B(s', a')\bigg] \\
+=&amp; (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a')[\lambda p_A(s', a') + (1 - \lambda)p_B(s', a')].
+\end{aligned}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\sum_a [\lambda p_A(s, a) + (1 - \lambda) p_B(s, a)] \\
+=& \lambda \bigg[(1 - \gamma)p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p_A(s', a')\bigg] \\
+& + (1 - \lambda) \bigg[(1 - \gamma)p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a') p_B(s', a')\bigg] \\
+=& (1 - \gamma) p_0(s) + \gamma \sum_{s', a'} p(s \vert s', a')[\lambda p_A(s', a') + (1 - \lambda)p_B(s', a')].
+\end{aligned}
+</script>
+</div>
+<p>所以 <span><span class="MathJax_Preview">\lambda p_A(s, a) + (1 - \lambda) p_B(s, a)] \in \mathcal{D}_2</span><script type="math/tex">\lambda p_A(s, a) + (1 - \lambda) p_B(s, a)] \in \mathcal{D}_2</script></span>。综上<span><span class="MathJax_Preview">\mathcal{D}_2</span><script type="math/tex">\mathcal{D}_2</script></span>是一个凸集。</p>
+</details>
+<div class="admonition 定理">
+<p class="admonition-title">定理</p>
+<p>如果<span><span class="MathJax_Preview">\psi(c)</span><script type="math/tex">\psi(c)</script></span>是一个关于<span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span>的凸函数，并且<span><span class="MathJax_Preview">\mathcal{C}</span><script type="math/tex">\mathcal{C}</script></span>是一个凸集，那么</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+RL \circ IRL_{\psi}(\pi_E) =&amp; \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma}(s, a;\pi) - p_{\gamma}(s, a;\pi_E)]c(s, a) - \psi(c)\\
+=&amp; \arg\min_{\pi\in\Pi} -\alpha H(\pi) + \psi^*(p_{\gamma,\pi} - p_{\gamma,\pi_E}).
+\end{aligned}
+\tag{15}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+RL \circ IRL_{\psi}(\pi_E) =& \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma}(s, a;\pi) - p_{\gamma}(s, a;\pi_E)]c(s, a) - \psi(c)\\
+=& \arg\min_{\pi\in\Pi} -\alpha H(\pi) + \psi^*(p_{\gamma,\pi} - p_{\gamma,\pi_E}).
+\end{aligned}
+\tag{15}
+</script>
+</div>
+</div>
+<details class="证明"><summary>证明</summary><p>首先原问题为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+RL \circ IRL_{\psi}(\pi_E) =&amp; \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} -\psi(c) + \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E)\\
+=&amp; \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} -\alpha H(\pi) + \sum_{s, a} [p_{\gamma}(s, a; \pi) - p_{\gamma}(s, a; \pi_E)]c(s, a) -\psi(c)\\
+:=&amp; \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} L(c, \pi). 
+\end{aligned}
+\tag{16}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+RL \circ IRL_{\psi}(\pi_E) =& \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} -\psi(c) + \bigg(-\alpha H(\pi) + \min_{\pi \in \Pi} \rho(\pi) \bigg) - \rho(\pi_E)\\
+=& \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} -\alpha H(\pi) + \sum_{s, a} [p_{\gamma}(s, a; \pi) - p_{\gamma}(s, a; \pi_E)]c(s, a) -\psi(c)\\
+:=& \arg\min_{\pi\in\Pi}\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} L(c, \pi). 
+\end{aligned}
+\tag{16}
+</script>
+</div>
+<p>我们如果能够证明</p>
+<div>
+<div class="MathJax_Preview">
+\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} L(c, \pi) 
+= \min_{\pi \in \Pi} \max_{c \in \mathcal{C}} L(c, \pi),
+\tag{17}
+</div>
+<script type="math/tex; mode=display">
+\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} L(c, \pi) 
+= \min_{\pi \in \Pi} \max_{c \in \mathcal{C}} L(c, \pi),
+\tag{17}
+</script>
+</div>
+<p>那么我们就完成了定理的证明。</p>
+<ol>
+<li>
+<p>第一步是构造一个等价问题</p>
+<div>
+<div class="MathJax_Preview">
+\max_{c \in \mathcal{C}} \min_{p \in \mathcal{D}_2} L(c, p) =  -\alpha H(p) + \sum_{s, a} [p(s, a) - p_{\gamma}(s, a; \pi_E)]c(s, a) -\psi(c),\\
+\tag{18}
+</div>
+<script type="math/tex; mode=display">
+\max_{c \in \mathcal{C}} \min_{p \in \mathcal{D}_2} L(c, p) =  -\alpha H(p) + \sum_{s, a} [p(s, a) - p_{\gamma}(s, a; \pi_E)]c(s, a) -\psi(c),\\
+\tag{18}
+</script>
+</div>
+<p>其中</p>
+<div>
+<div class="MathJax_Preview">
+H(p) = - \int_{s, a} p(s, a) \ln \frac{p(s, a)}{\sum_{a'} p(s, a')}\mathrm{d} s \mathrm{d}a.
+\tag{19}
+</div>
+<script type="math/tex; mode=display">
+H(p) = - \int_{s, a} p(s, a) \ln \frac{p(s, a)}{\sum_{a'} p(s, a')}\mathrm{d} s \mathrm{d}a.
+\tag{19}
+</script>
+</div>
+<p>已知<span><span class="MathJax_Preview">p(s, a) \in \mathcal{D}_2</span><script type="math/tex">p(s, a) \in \mathcal{D}_2</script></span>是策略<span><span class="MathJax_Preview">\pi_p(s, a) = p(s, a) / \sum_{a'}p(s, a')</span><script type="math/tex">\pi_p(s, a) = p(s, a) / \sum_{a'}p(s, a')</script></span>的 <strong>occupancy measure</strong>。所以我们可以证明<span><span class="MathJax_Preview">H(p) = H(\pi_p)</span><script type="math/tex">H(p) = H(\pi_p)</script></span>，</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+H(p) =&amp; - \int_{s, a} p(s, a) \ln \frac{p(s, a)}{\sum_{a'} p(s, a')}\mathrm{d} s \mathrm{d}a \\
+=&amp; - \int_{s, a} p_{\gamma}(s; \pi_p) \pi_p(a \vert s) \ln \pi_p(a \vert s) \mathrm{d} a \mathrm{d}s \\
+=&amp; H(\pi_p).
+\end{aligned}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+H(p) =& - \int_{s, a} p(s, a) \ln \frac{p(s, a)}{\sum_{a'} p(s, a')}\mathrm{d} s \mathrm{d}a \\
+=& - \int_{s, a} p_{\gamma}(s; \pi_p) \pi_p(a \vert s) \ln \pi_p(a \vert s) \mathrm{d} a \mathrm{d}s \\
+=& H(\pi_p).
+\end{aligned}
+</script>
+</div>
+<p>所以</p>
+<div>
+<div class="MathJax_Preview">
+L(c, \pi_p) = L(c, p).
+\tag{20}
+</div>
+<script type="math/tex; mode=display">
+L(c, \pi_p) = L(c, p).
+\tag{20}
+</script>
+</div>
+<p>同时也就很容易得到结论</p>
+<div>
+<div class="MathJax_Preview">
+\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} L(c, \pi_p) = 
+\max_{c \in \mathcal{C}} \min_{p \in \mathcal{D}_2} L(c, p).
+\tag{21}
+</div>
+<script type="math/tex; mode=display">
+\max_{c \in \mathcal{C}} \min_{\pi \in \Pi} L(c, \pi_p) = 
+\max_{c \in \mathcal{C}} \min_{p \in \mathcal{D}_2} L(c, p).
+\tag{21}
+</script>
+</div>
+</li>
+<li>
+<p>我们接着证明第二步强对偶性。</p>
+<div>
+<div class="MathJax_Preview">
+\max_{c \in \mathcal{C}} \min_{p \in \mathcal{D}_2} L(c, p) =
+\min_{p \in \mathcal{D}_2} \max_{c \in \mathcal{C}} L(c, p).
+\tag{22}
+</div>
+<script type="math/tex; mode=display">
+\max_{c \in \mathcal{C}} \min_{p \in \mathcal{D}_2} L(c, p) =
+\min_{p \in \mathcal{D}_2} \max_{c \in \mathcal{C}} L(c, p).
+\tag{22}
+</script>
+</div>
+<p>我们如果能够得到<span><span class="MathJax_Preview">L(c, p)</span><script type="math/tex">L(c, p)</script></span>关于<span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span>是一个凹函数（concave），并且关于<span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span>是一个凸函数即可，再结合条件<span><span class="MathJax_Preview">\mathcal{C}</span><script type="math/tex">\mathcal{C}</script></span>和<span><span class="MathJax_Preview">\mathcal{D}_2</span><script type="math/tex">\mathcal{D}_2</script></span>都是凸集。我们可以利用鞍点的性质就可以得到强对偶性。</p>
+<p>所需要的条件只差一个<span><span class="MathJax_Preview">L(c, p)</span><script type="math/tex">L(c, p)</script></span>关于<span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span>是凸函数的证明，即证明<span><span class="MathJax_Preview">-H(p)</span><script type="math/tex">-H(p)</script></span>是一个凸函数，</p>
+<div>
+<div class="MathJax_Preview">
+-H(p) = \sum_{s, a} p(s, a) \ln \frac{p(s, a)}{\sum_{a'}p(s, a')}.
+\tag{23}
+</div>
+<script type="math/tex; mode=display">
+-H(p) = \sum_{s, a} p(s, a) \ln \frac{p(s, a)}{\sum_{a'}p(s, a')}.
+\tag{23}
+</script>
+</div>
+<div class="admonition 辅助定理">
+<p class="admonition-title">辅助定理</p>
+<div>
+<div class="MathJax_Preview">
+\sum_{i} a_i \log \frac{a_i}{b_i} \ge \bigg(\sum_i a_i\bigg) \ln \frac{\sum_i a_i}{\sum_i b_i}.
+\tag{24}
+</div>
+<script type="math/tex; mode=display">
+\sum_{i} a_i \log \frac{a_i}{b_i} \ge \bigg(\sum_i a_i\bigg) \ln \frac{\sum_i a_i}{\sum_i b_i}.
+\tag{24}
+</script>
+</div>
+</div>
+<details class="证明"><summary>证明</summary><p>根据Jensen Inequality：设<span><span class="MathJax_Preview">\alpha_i \ge 0</span><script type="math/tex">\alpha_i \ge 0</script></span>，<span><span class="MathJax_Preview">\sum_i \alpha_i = 1</span><script type="math/tex">\sum_i \alpha_i = 1</script></span> 以及 <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span>是凸函数，那么</p>
+<div>
+<div class="MathJax_Preview">
+    \sum_i \alpha_i f(t_i) \ge f\bigg(\sum_i \alpha_i t_i\bigg).
+    \tag{25}
+</div>
+<script type="math/tex; mode=display">
+    \sum_i \alpha_i f(t_i) \ge f\bigg(\sum_i \alpha_i t_i\bigg).
+    \tag{25}
+</script>
+</div>
+<p>令 <span><span class="MathJax_Preview">\alpha_i = \frac{b_i}{\sum_j b_j}</span><script type="math/tex">\alpha_i = \frac{b_i}{\sum_j b_j}</script></span>， <span><span class="MathJax_Preview">t_i = \frac{a_i}{b_i}</span><script type="math/tex">t_i = \frac{a_i}{b_i}</script></span> 以及<span><span class="MathJax_Preview">f(t) = t \ln t</span><script type="math/tex">f(t) = t \ln t</script></span>可得</p>
+<div>
+<div class="MathJax_Preview">
+\sum_i \frac{b_i}{\sum_j b_j} \frac{a_i}{b_i} \ln \frac{a_i}{b_i}
+\ge \sum_{i} \frac{a_i}{\sum_j b_j} \ln \sum_i \frac{a_i}{\sum_j b_j}.
+\tag{26}
+</div>
+<script type="math/tex; mode=display">
+\sum_i \frac{b_i}{\sum_j b_j} \frac{a_i}{b_i} \ln \frac{a_i}{b_i}
+\ge \sum_{i} \frac{a_i}{\sum_j b_j} \ln \sum_i \frac{a_i}{\sum_j b_j}.
+\tag{26}
+</script>
+</div>
+<p>化简可得引理。</p>
+</details>
+<p>所以对于任意的<span><span class="MathJax_Preview">p_A(s, a)</span><script type="math/tex">p_A(s, a)</script></span>和<span><span class="MathJax_Preview">p_B(s, a)</span><script type="math/tex">p_B(s, a)</script></span>可得</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+&amp;H[\lambda p_A + (1 - \lambda)p_B]\\
+=&amp;[\lambda p_A(s, a) + (1 - \lambda) p_B(s, a)] \ln \frac{\lambda p_A(s, a) + (1 - \lambda)p_B(s, a)}{\sum_{a'} [\lambda p_A(s, a') + (1 - \lambda) p_B(s, a')]} \\
+\le&amp; \lambda p_A(s, a) \ln \frac{\lambda p_A(s, a)}{\sum_{a'}\lambda p_A(s, a)} + (1 - \lambda) p_B(s, a) \ln \frac{(1 - \lambda) p_B(s, a)}{\sum_{a'} (1 - \lambda) p_B(s, a)} \\
+=&amp; \lambda H(p_A) + (1 - \lambda) H(p_B).
+\end{aligned}
+\tag{27}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&H[\lambda p_A + (1 - \lambda)p_B]\\
+=&[\lambda p_A(s, a) + (1 - \lambda) p_B(s, a)] \ln \frac{\lambda p_A(s, a) + (1 - \lambda)p_B(s, a)}{\sum_{a'} [\lambda p_A(s, a') + (1 - \lambda) p_B(s, a')]} \\
+\le& \lambda p_A(s, a) \ln \frac{\lambda p_A(s, a)}{\sum_{a'}\lambda p_A(s, a)} + (1 - \lambda) p_B(s, a) \ln \frac{(1 - \lambda) p_B(s, a)}{\sum_{a'} (1 - \lambda) p_B(s, a)} \\
+=& \lambda H(p_A) + (1 - \lambda) H(p_B).
+\end{aligned}
+\tag{27}
+</script>
+</div>
+</li>
+<li>
+<p>再使用对偶空间可得</p>
+</li>
+</ol>
+<div>
+<div class="MathJax_Preview">
+    \min_{p \in \mathcal{D}_2} \max_{c \in \mathcal{C}} L(c, p)
+    = \min_{\pi \in \Pi} \max_{c \in \mathcal{C}} L(c, p).
+    \tag{28}
+</div>
+<script type="math/tex; mode=display">
+    \min_{p \in \mathcal{D}_2} \max_{c \in \mathcal{C}} L(c, p)
+    = \min_{\pi \in \Pi} \max_{c \in \mathcal{C}} L(c, p).
+    \tag{28}
+</script>
+</div>
+<p>综合以上三个结论，我们得到强对偶性，即定理的结论。</p>
+</details>
+<div class="admonition 推论">
+<p class="admonition-title">推论</p>
+<p>当<span><span class="MathJax_Preview">\psi(c)</span><script type="math/tex">\psi(c)</script></span>是一个常数，并且<span><span class="MathJax_Preview">\mathcal{C} = \mathbb{R}^{\vert \mathcal{S} \times \mathcal{A}\vert}</span><script type="math/tex">\mathcal{C} = \mathbb{R}^{\vert \mathcal{S} \times \mathcal{A}\vert}</script></span>时，<span><span class="MathJax_Preview">p^* = p_E</span><script type="math/tex">p^* = p_E</script></span>。</p>
+</div>
+<details class="证明"><summary>证明</summary><p>当<span><span class="MathJax_Preview">\psi(c)</span><script type="math/tex">\psi(c)</script></span>是一个常数时，求解问题变成</p>
+<div>
+<div class="MathJax_Preview">
+\min_{p \in \mathcal{D}_2}\max_{c \in \mathcal{C}} -\alpha H(p) + \sum_{s, a}[p(s, a) - p_{\gamma}(s, a;\pi_E)]c(s, a).
+\tag{29}
+</div>
+<script type="math/tex; mode=display">
+\min_{p \in \mathcal{D}_2}\max_{c \in \mathcal{C}} -\alpha H(p) + \sum_{s, a}[p(s, a) - p_{\gamma}(s, a;\pi_E)]c(s, a).
+\tag{29}
+</script>
+</div>
+<p>它的等价问题为</p>
+<div>
+<div class="MathJax_Preview">
+\min_{p \in \mathcal{D}_2} -\alpha H(p),\quad s.t.\quad
+p(s, a) = p_{\gamma}(s, a;\pi_E), \forall (s, a) \in \mathcal{S} \times \mathcal{A}.
+\tag{30}
+</div>
+<script type="math/tex; mode=display">
+\min_{p \in \mathcal{D}_2} -\alpha H(p),\quad s.t.\quad
+p(s, a) = p_{\gamma}(s, a;\pi_E), \forall (s, a) \in \mathcal{S} \times \mathcal{A}.
+\tag{30}
+</script>
+</div>
+</details>
+<h2 id="gail">GAIL<a class="headerlink" href="#gail" title="Permanent link">&para;</a></h2>
+<p>总结一下，到目前为止逆强化学习（模仿学习，Imitation Learning）所需要求解的问题为</p>
+<div>
+<div class="MathJax_Preview">
+\min_{\pi \in \Pi} \max_{c \in \mathcal{C}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma, \pi}(s, a) - p_{\gamma, \pi_E}(s, a)]c(s, a) - \psi(c).
+\tag{31}
+</div>
+<script type="math/tex; mode=display">
+\min_{\pi \in \Pi} \max_{c \in \mathcal{C}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma, \pi}(s, a) - p_{\gamma, \pi_E}(s, a)]c(s, a) - \psi(c).
+\tag{31}
+</script>
+</div>
+<p>GAIL将其实例化为</p>
+<div>
+<div class="MathJax_Preview">
+\min_{\pi \in \Pi} \max_{c \prec \pmb{0}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma, \pi}(s, a) - p_{\gamma, \pi_E}(s, a)]c(s, a) - \psi_{GA}(c),
+\tag{32}
+</div>
+<script type="math/tex; mode=display">
+\min_{\pi \in \Pi} \max_{c \prec \pmb{0}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma, \pi}(s, a) - p_{\gamma, \pi_E}(s, a)]c(s, a) - \psi_{GA}(c),
+\tag{32}
+</script>
+</div>
+<p>其中</p>
+<div>
+<div class="MathJax_Preview">
+\psi_{GA}(c) = \sum_{s, a} p_{\gamma, \pi_E}(s, a)[-c(s, a) - \log(1 - e^{c(s,a)})].
+\tag{33}
+</div>
+<script type="math/tex; mode=display">
+\psi_{GA}(c) = \sum_{s, a} p_{\gamma, \pi_E}(s, a)[-c(s, a) - \log(1 - e^{c(s,a)})].
+\tag{33}
+</script>
+</div>
+<p>带入<span><span class="MathJax_Preview">\psi_{GA}</span><script type="math/tex">\psi_{GA}</script></span>可以得到一个优化问题</p>
+<div>
+<div class="MathJax_Preview">
+\min_{\pi \in \Pi} \max_{c \prec \pmb{0}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma, \pi}(s, a) c(s, a) + p_{\gamma, \pi_E}(s, a) \ln(1 - e^{c(s, a)})].
+\tag{34}\label{equ:gail-problem1}
+</div>
+<script type="math/tex; mode=display">
+\min_{\pi \in \Pi} \max_{c \prec \pmb{0}} -\alpha H(\pi) + \sum_{s, a}[p_{\gamma, \pi}(s, a) c(s, a) + p_{\gamma, \pi_E}(s, a) \ln(1 - e^{c(s, a)})].
+\tag{34}\label{equ:gail-problem1}
+</script>
+</div>
+<p>关于<span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span>的优化问题的闭解为</p>
+<div>
+<div class="MathJax_Preview">
+c^*(s, a) = \ln \frac{p_{\gamma}(s, a; \pi)}{p_{\gamma}(s, a; \pi) + p_{\gamma}(s, a; \pi_E)}.
+\tag{35}
+</div>
+<script type="math/tex; mode=display">
+c^*(s, a) = \ln \frac{p_{\gamma}(s, a; \pi)}{p_{\gamma}(s, a; \pi) + p_{\gamma}(s, a; \pi_E)}.
+\tag{35}
+</script>
+</div>
+<p>那么，优化问题(\ref{equ:gail-problem1})就变成了</p>
+<div>
+<div class="MathJax_Preview">
+\begin{aligned}
+\min_{\pi \in \Pi} -\alpha H(\pi) + \sum_{s, a}\bigg[&amp;p_{\gamma, \pi}(s, a) \ln \frac{p_{\gamma}(s, a; \pi)}{p_{\gamma}(s, a; \pi) + p_{\gamma}(s, a; \pi_E)} \\
++&amp; p_{\gamma, \pi_E}(s, a) \ln \frac{p_{\gamma}(s, a; \pi_E)}{p_{\gamma}(s, a; \pi) + p_{\gamma}(s, a; \pi_E)}\bigg].
+\end{aligned}
+\tag{36}
+</div>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min_{\pi \in \Pi} -\alpha H(\pi) + \sum_{s, a}\bigg[&p_{\gamma, \pi}(s, a) \ln \frac{p_{\gamma}(s, a; \pi)}{p_{\gamma}(s, a; \pi) + p_{\gamma}(s, a; \pi_E)} \\
++& p_{\gamma, \pi_E}(s, a) \ln \frac{p_{\gamma}(s, a; \pi_E)}{p_{\gamma}(s, a; \pi) + p_{\gamma}(s, a; \pi_E)}\bigg].
+\end{aligned}
+\tag{36}
+</script>
+</div>
+<p>这个优化问题本质上是最小化分布<span><span class="MathJax_Preview">p_{\gamma}(s, a;\pi)</span><script type="math/tex">p_{\gamma}(s, a;\pi)</script></span>和<span><span class="MathJax_Preview">p_{\gamma}(s, a; \pi_E)</span><script type="math/tex">p_{\gamma}(s, a; \pi_E)</script></span>的Jensen-Shannon divergence。也就是</p>
+<div>
+<div class="MathJax_Preview">
+D_{JS}(p_{\gamma,\pi} \Vert p_{\gamma, \pi_E}) := D_{KL}(p_{\gamma,\pi} \Vert (p_{\gamma,\pi} + p_{\gamma,\pi_E})/2) + D_{KL}(p_{\gamma, \pi_E} \Vert (p_{\gamma, \pi} + p_{\gamma, \pi_E})/2).
+</div>
+<script type="math/tex; mode=display">
+D_{JS}(p_{\gamma,\pi} \Vert p_{\gamma, \pi_E}) := D_{KL}(p_{\gamma,\pi} \Vert (p_{\gamma,\pi} + p_{\gamma,\pi_E})/2) + D_{KL}(p_{\gamma, \pi_E} \Vert (p_{\gamma, \pi} + p_{\gamma, \pi_E})/2).
+</script>
+</div>
+<p>我们使用一个函数<span><span class="MathJax_Preview">D_w(s, a)</span><script type="math/tex">D_w(s, a)</script></span>来间接求解<span><span class="MathJax_Preview">c^*(s, a)</span><script type="math/tex">c^*(s, a)</script></span></p>
+<div>
+<div class="MathJax_Preview">
+L(w) = \sum_{s, a}\bigg[p_{\gamma, \pi}(s, a) \ln D_w(s, a)
++ p_{\gamma, \pi_E}(s, a) \ln (1 - D_w(s, a))\bigg].
+\tag{37}
+</div>
+<script type="math/tex; mode=display">
+L(w) = \sum_{s, a}\bigg[p_{\gamma, \pi}(s, a) \ln D_w(s, a)
++ p_{\gamma, \pi_E}(s, a) \ln (1 - D_w(s, a))\bigg].
+\tag{37}
+</script>
+</div>
                 
                   
                     
@@ -1238,7 +1808,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../EquivalenceBetweenPGandSQL/" title="Equivalence Between PG and SQL" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../ACKTRandA2C/" title="ACKTR & A2C" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1247,19 +1817,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Equivalence Between PG and SQL
+                ACKTR & A2C
               </div>
             </div>
           </a>
         
         
-          <a href="../GAIL/" title="GAIL" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                GAIL
+                论文阅读摘要
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

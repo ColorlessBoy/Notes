@@ -613,8 +613,15 @@
   </li>
 
         
-      </ul>
-    </nav>
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../GAIL/" title="GAIL" class="md-nav__link">
+      GAIL
+    </a>
   </li>
 
         
@@ -624,9 +631,14 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-nav__link">
+    <a href="../%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%81/" title="论文阅读摘要" class="md-nav__link">
       论文阅读摘要
     </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
         
@@ -1163,6 +1175,14 @@
                 
                 
                 <h1 id="equivalence-between-policy-gradient-and-soft-q-learning">Equivalence Between Policy Gradient and Soft Q-Learning<a class="headerlink" href="#equivalence-between-policy-gradient-and-soft-q-learning" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">schulman2017equivalence</span><span class="p">,</span>
+  <span class="na">title</span><span class="p">=</span><span class="s">{Equivalence between policy gradients and soft q-learning}</span><span class="p">,</span>
+  <span class="na">author</span><span class="p">=</span><span class="s">{Schulman, John and Chen, Xi and Abbeel, Pieter}</span><span class="p">,</span>
+  <span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:1704.06440}</span><span class="p">,</span>
+  <span class="na">year</span><span class="p">=</span><span class="s">{2017}</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <p><a href="https://arxiv.org/abs/1704.06440">论文链接</a></p>
 <p>这篇文章更像是Schulman的个人数学笔记，他这个人比较偏好数学推导。但是数学推导很容易让人陷入其中。人们往往最后发现强化学习的数学并不完备，而大受打击。这篇文章是挂在Arxiv上的小文章，尝试揭示Policy Gradient和Soft Q-Learning的关系，算是有一定的启发性。 我按照个人的习惯进行了重新的推导。</p>
 <h2 id="_1">熵正则化强化学习<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -1420,13 +1440,6 @@
 <p class="admonition-title">Note</p>
 <p><span><span class="MathJax_Preview">\hat Q(s, a; \theta_Q)</span><script type="math/tex">\hat Q(s, a; \theta_Q)</script></span> 和第一次定义的<span><span class="MathJax_Preview">Q(s, a)</span><script type="math/tex">Q(s, a)</script></span>是统一的，不是后面定义的。也就是后面定义的<span><span class="MathJax_Preview">Q</span><script type="math/tex">Q</script></span>函数少了起始项的交叉熵，这里<span><span class="MathJax_Preview">\hat Q(s, a)</span><script type="math/tex">\hat Q(s, a)</script></span>补充回来了。</p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">schulman2017equivalence</span><span class="p">,</span>
-  <span class="na">title</span><span class="p">=</span><span class="s">{Equivalence between policy gradients and soft q-learning}</span><span class="p">,</span>
-  <span class="na">author</span><span class="p">=</span><span class="s">{Schulman, John and Chen, Xi and Abbeel, Pieter}</span><span class="p">,</span>
-  <span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:1704.06440}</span><span class="p">,</span>
-  <span class="na">year</span><span class="p">=</span><span class="s">{2017}</span>
-<span class="p">}</span>
-</code></pre></div>
                 
                   
                     
@@ -1435,7 +1448,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年12月3日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年1月6日</span>
     
   </small>
 </div>
