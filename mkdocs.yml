@@ -108,6 +108,7 @@ nav:
     - Lab6-Copy-on-Write: 6.S081/Lab06-Copy-on-Write.md
     - Xv6的起始陷阱机制: 6.S081/Xv6的起始陷阱机制.md
     - Lab7-MultiThreading: 6.S081/Lab07-MultiThreading.md
+    - Lab8-Locks: 6.S081/Lab08-Locks.md
 
   - Blog:
     - 子弹笔记:
