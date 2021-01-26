@@ -99,16 +99,17 @@ nav:
     - 堆排序: Algorithms/12-堆排序.md
   
   - 操作系统/6.S081:
-    - Lab0-环境准备: 6.S081/Lab00-环境准备.md
-    - Lab1-Xv6 and Unix utilities: 6.S081/Lab01-Xv6-and-Unix-utilities.md
-    - Lab2-System Calls: 6.S081/Lab02-System-Calls.md
-    - Lab3-Page Tables: 6.S081/Lab03-Page-Tables.md
-    - Lab4-Traps: 6.S081/Lab04-Traps.md
-    - Lab5-Xv6-Lazy-Allocation: 6.S081/Lab05-Xv6-Lazy-Allocation.md
-    - Lab6-Copy-on-Write: 6.S081/Lab06-Copy-on-Write.md
+    - Lab01 环境准备: 6.S081/Lab00-环境准备.md
+    - Lab01 Xv6 and Unix utilities: 6.S081/Lab01-Xv6-and-Unix-utilities.md
+    - Lab02 System Calls: 6.S081/Lab02-System-Calls.md
+    - Lab03 Page Tables: 6.S081/Lab03-Page-Tables.md
+    - Lab04 Traps: 6.S081/Lab04-Traps.md
+    - Lab05 Xv6 Lazy Allocation: 6.S081/Lab05-Xv6-Lazy-Allocation.md
+    - Lab06 Copy on Write: 6.S081/Lab06-Copy-on-Write.md
     - Xv6的起始陷阱机制: 6.S081/Xv6的起始陷阱机制.md
-    - Lab7-MultiThreading: 6.S081/Lab07-MultiThreading.md
-    - Lab8-Locks: 6.S081/Lab08-Locks.md
+    - Lab07 MultiThreading: 6.S081/Lab07-MultiThreading.md
+    - Lab08 Locks: 6.S081/Lab08-Locks.md
+    - Lab09 File System: 6.S081/Lab09-File-System.md
 
   - Blog:
     - 子弹笔记:
