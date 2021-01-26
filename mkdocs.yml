@@ -111,13 +111,15 @@ nav:
     - Lab08 Locks: 6.S081/Lab08-Locks.md
     - Lab09 File System: 6.S081/Lab09-File-System.md
 
+  - 子弹笔记:
+    - docker: 子弹笔记/子弹笔记-docker.md
+    - gdb: 子弹笔记/子弹笔记-gdb.md
+    - git: 子弹笔记/子弹笔记-git.md
+    - makefile: 子弹笔记/子弹笔记-makefile.md
+    - shell: 子弹笔记/子弹笔记-shell.md
+    - vscode: 子弹笔记/子弹笔记-vscode.md
+    - ubuntu: 子弹笔记/子弹笔记-ubuntu.md
+
   - Blog:
-    - 子弹笔记:
-      - docker: Blog/子弹笔记/子弹笔记-docker.md
-      - gdb: Blog/子弹笔记/子弹笔记-gdb.md
-      - git: Blog/子弹笔记/子弹笔记-git.md
-      - makefile: Blog/子弹笔记/子弹笔记-makefile.md
-      - shell: Blog/子弹笔记/子弹笔记-shell.md
     - 计算机网络: Blog/计算机网络.md
     - 虚拟容器Docker入门: Blog/虚拟容器Docker入门.md
-    - vscode对markdown进行自动换行: Blog/vscode对markdown进行自动换行.md
