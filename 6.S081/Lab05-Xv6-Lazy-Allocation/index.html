@@ -976,6 +976,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Lab10-mmap/" title="Lab10 mmap" class="md-nav__link">
+      Lab10 mmap
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1391,6 +1403,10 @@ $
         <span class="k">continue</span><span class="p">;</span>
         <span class="c1">// panic(&quot;uvmunmap: walk&quot;);</span>
     <span class="p">}</span>
+    <span class="k">if</span><span class="p">((</span><span class="o">*</span><span class="n">pte</span> <span class="o">&amp;</span> <span class="n">PTE_V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="k">continue</span><span class="p">;</span>
+        <span class="c1">// panic(&quot;uvmunmap: not mapped&quot;);</span>
+    <span class="p">}</span>
     <span class="c1">//...</span>
 <span class="p">}</span>
 <span class="c1">//...</span>
@@ -1420,7 +1436,7 @@ $
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年11月16日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年1月28日</span>
     
   </small>
 </div>
