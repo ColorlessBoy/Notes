@@ -195,6 +195,10 @@ $
                 continue;
                 // panic("uvmunmap: walk");
             }
+            if((*pte & PTE_V) == 0){
+                continue;
+                // panic("uvmunmap: not mapped");
+            }
             //...
         }
         //...
