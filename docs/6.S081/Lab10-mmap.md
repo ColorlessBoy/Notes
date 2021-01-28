@@ -30,54 +30,56 @@ void *mmap(void *addr, size_t length, int prot, int flags,
 
 - 首先添加`_mmaptest`到`UPROGS`，然后添加`mmap`和`munmap`系统调用的外壳，实现`user/mmaptest.c`编译通过。(在`kernel/fcntl.h`中已经有一些宏定义`PROT_READ`。) 
 
-    ???参考答案
-        1. `Makefile`中添加：`$U/_mmaptest\`。
-        2. `user/user.h`中添加系统调用的声明：
+???参考答案
+    1. `Makefile`中添加：`$U/_mmaptest\`。
+    2. `user/user.h`中添加系统调用的声明：
 
-            ```c
-            void* mmap(void *, uint, int, int, int, uint);
-            int munmap(void *, uint);
-            ```
+        ```c
+        void* mmap(void *, uint, int, int, int, uint);
+        int munmap(void *, uint);
+        ```
 
-        3. 在`user/usys.pl`中添加：
+    3. 在`user/usys.pl`中添加：
 
-            ```c
-            entry("mmap");
-            entry("munmap");
-            ```
-        4. 在`kernel/syscall.h`中添加：
+        ```c
+        entry("mmap");
+        entry("munmap");
+        ```
 
-            ```c
-            #define SYS_mmap   22
-            #define SYS_munmap 23
-            ```
-        5. 在`kernel/syscall.c`中添加：
+    4. 在`kernel/syscall.h`中添加：
 
-            ```c
-            extern uint64 sys_mmap(void);
-            extern uint64 sys_munmap(void);
-            static uint64 (*syscalls[])(void) = {
-            //...
-            [SYS_mmap]    sys_mmap,
-            [SYS_munmap]  sys_munmap,
-            };
-            ```
-        
-        6. 在`kernel/sysfile.c`中添加：
+        ```c
+        #define SYS_mmap   22
+        #define SYS_munmap 23
+        ```
 
-            ```c
-            uint64
-            sys_mmap(void)
-            {
-                return 0;
-            }
+    5. 在`kernel/syscall.c`中添加：
 
-            uint64
-            sys_munmap(void)
-            {
-                return 0;
-            }
-            ```
+        ```c
+        extern uint64 sys_mmap(void);
+        extern uint64 sys_munmap(void);
+        static uint64 (*syscalls[])(void) = {
+        //...
+        [SYS_mmap]    sys_mmap,
+        [SYS_munmap]  sys_munmap,
+        };
+        ```
+    
+    6. 在`kernel/sysfile.c`中添加：
+
+        ```c
+        uint64
+        sys_mmap(void)
+        {
+            return 0;
+        }
+
+        uint64
+        sys_munmap(void)
+        {
+            return 0;
+        }
+        ```
 
 - 延迟添加页表，响应页错误。`mmap`不需要分配物理内存也以及读文件。在`usertrap`的页错误处理代码中实现`lazy page`的代码。实现`lazy page`可以让`mmap`处理大文件快一些，并且可以处理大于内存大小的文件。
   
@@ -110,6 +112,7 @@ void *mmap(void *addr, size_t length, int prot, int flags,
         ```
     
         b. 在`kernel/proc.h`中声明宏：`#define NVMAS 16`。
+
         c. 在`struct proc`中添加`VMA`数组成员变量： 
 
         ```c
