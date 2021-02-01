@@ -78,3 +78,39 @@
 2. 更新软件库`sudo apt update`；
 3. 查找可选的驱动`sudo ubuntu-drivers devices`;
 4. 安装驱动`sudo apt install nvidia-xxx`。
+
+## 安装并开启SSH
+
+1. 安装`sudo apt-get install openssh-server`；
+2. 开启自动启动`sudo systemctl enable ssh`；
+3. 启动`sudo systemctl start ssh`。
+
+## youtube-dl
+
+1. 安装：`pip install youtube-dl`。
+2. 使用范例：
+
+    ```bash
+    youtube-dl -R "infinite" --write-auto-sub --sub-lang en --embed-subs -o <FILENAME> -f bestvideo+bestaudio --merge-output-format mp4 <URL>
+    ```
+
+其中`-R`表示网络尝试次数；`-*sub*`表示字幕相关设定；`-o`表示输出文件名字；`-f`下载的文件音视频分辨率。
+
+以YouTube为例，不是所有的视频流都有音频，例如1080p以上的视频就没有音频，所以`bestvideo+bestaudio`是最方便的选择。音视频文件格式不相同，所以使用`--merge-output`来合并两个文件。
+
+## ffmpeg
+
+我最近下载了冰血暴的第四季，发现只有英文字幕。所以我又在人人视频上下载了一份对应的字幕。
+后来我希望将字幕文件添加到视频文件的中。这里我使用了一个批量添加的命令，学到了不少东西，所以记录一下。
+
+```sh
+ls | grep mkv | sed "s/.mkv//g" \
+   | xargs -i ffmpeg -i {}.mkv -i {}.ChsEngA.ass \
+    -map 0:0 -map 0:1 -map 0:s -map 1 \
+    -c:a copy -c:v copy -c:s:0 copy -c:s:1 copy \
+    -metadata:s:s:1 title="简体中文"  \
+    ./output/{}.mkv
+```
+
+前面三个命令`ls`、`grep`和`sed`用于获取文件名字，然后传给命令`ffmpeg`。
+`ffmpeg`命令接受两个文件（`-i`），然后确定四个流（`-map`），接着四个流都使用复制的操作（`-c`），然后给新添加的字幕流添加抬头名字（`-metadata`），最后指定输出位置。

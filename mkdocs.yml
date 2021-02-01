@@ -111,6 +111,7 @@ nav:
     - Lab08 Locks: 6.S081/Lab08-Locks.md
     - Lab09 File System: 6.S081/Lab09-File-System.md
     - Lab10 mmap: 6.S081/Lab10-mmap.md
+    - Lab11 Networking: 6.S081/Lab11-Networking.md
 
   - 子弹笔记:
     - docker: 子弹笔记/子弹笔记-docker.md
