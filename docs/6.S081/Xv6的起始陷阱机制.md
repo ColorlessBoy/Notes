@@ -30,7 +30,7 @@ $$
 从代码来看，还有一个地方调用了函数`usertrapret`，那就是`proc.c:forkret()`中。而`forkret()`被`allocproc`设置在了进程结构中。最后回溯发现，`uservec`中调用了`allocproc`。最终破解疑问，其实在`userinit`中隐式地设定了`uservec`。整体流程是
 
 $$
-bookloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow userinit \rightarrow allocproc \rightarrow forkret \rightarrow usertrapret \rightarrow uservec.
+bootloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow userinit \rightarrow allocproc \rightarrow forkret \rightarrow usertrapret \rightarrow uservec.
 $$
 
 虽然这么简单，但是我还是分析了很久才搞清楚，关键是没有找对分析方法，没有沿着`usertrapret`这条线往前回溯，而是瞎找一通。

@@ -114,3 +114,13 @@ ls | grep mkv | sed "s/.mkv//g" \
 
 前面三个命令`ls`、`grep`和`sed`用于获取文件名字，然后传给命令`ffmpeg`。
 `ffmpeg`命令接受两个文件（`-i`），然后确定四个流（`-map`），接着四个流都使用复制的操作（`-c`），然后给新添加的字幕流添加抬头名字（`-metadata`），最后指定输出位置。
+
+## 字幕转码
+
+下载下来的字幕编码为`ANSI`，在Linux中打开乱码，需要转成`UTF-8`的编码。可以使用如下命令。
+
+```bash
+iconv -f gbk -t utf8 <FILENAME> -o <OUTPUT-FILENAME> 
+```
+
+因为`ANSI`指的是和系统字体保持一致。而我下载的是中文字幕，所以实际上的编码应该是`gbk`。

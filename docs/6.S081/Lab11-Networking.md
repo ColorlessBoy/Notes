@@ -122,4 +122,108 @@ all tests passed.
 
 我们需要使用锁来应对以下情况:xv6可能从多个进程使用E1000，或者可能在中断到达时在内核线程中使用E1000。
 
+如果想要使用我的`docker`环境来测试，需要修改`Makefile`，相比于其他实验，增加了`make docker-server`命令。需要先执行`make docker-qemu`然后执行`make docker-server`，再执行`nettests`来测试代码。具体`Makefile`添加的内容如下：
 
+```make
+## ==================Docker Commands Start======================================
+docker: 
+	-docker rm -f xv6-labs-2020
+	docker run  -it --name "xv6-labs-2020"\
+							-w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+							penglingwei/xv6-labs-2020:latest \
+							/bin/bash
+
+docker-grade: 
+	-docker rm -f xv6-labs-2020
+	docker run  -it --name "xv6-labs-2020"\
+                -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                penglingwei/xv6-labs-2020:latest \
+                /bin/bash -c "make grade" 
+
+docker-qemu: 
+	-docker rm -f xv6-labs-2020
+	docker run  -it --name "xv6-labs-2020"\
+                -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                penglingwei/xv6-labs-2020:latest \
+                /bin/bash -c "make qemu" 
+
+docker-qemu-gdb: 
+	-docker rm -f xv6-labs-2020
+	docker run  -it --name "xv6-labs-2020"\
+                -w /xv6-labs-2020 -v "$(shell pwd):/xv6-labs-2020" \
+                penglingwei/xv6-labs-2020:latest \
+                /bin/bash -c "make qemu-gdb" 
+
+docker-gdb: .gdbinit
+	docker exec -it xv6-labs-2020 /bin/bash -c "gdb-multiarch --command .gdbinit"
+
+docker-server: 
+	docker exec -it xv6-labs-2020 /bin/bash -c "make server"
+
+docker-rm:
+	docker rm -f xv6-labs-2020
+## ==================Docker Commands End========================================
+```
+
+???参考答案
+    本次实验，我基本上参考了别人的答案。本文列举了非常多的参考文献，没有必要去查看。更重要的是对源码的阅读。我对网卡驱动还是不太了解，陷入参考资料很久也没有进展，索性不好意思地直接参考了[别人的答案](https://www.cnblogs.com/YuanZiming/p/14271553.html)。
+
+    1. 实现函数`kernel/e10000.c：e1000_transmit()`。这里基本上就按照提示加上一些猜测来实现。
+
+        ```c
+            int
+            e1000_transmit(struct mbuf *m)
+            {
+                //
+                // Your code here.
+                //
+                // the mbuf contains an ethernet frame; program it into
+                // the TX descriptor ring so that the e1000 sends it. Stash
+                // a pointer so that it can be freed after sending.
+                //
+                int idx;
+                acquire(&e1000_lock);
+                idx = regs[E1000_TDT];
+                if((tx_ring[idx].status & E1000_TXD_STAT_DD) == 0){
+                release(&e1000_lock);
+                return -1;
+                }
+                if(tx_mbufs[idx] != 0)
+                mbuffree(tx_mbufs[idx]);
+                tx_mbufs[idx] = m;
+                tx_ring[idx].addr = (uint64)m->head;
+                tx_ring[idx].length = (uint16)m->len;
+                tx_ring[idx].cmd = E1000_TXD_CMD_EOP | E1000_TXD_CMD_RS;
+                regs[E1000_TDT] = (idx + 1) % TX_RING_SIZE;
+                release(&e1000_lock);
+                return 0;
+            }
+        ```
+
+    2. 实现函数`kernel/e1000.c:e1000_recv()`。这里根据提示的话，我是一下子想不到不用锁的版本。
+
+        ```c
+        static void
+        e1000_recv(void)
+        {
+          //
+          // Your code here.
+          //
+          // Check for packets that have arrived from the e1000
+          // Create and deliver an mbuf for each packet (using net_rx()).
+          //
+          int idx;
+          while(1) {
+              idx = (regs[E1000_RDT] + 1) % RX_RING_SIZE;
+              if((rx_ring[idx].status & E1000_RXD_STAT_DD) == 0){
+                  break;
+              }
+              rx_mbufs[idx]->len = rx_ring[idx].length;
+              net_rx(rx_mbufs[idx]);
+              rx_mbufs[idx] = mbufalloc(0);
+              rx_ring[idx].addr = (uint64)rx_mbufs[idx]->head;
+              rx_ring[idx].status = 0;
+              regs[E1000_RDT] = idx;
+          }
+        }
+        ```
