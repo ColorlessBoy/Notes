@@ -937,6 +937,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../6.S081/Lab11-Networking/" title="Lab11 Networking" class="md-nav__link">
+      Lab11 Networking
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1095,6 +1107,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    安装并开启SSH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#youtube-dl" class="md-nav__link">
+    youtube-dl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ffmpeg" class="md-nav__link">
+    ffmpeg
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    字幕转码
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1200,6 +1240,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    安装并开启SSH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#youtube-dl" class="md-nav__link">
+    youtube-dl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ffmpeg" class="md-nav__link">
+    ffmpeg
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    字幕转码
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1293,6 +1361,43 @@ sudo make clean <span class="o">&amp;&amp;</span> sudo make
 <li>查找可选的驱动<code>sudo ubuntu-drivers devices</code>;</li>
 <li>安装驱动<code>sudo apt install nvidia-xxx</code>。</li>
 </ol>
+<h2 id="ssh">安装并开启SSH<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h2>
+<ol>
+<li>安装<code>sudo apt-get install openssh-server</code>；</li>
+<li>开启自动启动<code>sudo systemctl enable ssh</code>；</li>
+<li>启动<code>sudo systemctl start ssh</code>。</li>
+</ol>
+<h2 id="youtube-dl">youtube-dl<a class="headerlink" href="#youtube-dl" title="Permanent link">&para;</a></h2>
+<ol>
+<li>安装：<code>pip install youtube-dl</code>。</li>
+<li>
+<p>使用范例：</p>
+<div class="highlight"><pre><span></span><code>youtube-dl -R <span class="s2">&quot;infinite&quot;</span> --write-auto-sub --sub-lang en --embed-subs -o &lt;FILENAME&gt; -f bestvideo+bestaudio --merge-output-format mp4 &lt;URL&gt;
+</code></pre></div>
+
+</li>
+</ol>
+<p>其中<code>-R</code>表示网络尝试次数；<code>-*sub*</code>表示字幕相关设定；<code>-o</code>表示输出文件名字；<code>-f</code>下载的文件音视频分辨率。</p>
+<p>以YouTube为例，不是所有的视频流都有音频，例如1080p以上的视频就没有音频，所以<code>bestvideo+bestaudio</code>是最方便的选择。音视频文件格式不相同，所以使用<code>--merge-output</code>来合并两个文件。</p>
+<h2 id="ffmpeg">ffmpeg<a class="headerlink" href="#ffmpeg" title="Permanent link">&para;</a></h2>
+<p>我最近下载了冰血暴的第四季，发现只有英文字幕。所以我又在人人视频上下载了一份对应的字幕。
+后来我希望将字幕文件添加到视频文件的中。这里我使用了一个批量添加的命令，学到了不少东西，所以记录一下。</p>
+<div class="highlight"><pre><span></span><code>ls <span class="p">|</span> grep mkv <span class="p">|</span> sed <span class="s2">&quot;s/.mkv//g&quot;</span> <span class="se">\</span>
+   <span class="p">|</span> xargs -i ffmpeg -i <span class="o">{}</span>.mkv -i <span class="o">{}</span>.ChsEngA.ass <span class="se">\</span>
+    -map <span class="m">0</span>:0 -map <span class="m">0</span>:1 -map <span class="m">0</span>:s -map <span class="m">1</span> <span class="se">\</span>
+    -c:a copy -c:v copy -c:s:0 copy -c:s:1 copy <span class="se">\</span>
+    -metadata:s:s:1 <span class="nv">title</span><span class="o">=</span><span class="s2">&quot;简体中文&quot;</span>  <span class="se">\</span>
+    ./output/<span class="o">{}</span>.mkv
+</code></pre></div>
+
+<p>前面三个命令<code>ls</code>、<code>grep</code>和<code>sed</code>用于获取文件名字，然后传给命令<code>ffmpeg</code>。
+<code>ffmpeg</code>命令接受两个文件（<code>-i</code>），然后确定四个流（<code>-map</code>），接着四个流都使用复制的操作（<code>-c</code>），然后给新添加的字幕流添加抬头名字（<code>-metadata</code>），最后指定输出位置。</p>
+<h2 id="_1">字幕转码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>下载下来的字幕编码为<code>ANSI</code>，在Linux中打开乱码，需要转成<code>UTF-8</code>的编码。可以使用如下命令。</p>
+<div class="highlight"><pre><span></span><code>iconv -f gbk -t utf8 &lt;FILENAME&gt; -o &lt;OUTPUT-FILENAME&gt; 
+</code></pre></div>
+
+<p>因为<code>ANSI</code>指的是和系统字体保持一致。而我下载的是中文字幕，所以实际上的编码应该是<code>gbk</code>。</p>
                 
                   
                     
@@ -1301,7 +1406,7 @@ sudo make clean <span class="o">&amp;&amp;</span> sudo make
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年1月26日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月4日</span>
     
   </small>
 </div>

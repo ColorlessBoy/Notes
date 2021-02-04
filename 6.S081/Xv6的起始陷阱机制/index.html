@@ -988,6 +988,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Lab11-Networking/" title="Lab11 Networking" class="md-nav__link">
+      Lab11 Networking
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1251,10 +1263,10 @@ bookloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow us
 <p>从代码来看，还有一个地方调用了函数<code>usertrapret</code>，那就是<code>proc.c:forkret()</code>中。而<code>forkret()</code>被<code>allocproc</code>设置在了进程结构中。最后回溯发现，<code>uservec</code>中调用了<code>allocproc</code>。最终破解疑问，其实在<code>userinit</code>中隐式地设定了<code>uservec</code>。整体流程是</p>
 <div>
 <div class="MathJax_Preview">
-bookloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow userinit \rightarrow allocproc \rightarrow forkret \rightarrow usertrapret \rightarrow uservec.
+bootloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow userinit \rightarrow allocproc \rightarrow forkret \rightarrow usertrapret \rightarrow uservec.
 </div>
 <script type="math/tex; mode=display">
-bookloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow userinit \rightarrow allocproc \rightarrow forkret \rightarrow usertrapret \rightarrow uservec.
+bootloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow userinit \rightarrow allocproc \rightarrow forkret \rightarrow usertrapret \rightarrow uservec.
 </script>
 </div>
 <p>虽然这么简单，但是我还是分析了很久才搞清楚，关键是没有找对分析方法，没有沿着<code>usertrapret</code>这条线往前回溯，而是瞎找一通。</p>
@@ -1266,7 +1278,7 @@ bookloader \rightarrow \_entry \rightarrow start \rightarrow main \rightarrow us
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年12月30日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月4日</span>
     
   </small>
 </div>
