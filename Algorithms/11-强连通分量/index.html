@@ -814,6 +814,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../13-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" title="背包问题" class="md-nav__link">
+      背包问题
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1257,9 +1269,7 @@
     <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 如果是邻接矩阵的形式，那么我们不需要特别构造 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>，
     但是如果 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 是邻接表形式，我们需要特别构造 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>。</li>
 <li>接着使用多次使用 dfs 策略来搜索原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span>，以节点 <strong>访问结束的顺序</strong> 将节点压入一个栈，直到所有的节点被访问。</li>
-<li>将栈的元素依次弹出，如果弹出的节点 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 未被访问第二次（第一次发生在第3步，也就是第四步中没有访问过它），
-    就使用 dfs 策略以节点 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 为起点，搜索反转图 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>。
-    每次 dfs 策略访问到的节点组成一个原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 的强连通分量。</li>
+<li>将栈的元素依次弹出，以该节点为起始节点对<span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>进行dfs搜索。如果弹出的节点 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 未被访问第二次（第一次发生在第3步，也就是第四步中没有访问过它），就使用 dfs 策略以节点 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 为起点，搜索反转图 <span><span class="MathJax_Preview">G^T</span><script type="math/tex">G^T</script></span>。每次 dfs 策略访问到的节点组成一个原图 <span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 的强连通分量。</li>
 </ol>
 <p>这个算法第一次看不是那么直觉，需要一点证明。</p>
 <div class="admonition 命题">
@@ -1348,7 +1358,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年8月12日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月7日</span>
     
   </small>
 </div>

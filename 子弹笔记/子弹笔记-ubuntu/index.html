@@ -763,6 +763,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Algorithms/13-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" title="背包问题" class="md-nav__link">
+      背包问题
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1321,7 +1333,8 @@ sudo apt-get autoremove
 sudo sh cuda_11.2.0_460.27.04_linux.run
 </code></pre></div>
 
-<p>安装的时候，内容全选。安装完成后需要添加CUDA地址到路径中，具体修改<code>.bashrc</code>文件：</p>
+<p>安装的时候，内容全选。安装完成后需要添加CUDA地址到路径中，具体修改<code>.bashrc</code>文件：
+另外，在VSCODE中的Terminal中安装会因为BUG而无法安装，不要在VSCODE中安装。</p>
 <div class="highlight"><pre><span></span><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64
 export PATH=$PATH:/usr/local/cuda-11.2/bin
 </code></pre></div>
@@ -1349,6 +1362,10 @@ cuDNN Code Samples and User Guide <span class="k">for</span> Ubuntu20.04 x86_64 
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> /usr/src/cudnn_samples_v8/mnistCUDNN
 sudo make clean <span class="o">&amp;&amp;</span> sudo make
 ./mnistCUDNN
+</code></pre></div>
+
+<p>编译有可能报错，缺少某些文件，可以执行如下命令安装</p>
+<div class="highlight"><pre><span></span><code>sudo apt-get install libfreeimage3 libfreeimage-dev
 </code></pre></div>
 
 </li>
@@ -1406,7 +1423,7 @@ sudo make clean <span class="o">&amp;&amp;</span> sudo make
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月4日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月18日</span>
     
   </small>
 </div>

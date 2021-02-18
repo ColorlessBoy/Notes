@@ -771,6 +771,13 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    最长全排列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     最短超级串
   </a>
   
@@ -803,6 +810,18 @@
   <li class="md-nav__item">
     <a href="../12-%E5%A0%86%E6%8E%92%E5%BA%8F/" title="堆排序" class="md-nav__link">
       堆排序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../13-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" title="背包问题" class="md-nav__link">
+      背包问题
     </a>
   </li>
 
@@ -1193,6 +1212,13 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    最长全排列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     最短超级串
   </a>
   
@@ -1219,8 +1245,9 @@
                 
                 
                 <h1 id="_1">最长全排列<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">最长全排列<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><strong>题目描述</strong>: 给定一个节点数为<code>N</code>全连接图，每条边上对应一个奖励值。那么，对于节点的每一个全排列（如：当 <code>N=5</code> 时，它的一个全排列是 <code>[1, 3, 2, 4, 5]</code>)，都有一个总奖励值。那么, 求它的奖励最大的全排列。(<code>1 &lt;= N &lt;= 12</code>)</p>
-<p><strong>示例</strong>:如下图表示了从i行到j列的路径花费，那么最长路径为 <code>2-&gt;1-&gt;3-&gt;0-&gt;4</code>。
+<p><strong>示例</strong>:如下图表示了从i(行)到j(列)的路径花费，那么最长路径为 <code>2-&gt;1-&gt;3-&gt;0-&gt;4</code>。
 <div class="highlight"><pre><span></span><code>     0  1  2  3  4
 0 | -1, 0, 1, 0, 3
 1 |  0,-1, 0, 1, 0
@@ -1234,9 +1261,9 @@
 <li>全排列有 <span><span class="MathJax_Preview">N!</span><script type="math/tex">N!</script></span> 种，最好的算法是 <span><span class="MathJax_Preview">O(N^2 2^N + M)</span><script type="math/tex">O(N^2 2^N + M)</script></span>;</li>
 <li>动态规划的状态很奇妙 <span><span class="MathJax_Preview">dp[2^N][N]</span><script type="math/tex">dp[2^N][N]</script></span>，其中行坐标 <code>s</code> 中1所在的位置表示已经被选择的节点，列坐标 <code>i</code> 表示已经被选择的节点中，组成的排列是以 <code>i</code> 结尾的;</li>
 <li>马尔科夫性：接下来的排列只和已选择的节点集合（对应 <code>s</code>) 以及排列的末尾数 <code>i</code> 有关。</li>
-<li>小技巧：最外层循环可以是 <code>for s = 1 to 2^N</code>，因为每次新加一个数，一定使得 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 变大，所以遍历的时候不会出现需要的节点还没有被便利。</li>
+<li>小技巧：最外层循环可以是 <code>for s = 1 to 2^N</code>，因为每次新加一个数，一定使得 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 变大，所以遍历的时候不会出现需要的节点还没有遍历。</li>
 </ol>
-<h2 id="_2">最短超级串<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_3">最短超级串<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>详情参考<a href="https://leetcode-cn.com/problems/find-the-shortest-superstring/solution/zui-duan-chao-ji-chuan-by-leetcode/">LeetCode 943</a></p>
 </blockquote>
@@ -1337,7 +1364,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2020年7月31日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月7日</span>
     
   </small>
 </div>
