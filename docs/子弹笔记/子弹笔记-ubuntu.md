@@ -38,6 +38,7 @@
     ```
 
     安装的时候，内容全选。安装完成后需要添加CUDA地址到路径中，具体修改`.bashrc`文件：
+    另外，在VSCODE中的Terminal中安装会因为BUG而无法安装，不要在VSCODE中安装。
 
     ```txt
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64
@@ -63,11 +64,18 @@
     使用`sudo dpkg -i libcudnn8-**`来安装这三个包。
 
 6. 测试`CUDNN`。结果应该输出`Test passed!`。
+
    
     ```bash
     cd /usr/src/cudnn_samples_v8/mnistCUDNN
     sudo make clean && sudo make
     ./mnistCUDNN
+    ```
+
+    编译有可能报错，缺少某些文件，可以执行如下命令安装
+
+    ```bash
+    sudo apt-get install libfreeimage3 libfreeimage-dev
     ```
 
 ## 使用Ubuntu的软件源来安装Nvidia驱动
