@@ -1,6 +1,6 @@
 # 子弹笔记-Ubuntu
 
-## 使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 12.04安装CUDA11.2）
+## 使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 18.04安装CUDA11.2）
 
 1. 禁用`nouveau`驱动：在文件`/etc/modprobe.d/blacklist.conf`中添加
    
@@ -132,3 +132,29 @@ iconv -f gbk -t utf8 <FILENAME> -o <OUTPUT-FILENAME>
 ```
 
 因为`ANSI`指的是和系统字体保持一致。而我下载的是中文字幕，所以实际上的编码应该是`gbk`。
+
+## CMake版本太低
+
+在编译`Katago`的时候遇到了CMake版本太低导致编译不成功的问题，这里附一个安装符合版本的CMake的指令。
+
+```bash
+wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.tar.gz
+tar zxvf cmake-3.16.2-Linux-x86_64.tar.gz
+sudo mv cmake-3.16.2-Linux-x86_64 /opt/cmake-3.16.2
+sudo ln -sf /opt/cmake-3.16.2/bin/* /usr/bin/
+sudo reboot
+cmake --version
+```
+
+## 创建用户并加入sudo组
+
+```bash
+adduser <USERNAME>
+adduser <USERNAME> <GROUPNAME,such as: sudo>
+```
+
+## 批量结束进程
+
+```bash
+ps -aux|grep python|grep -v grep|cut -c 9-15|xargs kill -15
+```

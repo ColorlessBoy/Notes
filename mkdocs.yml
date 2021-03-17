@@ -126,3 +126,4 @@ nav:
   - Blog:
     - 计算机网络: Blog/计算机网络.md
     - 虚拟容器Docker入门: Blog/虚拟容器Docker入门.md
+    - pytorch分布式: Blog/WritingDistributedApplicationswithPytorch.md
