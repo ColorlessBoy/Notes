@@ -158,3 +158,34 @@ adduser <USERNAME> <GROUPNAME,such as: sudo>
 ```bash
 ps -aux|grep python|grep -v grep|cut -c 9-15|xargs kill -15
 ```
+
+## pip换浙大源
+
+```bash
+pip install -i https://mirrors.zju.edu.cn/pypi/web/simple pip -U
+pip config set global.index-url https://mirrors.zju.edu.cn/pypi/web/simple
+```
+
+## mujoco-py 需要预先安装的包
+
+```bash
+sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libglew-dev patchelf
+sudo ln -s /usr/lib/x86_64-linux-gnu/libGL.so.1 /usr/lib/x86_64-linux-gnu/libGL.so
+```
+
+修改bashrc文件
+
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lab304/.mujoco/mjpro150/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lab304/.mujoco/mujoco200/bin
+
+# GLEW initialization error: Missing GL version
+# If you can't find libGLEW.so and libGL.so, you should install libglew-dev.
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/x86_64-linux-gnu/libGL.so
+```
+
+## spinningup 需要预先安装的包
+
+```bash
+sudo apt-get update && sudo apt-get install libopenmpi-dev
+```
