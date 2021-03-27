@@ -1106,8 +1106,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nvidiacudacudnnubuntu-1204cuda112" class="md-nav__link">
-    使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 12.04安装CUDA11.2）
+  <a href="#nvidiacudacudnnubuntu-1804cuda112" class="md-nav__link">
+    使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 18.04安装CUDA11.2）
   </a>
   
 </li>
@@ -1143,6 +1143,48 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     字幕转码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    CMake版本太低
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    创建用户并加入sudo组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    批量结束进程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    pip换浙大源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mujoco-py" class="md-nav__link">
+    mujoco-py 需要预先安装的包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spinningup" class="md-nav__link">
+    spinningup 需要预先安装的包
   </a>
   
 </li>
@@ -1208,6 +1250,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Blog/WritingDistributedApplicationswithPytorch/" title="pytorch分布式" class="md-nav__link">
+      pytorch分布式
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1239,8 +1293,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nvidiacudacudnnubuntu-1204cuda112" class="md-nav__link">
-    使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 12.04安装CUDA11.2）
+  <a href="#nvidiacudacudnnubuntu-1804cuda112" class="md-nav__link">
+    使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 18.04安装CUDA11.2）
   </a>
   
 </li>
@@ -1280,6 +1334,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    CMake版本太低
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sudo" class="md-nav__link">
+    创建用户并加入sudo组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    批量结束进程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    pip换浙大源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mujoco-py" class="md-nav__link">
+    mujoco-py 需要预先安装的包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spinningup" class="md-nav__link">
+    spinningup 需要预先安装的包
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1301,7 +1397,7 @@
                 
                 
                 <h1 id="-ubuntu">子弹笔记-Ubuntu<a class="headerlink" href="#-ubuntu" title="Permanent link">&para;</a></h1>
-<h2 id="nvidiacudacudnnubuntu-1204cuda112">使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 12.04安装CUDA11.2）<a class="headerlink" href="#nvidiacudacudnnubuntu-1204cuda112" title="Permanent link">&para;</a></h2>
+<h2 id="nvidiacudacudnnubuntu-1804cuda112">使用官方网站的脚本来安装Nvidia、Cuda和Cudnn（针对Ubuntu 18.04安装CUDA11.2）<a class="headerlink" href="#nvidiacudacudnnubuntu-1804cuda112" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>禁用<code>nouveau</code>驱动：在文件<code>/etc/modprobe.d/blacklist.conf</code>中添加</p>
@@ -1415,6 +1511,47 @@ sudo make clean <span class="o">&amp;&amp;</span> sudo make
 </code></pre></div>
 
 <p>因为<code>ANSI</code>指的是和系统字体保持一致。而我下载的是中文字幕，所以实际上的编码应该是<code>gbk</code>。</p>
+<h2 id="cmake">CMake版本太低<a class="headerlink" href="#cmake" title="Permanent link">&para;</a></h2>
+<p>在编译<code>Katago</code>的时候遇到了CMake版本太低导致编译不成功的问题，这里附一个安装符合版本的CMake的指令。</p>
+<div class="highlight"><pre><span></span><code>wget https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2-Linux-x86_64.tar.gz
+tar zxvf cmake-3.16.2-Linux-x86_64.tar.gz
+sudo mv cmake-3.16.2-Linux-x86_64 /opt/cmake-3.16.2
+sudo ln -sf /opt/cmake-3.16.2/bin/* /usr/bin/
+sudo reboot
+cmake --version
+</code></pre></div>
+
+<h2 id="sudo">创建用户并加入sudo组<a class="headerlink" href="#sudo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>adduser &lt;USERNAME&gt;
+adduser &lt;USERNAME&gt; &lt;GROUPNAME,such as: sudo&gt;
+</code></pre></div>
+
+<h2 id="_2">批量结束进程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>ps -aux<span class="p">|</span>grep python<span class="p">|</span>grep -v grep<span class="p">|</span>cut -c <span class="m">9</span>-15<span class="p">|</span>xargs <span class="nb">kill</span> -15
+</code></pre></div>
+
+<h2 id="pip">pip换浙大源<a class="headerlink" href="#pip" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>pip install -i https://mirrors.zju.edu.cn/pypi/web/simple pip -U
+pip config <span class="nb">set</span> global.index-url https://mirrors.zju.edu.cn/pypi/web/simple
+</code></pre></div>
+
+<h2 id="mujoco-py">mujoco-py 需要预先安装的包<a class="headerlink" href="#mujoco-py" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libglew-dev patchelf
+sudo ln -s /usr/lib/x86_64-linux-gnu/libGL.so.1 /usr/lib/x86_64-linux-gnu/libGL.so
+</code></pre></div>
+
+<p>修改bashrc文件</p>
+<div class="highlight"><pre><span></span><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lab304/.mujoco/mjpro150/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lab304/.mujoco/mujoco200/bin
+
+# GLEW initialization error: Missing GL version
+# If you can&#39;t find libGLEW.so and libGL.so, you should install libglew-dev.
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libGLEW.so:/usr/lib/x86_64-linux-gnu/libGL.so
+</code></pre></div>
+
+<h2 id="spinningup">spinningup 需要预先安装的包<a class="headerlink" href="#spinningup" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install libopenmpi-dev
+</code></pre></div>
                 
                   
                     
@@ -1423,7 +1560,7 @@ sudo make clean <span class="o">&amp;&amp;</span> sudo make
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年2月18日</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年3月25日</span>
     
   </small>
 </div>
