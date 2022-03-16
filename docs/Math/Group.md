@@ -245,7 +245,7 @@ $$
 Proof.
 $$
 \begin{align}
-(Condition) \Rightarrow& \forall a, b \in S, \existss y_a, x_a,\\
+(Condition) \Rightarrow& \forall a, b \in S, \exists y_a, x_a,\\
     &f(y_a, a) = a, f(a, x_a) = b \\
 (80) \Rightarrow& f(f(y_a, a), x_a) = f(a, x_a) = b \\
 (6),(81) \Rightarrow& f(y_a, f(a, x_a)) = b \\

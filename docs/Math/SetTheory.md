@@ -22,7 +22,7 @@ $$
 
 $$
 \begin{align}
-\forall a \forall b \exists c \forall x(x \in a \lang x \in b \leftrightarrow x \in c).
+\forall a \forall b \exists c \forall x((x = a \land x = b) \leftrightarrow x \in c).
 \end{align}
 $$
 

@@ -11,6 +11,7 @@ Form_L
 $$
 
 Definition
+
 $$
 \begin{align}
 PC(Axiom) = PropositionalCalculus = G(Axiom = Axiom_1 \cup Axiom_2 \cup Axiom3, MP),\\
@@ -22,6 +23,7 @@ MP(x, h_2(x, y)) = y,\quad x, y \in PC.
 $$
 
 Definition
+
 $$
 \begin{align}
 h_{\land}(a, b) =& h_1(h_2(a, h_1(b))), \\
@@ -31,6 +33,7 @@ h_{\leftrightarrow}(a, b) =& h_{\land}(h_2(a, b), h_2(b, a)).
 $$
 
 Q1:
+
 $$
 \begin{align}
 \{h_2(a, a) \vert a \in Form_L\} \subset PC.
@@ -38,6 +41,7 @@ $$
 $$
 
 Define:
+
 $$
 \begin{align}
 Axiom_{Q1} = \{h_2(a, a) \vert a \in Form_L\}.
@@ -45,6 +49,7 @@ Axiom_{Q1} = \{h_2(a, a) \vert a \in Form_L\}.
 $$
 
 Proof:
+
 $$
 \begin{align}
 &\forall a \in Form_L, h_2(a, a) \in Form_L,\\
@@ -56,6 +61,7 @@ $$
 $$
 
 Q2:
+
 $$
 \begin{align}
 \{Target = h_2(h_2(h_1(a), a), a) \vert a \in Form_L\} \subset PC
@@ -63,6 +69,7 @@ $$
 $$
 
 Proof:
+
 $$
 \begin{align}
 &\forall a \in Form_L, h_1(a) \in Form_L, h_2(h_1(a), h_1(a)) \in PC\\
@@ -73,6 +80,7 @@ $$
 $$
 
 Q3:
+
 $$
 \begin{align}
 h_2(a, c) \in PC(Axiom \cup \{h_2(a, b), h_2(b, c)\}).
@@ -80,13 +88,15 @@ h_2(a, c) \in PC(Axiom \cup \{h_2(a, b), h_2(b, c)\}).
 $$
 
 Define
+
 $$
 \begin{align}
-Q3(h_2(x, y), h_2(y, z)) = h_2(x, z), \forall a, b, c \in PC(Axiom)
+Q3(h_2(a, b), h_2(b, c)) = h_2(a, c), \forall a, b, c \in PC(Axiom)
 \end{align}
 $$
 
 Proof:
+
 $$
 \begin{align}
 &\forall a, b, c \in Form_L,\\
@@ -103,6 +113,7 @@ $$
 $$
 
 Q4:
+
 $$
 \begin{align}
 h_2(b, h_2(a, c)) \in PC(Axiom \cup\{h_2(a, h_2(b,c))\})
@@ -110,6 +121,7 @@ h_2(b, h_2(a, c)) \in PC(Axiom \cup\{h_2(a, h_2(b,c))\})
 $$
 
 Proof.
+
 $$
 \begin{align}
 &X = Axiom_1(a, b) = h_2(b, h_2(a, b))\\
@@ -119,6 +131,7 @@ $$
 $$
 
 Q5:
+
 $$
 \begin{align}
 h_2(h_2(h_1(a), h_1(b)), h_2(b, a)) \in PC(Axiom)
@@ -126,6 +139,7 @@ h_2(h_2(h_1(a), h_1(b)), h_2(b, a)) \in PC(Axiom)
 $$
 
 Proof.
+
 $$
 \begin{align}
 &t0 := h_2(h_1(a), h_1(b))\\
@@ -138,8 +152,16 @@ $$
 $$
 
 Q6:
+
 $$
+\begin{align}
 \forall a \in Form_L, a \in PC(Axiom \cup b) \Rightarrow h_2(b, a) \in PC(Axiom).
+\end{align}
+$$
+
+Denote
+$$
+Q6(a\in PC(Axiom \cup b)) = h_2(b, a) \in PC(Axiom).
 $$
 
 Proof.
@@ -155,6 +177,7 @@ $$
 $$
 
 If $a \notin PC(Axiom)$, then
+
 $$
 \begin{align}
 a \in \cup_{n \in N}\{f_n(b)\}, \quad f_0(b) = b.
@@ -162,6 +185,7 @@ a \in \cup_{n \in N}\{f_n(b)\}, \quad f_0(b) = b.
 $$
 
 Step0:
+
 $$
 f_0(b) = b, a = b, Q_1(a) = h(a, a) = h(b, a) \in PC(Axiom).
 $$
@@ -177,5 +201,44 @@ $$
 =& h_2(h_2(b, c_{k-1}), h_2(b, c_{k}))\\
 &MP(h_2(b, c_{k-1}), h_2(h_2(b, c_{k-1}), h_2(b, c_{k})))\\
 =& h_2(b, c_k) \in PC(Axiom)
+\end{align}
+$$
+
+Q7:
+
+$$
+\begin{align}
+\forall a, b, c \in Form_L, h_2(a, c) \in PC(Axiom \cup \{h_2(a, h_2(b, c)), b\})
+\end{align}
+$$
+
+Proof:
+
+$$
+\begin{align}
+&MP(b, Q4(h_2(a, h_2(b, c))))\\
+=& MP(b, h_2(b, h_2(a, c)))\\
+=& h2(a, c)
+\end{align}
+$$
+
+Q8:
+
+$$
+\begin{align}
+\forall a \in Form_L, h_2(h_1(h_1(a)), a) \in PC(Axiom).
+\end{align}
+$$
+
+Proof.
+
+$$
+\begin{align}
+&t = Q7(Q1(h_1(a)), Axiom_3(a, h_1(a)))\\
+=&Q7(h_2(h_1(a), h_1(a)), h_2(h_2(h_1(a), h_1(h_1(a))), h_2(h_2(h_1(a), h_1(a)), a)))\\
+=& h_2(h_2(h_1(a), h_1(h_1(a))), a)\\
+&Q3(Axiom_1(h_1(a), h_1(h_1(a))), t)\\
+=&Q3(h_2(h_1(h_1(a)), h_2(h_1(h_1(a)), h_1(a))),  t) \\
+=& h_2(h_1(h_1(a)), a)
 \end{align}
 $$
