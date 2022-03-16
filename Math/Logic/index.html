@@ -1491,122 +1491,128 @@
 Form_L
 \end{align}
 \]</div>
-<p>Definition
-$$
+<p>Definition</p>
+<div class="arithmatex">\[
 \begin{align}
-PC(Axiom) = PropositionalCalculus = G(Axiom = Axiom_1 \cup Axiom_2 \cup Axiom3, MP),\
-Axiom_1 = {h_2(a, h_2(b, a)) \vert a, b \in Form_L},\
-Axiom_2 = {h_2(h_2(a, h_2(b, c)), h_2(h_2(a, b), h_2(a, c))) \vert a, b, c \in Form_L},\
-Axiom_3 = { h_2(h_2(h_1(a), h_1(b)), h_2(h_2(h_1(a), b), a)) \vert a, b \in Form_L },\
+PC(Axiom) = PropositionalCalculus = G(Axiom = Axiom_1 \cup Axiom_2 \cup Axiom3, MP),\\
+Axiom_1 = \{h_2(a, h_2(b, a)) \vert a, b \in Form_L\},\\
+Axiom_2 = \{h_2(h_2(a, h_2(b, c)), h_2(h_2(a, b), h_2(a, c))) \vert a, b, c \in Form_L\},\\
+Axiom_3 = \{ h_2(h_2(h_1(a), h_1(b)), h_2(h_2(h_1(a), b), a)) \vert a, b \in Form_L \},\\
 MP(x, h_2(x, y)) = y,\quad x, y \in PC.
 \end{align}
-$$</p>
-<p>Definition
-$$
+\]</div>
+<p>Definition</p>
+<div class="arithmatex">\[
 \begin{align}
-h_{\land}(a, b) =&amp; h_1(h_2(a, h_1(b))), \
-h_{\lor}(a, b) =&amp; h_2(h_1(a), b), \
+h_{\land}(a, b) =&amp; h_1(h_2(a, h_1(b))), \\
+h_{\lor}(a, b) =&amp; h_2(h_1(a), b), \\
 h_{\leftrightarrow}(a, b) =&amp; h_{\land}(h_2(a, b), h_2(b, a)).
 \end{align}
-$$</p>
-<p>Q1:
-$$
+\]</div>
+<p>Q1:</p>
+<div class="arithmatex">\[
 \begin{align}
-{h_2(a, a) \vert a \in Form_L} \subset PC.
+\{h_2(a, a) \vert a \in Form_L\} \subset PC.
 \end{align}
-$$</p>
-<p>Define:
-$$
+\]</div>
+<p>Define:</p>
+<div class="arithmatex">\[
 \begin{align}
-Axiom_{Q1} = {h_2(a, a) \vert a \in Form_L}.
+Axiom_{Q1} = \{h_2(a, a) \vert a \in Form_L\}.
 \end{align}
-$$</p>
-<p>Proof:
-$$
+\]</div>
+<p>Proof:</p>
+<div class="arithmatex">\[
 \begin{align}
-&amp;\forall a \in Form_L, h_2(a, a) \in Form_L,\
-&amp;MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), Axiom_2(a, a))) \
-=&amp; MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), h_2(Axiom_1(a, h_2(a, a)), h_2(Axiom_1(a, a), h_2(a, a))))) \
-=&amp; MP(Axiom_1(a, a), h_2(Axiom_1(a, a), h_2(a, a)))\
+&amp;\forall a \in Form_L, h_2(a, a) \in Form_L,\\
+&amp;MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), Axiom_2(a, a))) \\
+=&amp; MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), h_2(Axiom_1(a, h_2(a, a)), h_2(Axiom_1(a, a), h_2(a, a))))) \\
+=&amp; MP(Axiom_1(a, a), h_2(Axiom_1(a, a), h_2(a, a)))\\
 =&amp;h_2(a, a) \in PC.
 \end{align}
-$$</p>
-<p>Q2:
-$$
+\]</div>
+<p>Q2:</p>
+<div class="arithmatex">\[
 \begin{align}
-{Target = h_2(h_2(h_1(a), a), a) \vert a \in Form_L} \subset PC
+\{Target = h_2(h_2(h_1(a), a), a) \vert a \in Form_L\} \subset PC
 \end{align}
-$$</p>
-<p>Proof:
-$$
+\]</div>
+<p>Proof:</p>
+<div class="arithmatex">\[
 \begin{align}
-&amp;\forall a \in Form_L, h_1(a) \in Form_L, h_2(h_1(a), h_1(a)) \in PC\
-&amp;MP(h_2(h_1(a), h_1(a)), Axiom_3(a, a))\
-=&amp;MP(h_2(h_1(a), h_1(a)), h_2(h_2(h_1(a), h_1(a)), Target)) \
+&amp;\forall a \in Form_L, h_1(a) \in Form_L, h_2(h_1(a), h_1(a)) \in PC\\
+&amp;MP(h_2(h_1(a), h_1(a)), Axiom_3(a, a))\\
+=&amp;MP(h_2(h_1(a), h_1(a)), h_2(h_2(h_1(a), h_1(a)), Target)) \\
 =&amp; Target
 \end{align}
-$$</p>
-<p>Q3:
-$$
+\]</div>
+<p>Q3:</p>
+<div class="arithmatex">\[
 \begin{align}
-h_2(a, c) \in PC(Axiom \cup {h_2(a, b), h_2(b, c)}).
+h_2(a, c) \in PC(Axiom \cup \{h_2(a, b), h_2(b, c)\}).
 \end{align}
-$$</p>
-<p>Define
-$$
+\]</div>
+<p>Define</p>
+<div class="arithmatex">\[
 \begin{align}
-Q3(h_2(x, y), h_2(y, z)) = h_2(x, z), \forall a, b, c \in PC(Axiom)
+Q3(h_2(a, b), h_2(b, c)) = h_2(a, c), \forall a, b, c \in PC(Axiom)
 \end{align}
-$$</p>
-<p>Proof:
-$$
+\]</div>
+<p>Proof:</p>
+<div class="arithmatex">\[
 \begin{align}
-&amp;\forall a, b, c \in Form_L,\
-&amp;MP(h_2(a, b), MP(Axiom_1(a, h_2(b, c)), Axiom_2(a, b, c)))\
+&amp;\forall a, b, c \in Form_L,\\
+&amp;MP(h_2(a, b), MP(Axiom_1(a, h_2(b, c)), Axiom_2(a, b, c)))\\
 =&amp; MP(h_2(a, b), MP(
     h_2(a, h_2(b, c)),
     h_2(h_2(a, b), h_2(a, c))
-))\
+))\\
 =&amp; MP(h_2(a, b), h_2(
     h_2(a, b), h_2(a, c)
-)) \
+)) \\
 =&amp; h_2(a, c)
 \end{align}
-$$</p>
-<p>Q4:
-$$
+\]</div>
+<p>Q4:</p>
+<div class="arithmatex">\[
 \begin{align}
-h_2(b, h_2(a, c)) \in PC(Axiom \cup{h_2(a, h_2(b,c))})
+h_2(b, h_2(a, c)) \in PC(Axiom \cup\{h_2(a, h_2(b,c))\})
 \end{align}
-$$</p>
-<p>Proof.
-$$
+\]</div>
+<p>Proof.</p>
+<div class="arithmatex">\[
 \begin{align}
-&amp;X = Axiom_1(a, b) = h_2(b, h_2(a, b))\
-&amp;Y = MP(h_2(a, h_2(b, c)), Axiom_2(a, b, c)) = h_2(h_2(a, b), h_2(a, c))\
+&amp;X = Axiom_1(a, b) = h_2(b, h_2(a, b))\\
+&amp;Y = MP(h_2(a, h_2(b, c)), Axiom_2(a, b, c)) = h_2(h_2(a, b), h_2(a, c))\\
 &amp;Q3(X, Y) = h_2(b, h_2(a, c))
 \end{align}
-$$</p>
-<p>Q5:
-$$
+\]</div>
+<p>Q5:</p>
+<div class="arithmatex">\[
 \begin{align}
 h_2(h_2(h_1(a), h_1(b)), h_2(b, a)) \in PC(Axiom)
 \end{align}
-$$</p>
-<p>Proof.
-$$
+\]</div>
+<p>Proof.</p>
+<div class="arithmatex">\[
 \begin{align}
-&amp;t0 := h_2(h_1(a), h_1(b))\
-&amp;t1 := Axiom_1(b, h_1(a)) = h_2(b, h_2(h_1(a), b))\
-&amp;t2 := Axiom_3(a, b) = h_2(t0, h_2(h_2(h_1(a), b), a))\
-&amp;t3 := Q4(t2) = h_2(h_2(h_1(a), b), h_2(t0, a)) \
-&amp;t4 := Q3(t1, t3) = h_2(b, h_2(t0, a))\
+&amp;t0 := h_2(h_1(a), h_1(b))\\
+&amp;t1 := Axiom_1(b, h_1(a)) = h_2(b, h_2(h_1(a), b))\\
+&amp;t2 := Axiom_3(a, b) = h_2(t0, h_2(h_2(h_1(a), b), a))\\
+&amp;t3 := Q4(t2) = h_2(h_2(h_1(a), b), h_2(t0, a)) \\
+&amp;t4 := Q3(t1, t3) = h_2(b, h_2(t0, a))\\
 &amp;Q4(t4) = h_1(A, h_2(b, a))
 \end{align}
-$$</p>
-<p>Q6:
-$$
+\]</div>
+<p>Q6:</p>
+<div class="arithmatex">\[
+\begin{align}
 \forall a \in Form_L, a \in PC(Axiom \cup b) \Rightarrow h_2(b, a) \in PC(Axiom).
+\end{align}
+\]</div>
+<p>Denote
+$$
+Q6(a\in PC(Axiom \cup b)) = h_2(b, a) \in PC(Axiom).
 $$</p>
 <p>Proof.</p>
 <p>If <span class="arithmatex">\(a \in PC(Axiom)\)</span>, then</p>
@@ -1617,16 +1623,16 @@ $$</p>
 =&amp; h_2(b, a) \in PC(Axiom).
 \end{align}
 \]</div>
-<p>If <span class="arithmatex">\(a \notin PC(Axiom)\)</span>, then
-$$
+<p>If <span class="arithmatex">\(a \notin PC(Axiom)\)</span>, then</p>
+<div class="arithmatex">\[
 \begin{align}
-a \in \cup_{n \in N}{f_n(b)}, \quad f_0(b) = b.
+a \in \cup_{n \in N}\{f_n(b)\}, \quad f_0(b) = b.
 \end{align}
-$$</p>
-<p>Step0:
-$$
+\]</div>
+<p>Step0:</p>
+<div class="arithmatex">\[
 f_0(b) = b, a = b, Q_1(a) = h(a, a) = h(b, a) \in PC(Axiom).
-$$</p>
+\]</div>
 <p>Stepk: assume <span class="arithmatex">\(\forall c_{k-1} \in \cup_{k-1}\{f_{k-1}(b)\}, h_2(b, c_{k-1}) \in PC(Axiom)\)</span>, we need proof <span class="arithmatex">\(\forall c_k \in \cup_{k}\{f_k(b)\}\)</span>.</p>
 <div class="arithmatex">\[
 \begin{align}
@@ -1639,13 +1645,44 @@ $$</p>
 =&amp; h_2(b, c_k) \in PC(Axiom)
 \end{align}
 \]</div>
+<p>Q7:</p>
+<div class="arithmatex">\[
+\begin{align}
+\forall a, b, c \in Form_L, h_2(a, c) \in PC(Axiom \cup \{h_2(a, h_2(b, c)), b\})
+\end{align}
+\]</div>
+<p>Proof:</p>
+<div class="arithmatex">\[
+\begin{align}
+&amp;MP(b, Q4(h_2(a, h_2(b, c))))\\
+=&amp; MP(b, h_2(b, h_2(a, c)))\\
+=&amp; h2(a, c)
+\end{align}
+\]</div>
+<p>Q8:</p>
+<div class="arithmatex">\[
+\begin{align}
+\forall a \in Form_L, h_2(h_1(h_1(a)), a) \in PC(Axiom).
+\end{align}
+\]</div>
+<p>Proof.</p>
+<div class="arithmatex">\[
+\begin{align}
+&amp;t = Q7(Q1(h_1(a)), Axiom_3(a, h_1(a)))\\
+=&amp;Q7(h_2(h_1(a), h_1(a)), h_2(h_2(h_1(a), h_1(h_1(a))), h_2(h_2(h_1(a), h_1(a)), a)))\\
+=&amp; h_2(h_2(h_1(a), h_1(h_1(a))), a)\\
+&amp;Q3(Axiom_1(h_1(a), h_1(h_1(a))), t)\\
+=&amp;Q3(h_2(h_1(h_1(a)), h_2(h_1(h_1(a)), h_1(a))),  t) \\
+=&amp; h_2(h_1(h_1(a)), a)
+\end{align}
+\]</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 16, 2022</span>
       
     
   </small>
