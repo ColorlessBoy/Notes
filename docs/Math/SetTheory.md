@@ -271,7 +271,8 @@ $$
 $$
 \begin{align}
     Isomorphism(S_1, S_2) := \{(r_1, r_2, f) \in \Phi \vert \phi(r_1, r_2, f)\},\\
-    \Phi = OrderPreserving(S_1, S_2) \cap P(PartialOrder(S_1) \\ \times PartialOrder(S_2) \times Injection(S_1, S_2)),\\
+    \Phi = OrderPreserving(S_1, S_2) \cap \\
+    P(PartialOrder(S_1) \times PartialOrder(S_2) \times Injection(S_1, S_2)),\\
     \phi(r_1, r_2, f) = (r_2, r_1, f^{-1}) \in OrderPreserving(S_2, S_1).
 \end{align}
 $$
@@ -409,5 +410,59 @@ $$
     (53) \Rightarrow& \forall_S a ((a, f(a)) \in r_0 \lor a = f(a))\\
     \Rightarrow& \exist_\Phi b (b = f(a))\\
     \Rightarrow& \exist_S ((f(a) , a) \in r_0). (Controdiction.)
+\end{align}
+$$
+
+### Theorem1
+
+$$
+\begin{align}
+    \forall r_1 \in WellOrdering(S_1) \forall r_2 \in WellOrdering(S_2) (
+        \phi_1 \lor \phi_2 \lor \phi_3
+    ),\\
+    \Phi = (\{r_1\} \times \{r_2\} \times Injection(S_1, S_2)),\\
+    \phi_1 = Isomorphism(S_1, S_2) \cap_{valid} \Phi \ne \varnothing,\\
+    \phi_2 = \exist a \in S_1 (Isomorphism(InitalSegment(S_1, a), S_2) \cap_{valid} \Phi \ne \varnothing,\\
+    \phi_3 = \exist b \in S_2 (Isomorphism(S_1, InitalSegment(S_2, b)) \cap_{valid} \Phi \ne \varnothing,\\
+\end{align}
+$$
+
+Proof.
+
+$$
+\begin{align}
+    r :=& \{(a, b) \in S_1 \times S_2 \vert \\
+    & Isomorphism(InitialSegment(S_1, a), InitalSegment(S_2, b)) \cap_{valid} \Phi \ne \varnothing\}.\\
+    (75) \Rightarrow& r \in Function(S_1, S_2) \lor r = \varnothing.\\
+    (78) \Rightarrow& \forall a_1, a_2 \in S_1 \forall b \in S_2 ((a_1, b) \in r \land (a_2, b) \in r \to a_1 = a_2)\\
+    \Rightarrow& r \in Injection(S_1, S_2) \lor r = \varnothing.\\
+\end{align}
+$$
+
+---
+
+## Script Talks
+
+### SubSet
+
+$$
+\begin{align}
+    h_{subset}(a, b) := h_{forall}(x, h_{imply}(h_{belong}(x, a), h_{belong}(x, b))).
+\end{align}
+$$
+
+### EmptySet Axiom
+
+$$
+\begin{align}
+    Axiom_{EmptySet}(a, b) = h_{exist}(a, h_{forall}(b, h_{not}(h_{belong}(b, a)))).
+\end{align}
+$$
+
+需要证明 $h_{subset}(\varnothing, \varnothing)$ 可导出，或者说为True，即
+
+$$
+\begin{align}
+    h_{imply}(h_{forall}(b, h_{not}(h_{belong}(b, a))), h_{subset}(a, a)).
 \end{align}
 $$
