@@ -53,7 +53,7 @@ Proof:
 $$
 \begin{align}
 &\forall a \in Form_L, h_2(a, a) \in Form_L,\\
-&MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), Axiom_2(a, a))) \\
+&MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), Axiom_2(a, h(a, a), a))) \\
 =& MP(Axiom_1(a, a), MP(Axiom_1(a, h_2(a, a)), h_2(Axiom_1(a, h_2(a, a)), h_2(Axiom_1(a, a), h_2(a, a))))) \\
 =& MP(Axiom_1(a, a), h_2(Axiom_1(a, a), h_2(a, a)))\\
 =&h_2(a, a) \in PC.
