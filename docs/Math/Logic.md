@@ -1,5 +1,11 @@
 # Logic
 
+## 前言
+
+下面的推理有很多错误，我决定使用python来帮我检查错误。
+
+https://github.com/ColorlessBoy/first-order-language
+
 ## An Axiom System for the Propositional Calculus
 
 Denote some language form set
